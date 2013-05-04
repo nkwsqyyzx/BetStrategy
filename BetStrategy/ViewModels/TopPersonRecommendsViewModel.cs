@@ -188,7 +188,15 @@ namespace BetStrategy.ViewModels
             }
             if (sb.Length > 0)
             {
-                EmailHelper.SendEmailViaGmail(EmailConfig.Instance.Username, EmailConfig.Instance.ToAddress, EmailConfig.Instance.Username, EmailConfig.Instance.Password, subject, sb.ToString());
+                try
+                {
+                    EmailHelper.SendEmailViaGmail(EmailConfig.Instance.Username, EmailConfig.Instance.ToAddress, EmailConfig.Instance.Username, EmailConfig.Instance.Password, subject, sb.ToString());
+                }
+                catch (System.Exception ex)
+                {
+                    App.Icon.Text = "你的邮件配置好像是出问题了.要不就是你的网络发不出去邮件.尝试修改配置后重启吧.";
+                    EnableEmailNotify = false;
+                }
             }
             else
             {
@@ -258,6 +266,7 @@ namespace BetStrategy.ViewModels
             _timerRefreshRecommends = new DispatcherTimer();
             _timerRefreshRecommends.Interval = new TimeSpan(0, Constants.Instance.INT_MINUTES_UPDATE_RECOMMEND, 30);
             _timerRefreshRecommends.Tick += RefreshRecommends;
+            _timerRefreshRecommends.Start();
             GetTopPerson();
         }
 
