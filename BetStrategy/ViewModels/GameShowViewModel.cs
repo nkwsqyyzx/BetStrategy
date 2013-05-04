@@ -19,8 +19,6 @@ namespace BetStrategy.ViewModels
     public class GameShowViewModel : BaseViewModel
     {
 
-        private PreferResultToStringConverter converter = new PreferResultToStringConverter();
-
         private List<Recommend> _allRecommends = new List<Recommend>();
         private ObservableCollection<Recommend> _recommends = new ObservableCollection<Recommend>();
         /// <summary>
@@ -84,92 +82,26 @@ namespace BetStrategy.ViewModels
             {
                 if (ok)
                 {
-                    UiDispatcher.BeginInvoke(new Action(() =>
-                    {
-                        _allRecommends.Clear();
-                        ParseRecommendsFromHtmlResponse(html);
-                    }));
+                    ParseRecommendsFromHtml(html);
                 }
             });
         }
 
-        private void ParseRecommendsFromHtmlResponse(string html)
+        private void ParseRecommendsFromHtml(string html)
         {
-            new System.Threading.Thread(new System.Threading.ParameterizedThreadStart((o) =>
+            HtmlParser.HtmlParser.ParseRecommends(html, (results) =>
             {
-                HtmlDocument hDoc = new HtmlDocument();
-                hDoc.LoadHtml(html);
-
-                var tableRows = hDoc.DocumentNode.SelectNodes(Constants.Instance.XPATH_GAME_SHOW_RESULT);
-
-                foreach (var node in tableRows)
+                UiDispatcher.BeginInvoke(new Action(() =>
                 {
-                    ExtractTableRow(node, (results) =>
+                    _allRecommends.Clear();
+                    _recommends.Clear();
+                    foreach (var rec in results)
                     {
-                        UiDispatcher.BeginInvoke(new Action(() =>
-                        {
-                            if (results.Count == Constants.Instance.COUNT_GAME_SHOW_RESULT_COLUMNS)
-                            {
-                                _allRecommends.Add(RecommendFromStrings(results));
-                            }
-                        }));
-                    });
-                }
-            })).Start();
-        }
-
-        private Recommend RecommendFromStrings(IList<string> results)
-        {
-            string r6 = results[6]; // 艾斯迪格拿/0.900
-            string szOdds = "0.0";
-            int lastSlash = r6.LastIndexOf("/");
-            string prefer = "推荐";
-            if (lastSlash >= 0)
-            {
-                szOdds = r6.Substring(r6.LastIndexOf("/") + 1);
-                prefer = r6.Substring(0, r6.LastIndexOf("/"));
-            }
-            float odds = 0.0f;
-            float.TryParse(szOdds, out odds);
-            Recommend rec = new Recommend()
-            {
-                // 开赛时间:04-27 16:30
-                Time1 = results[2],
-                // 主队:中央海岸學院
-                Host = new Team() { TeamName = results[3] },
-                // 盘口:2.5/3球
-                OddStake = new OddStake() { Description = results[4] },
-                // 客队:馬柯尼
-                Guest = new Team() { TeamName = results[5] },
-                // 推荐内容:大球
-                Prefer = new Prefer() { Description = prefer },
-                // 赔率:0.86
-                Odds = odds,
-                // 比赛最终结果:0-1
-                Result = results[7],
-                // 推荐最终结果:输盘
-                PreferResult = (PreferResult)converter.ConvertBack(results[8], typeof(PreferResult), null, null),
-                // 推荐时间:04-27 16:00
-                Time2 = results[9],
-                // 推荐人:地狱黑仔王
-                Person = new Person() { Name = results[10] }
-            };
-
-            return rec;
-        }
-
-        private void ExtractTableRow(HtmlNode rowNode, Action<IList<string>> callback)
-        {
-            IList<string> values = new List<string>();
-            foreach (var td in rowNode.ChildNodes)
-            {
-                var result = td.InnerText.Trim();
-                if (!string.IsNullOrWhiteSpace(result))
-                {
-                    values.Add(result);
-                }
-            }
-            callback(values);
+                        _allRecommends.Add(rec);
+                        _recommends.Add(rec);
+                    }
+                }));
+            });
         }
 
         static FileStreamSerializer<List<Person>> serializer = new JsonSerializer<List<Person>>();

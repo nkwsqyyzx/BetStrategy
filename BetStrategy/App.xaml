@@ -1,8 +1,13 @@
 ﻿<Application x:Class="BetStrategy.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="Windows/MainWindow.xaml">
+             StartupUri="Windows/TopPersonRecommendsWindow.xaml"
+             >
     <Application.Resources>
-         
+            <ContextMenu Name="ContextMenu" 
+                         x:Key="NotifierContextMenu" 
+                         Placement="MousePoint">
+                <MenuItem Header="Close" Click="Menu_Close"/>
+            </ContextMenu>
     </Application.Resources>
 </Application>

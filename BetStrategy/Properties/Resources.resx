@@ -133,7 +133,7 @@
     <value>等待</value>
   </data>
   <data name="Win" xml:space="preserve">
-    <value>赢</value>
+    <value>赢盘</value>
   </data>
   <data name="WinHalf" xml:space="preserve">
     <value>赢半</value>

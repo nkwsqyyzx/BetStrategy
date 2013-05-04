@@ -44,7 +44,7 @@ namespace BetStrategy.Common.Configurations
                     XPATH_GAME_TOP_RESULT = "html[1]/body[1]/table[1]/tr",
                     COUNT_GAME_TOP_RESULT_COLUMNS = 10,
                     FILEPATH_GAME_TOP_BEST = "filepath_game_top_best.json.txt",
-                    COUNT_MIN_PROFIT = 7,
+                    COUNT_MIN_PROFIT = 7.0f,
                     INT_MINUTES_UPDATE_TOP_PERSON = 600,
                     INT_MINUTES_UPDATE_RECOMMEND = 17
                 });
@@ -106,9 +106,9 @@ namespace BetStrategy.Common.Configurations
         public string FILEPATH_GAME_TOP_BEST { get; set; }
 
         /// <summary>
-        /// 成为靠前选手的必须条件.目前定为最少净胜5场.
+        /// 成为靠前选手的必须条件.目前定为最少净胜7场.
         /// </summary>
-        public int COUNT_MIN_PROFIT { get; set; }
+        public float COUNT_MIN_PROFIT { get; set; }
         #endregion
     }
 }
