@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using BetStrategy.Models;
 using System.Collections.Generic;
 using BetStrategy.HtmlParser;
+using System.Diagnostics;
 
 namespace CommonTest
 {
@@ -65,19 +66,40 @@ namespace CommonTest
             foreach (PreferResult p in Enum.GetValues(typeof(PreferResult)))
             {
                 string sz = con.Convert(p, typeof(string), null, null) as string;
-                System.Diagnostics.Debug.WriteLine("Enum:"+p.ToString()+" string:"+sz);
+                System.Diagnostics.Debug.WriteLine("Enum:" + p.ToString() + " string:" + sz);
                 szsss.Add(sz);
             }
 
             foreach (var sz in szsss)
             {
                 var p = con.ConvertBack(sz, typeof(PreferResult), null, null);
-                System.Diagnostics.Debug.WriteLine("Enum:"+p.ToString()+" string:"+sz);
+                System.Diagnostics.Debug.WriteLine("Enum:" + p.ToString() + " string:" + sz);
             }
 
             HtmlParser.ParseRecommends(TestData.GAME_SHOW_HTML, (re) => { });
 
             Thread.Sleep(1000000);
+        }
+
+        [Conditional("TRACE_ON")]
+        private static void msg(bool flag)
+        {
+            if (flag)
+            {
+                System.Diagnostics.Debug.WriteLine("true");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("False");
+            }
+        }
+
+        [TestMethod]
+        public void TestConditional()
+        {
+            string sz = null;
+            msg(sz.Length > 0);
+            System.Diagnostics.Debug.WriteLine("test");
         }
     }
 }
