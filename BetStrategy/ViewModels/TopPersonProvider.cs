@@ -67,6 +67,14 @@ namespace BetStrategy.ViewModels
                 {
                     HtmlParser.HtmlParser.ParseTopPerson(html, finished);
                 }
+                else if (TopPersons != null && TopPersons.Count > 0)
+                {
+                    finished(TopPersons);
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("ERROR WHEN DOWNLOADING TOP PERSON.");
+                }
             });
         }
 
