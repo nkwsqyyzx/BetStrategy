@@ -30,8 +30,8 @@
                 <Button Command="{Binding CommandRefresh}" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Content="刷新"/>
                 <CheckBox Content="启用自动刷新" IsChecked="{Binding Path=CheckBoxIsChecked,Mode=TwoWay}"  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <CheckBox Content="启用邮件通知" IsChecked="{Binding Path=EnableEmailNotify,Mode=TwoWay}"  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <ComboBox Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" 
-                          ToolTip="下拉设置高手最少赢的场次" 
+                <ComboBox Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"
+                          ToolTip="下拉设置高手最少赢的场次"
                           ItemsSource="{Binding TopPersonWinsList}"
                           DisplayMemberPath="Profit"
                           SelectedItem="{Binding Path=SelectedProfitPerson, Mode=TwoWay}"/>
@@ -42,8 +42,8 @@
             <ListView ItemsSource="{Binding Recommends}"
 		     ScrollViewer.VerticalScrollBarVisibility="Visible"
                      ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                     HorizontalAlignment="Center" 
-                     Margin="30,10,10,10" 
+                     HorizontalAlignment="Center"
+                     Margin="30,10,10,10"
                      VerticalAlignment="Stretch">
                 <ListView.View>
                     <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Authors">
@@ -63,6 +63,18 @@
                         <GridViewColumn Width="60" Header="比赛结果" DisplayMemberBinding="{Binding Path=PreferResult,Converter={StaticResource CON}}" />
                         <GridViewColumn Width="80" Header="发布时间" DisplayMemberBinding="{Binding Path=Time2}" />
                         <GridViewColumn Width="130" Header="发表用户" DisplayMemberBinding="{Binding Path=Person.Name}" />
+                        <GridViewColumn Width="80" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Name="btnDownload"
+                                                Content="查看推荐人"
+                                                CommandParameter="{Binding}"
+                                                Command="{Binding Path=DataContext.CommandViewPerson, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

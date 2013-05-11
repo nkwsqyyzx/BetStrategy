@@ -17,9 +17,15 @@ namespace BetStrategy
             App.Icon = new NotifyIcon();
 	    Icon.MouseUp +=Icon_MouseUp;
 	    Icon.DoubleClick += Icon_DoubleClick;
+	    Icon.BalloonTipClicked += Icon_BalloonTipClicked;
             Icon.Icon = new System.Drawing.Icon("Resources\\SysTray.ico");
             Icon.Visible = true;
             base.OnStartup(e);
+        }
+
+        private void Icon_BalloonTipClicked(object sender, System.EventArgs e)
+        {
+            this.MainWindow.Activate();
         }
 
         private void Icon_DoubleClick(object sender, System.EventArgs e)

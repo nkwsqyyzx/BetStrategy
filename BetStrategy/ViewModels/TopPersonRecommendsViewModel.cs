@@ -12,6 +12,7 @@ using WSQ.CSharp.Extensions;
 using WSQ.CSharp.Helper;
 using WSQ.CSharp.Net;
 using System.Linq;
+using GalaSoft.MvvmLight;
 
 namespace BetStrategy.ViewModels
 {
@@ -21,40 +22,7 @@ namespace BetStrategy.ViewModels
 
         private ObservableCollection<Recommend> _recommends = new ObservableCollection<Recommend>();
 
-        private List<Recommend> AllRecommends = new List<Recommend>();
-        public ObservableCollection<Recommend> Recommends
-        {
-            get
-            {
-                return _recommends;
-            }
-        }
-
-        private ICommand _cmdRefresh;
-        public ICommand CommandRefresh
-        {
-            get
-            {
-                if (_cmdRefresh == null)
-                {
-                    _cmdRefresh = new RelayCommand(() =>
-                    {
-                        DownloadRecommends();
-                    });
-                }
-                return _cmdRefresh;
-            }
-        }
-
-        private ObservableCollection<Person> _topWinsList = new ObservableCollection<Person>();
-        public ObservableCollection<Person> TopPersonWinsList
-        {
-            get
-            {
-                return _topWinsList;
-            }
-        }
-
+        #region BINDABLE PROPERTIES
         private bool _isChecked = true;
         public bool CheckBoxIsChecked
         {
@@ -67,6 +35,19 @@ namespace BetStrategy.ViewModels
                 _isChecked = value;
                 NotifyPropertyChange(() => CheckBoxIsChecked);
                 EnableAutoRefresh(_isChecked);
+            }
+        }
+
+        private void EnableAutoRefresh(bool flag)
+        {
+            if (!flag)
+            {
+                _timerRefreshRecommends.Stop();
+            }
+            else
+            {
+                _timerRefreshRecommends.Start();
+                RefreshRecommends(null, null);
             }
         }
 
@@ -86,6 +67,72 @@ namespace BetStrategy.ViewModels
                 ReloadList();
             }
         }
+
+        private bool _enableEmail = false;
+        public bool EnableEmailNotify
+        {
+            get
+            {
+                return _enableEmail;
+            }
+            set
+            {
+                _enableEmail = value;
+                NotifyPropertyChange(() => EnableEmailNotify);
+            }
+        }
+        #endregion
+
+        #region BINDABLE COLLECTIONS
+        private List<Recommend> AllRecommends = new List<Recommend>();
+        public ObservableCollection<Recommend> Recommends
+        {
+            get
+            {
+                return _recommends;
+            }
+        }
+
+        private ObservableCollection<Person> _topWinsList = new ObservableCollection<Person>();
+        public ObservableCollection<Person> TopPersonWinsList
+        {
+            get
+            {
+                return _topWinsList;
+            }
+        }
+        #endregion
+
+        #region COMMANDS
+        private ICommand _cmdRefresh;
+        public ICommand CommandRefresh
+        {
+            get
+            {
+                if (_cmdRefresh == null)
+                {
+                    _cmdRefresh = new RelayCommand(() =>
+                    {
+                        DownloadRecommends();
+                    });
+                }
+                return _cmdRefresh;
+            }
+        }
+
+        private ICommand _viewPerson = null;
+        public ICommand CommandViewPerson
+        {
+            get
+            {
+                if (_viewPerson == null)
+                {
+                    _viewPerson = new RelayCommand<Recommend>(ViewPerson);
+                }
+                return _viewPerson;
+            }
+        }
+        #endregion
 
         private void ReloadList()
         {
@@ -109,60 +156,72 @@ namespace BetStrategy.ViewModels
             }
         }
 
-        private bool _enableEmail = false;
-        public bool EnableEmailNotify
-        {
-            get
-            {
-                return _enableEmail;
-            }
-            set
-            {
-                _enableEmail = value;
-                NotifyPropertyChange(() => EnableEmailNotify);
-            }
-        }
-
-        private void EnableAutoRefresh(bool flag)
-        {
-            if (!flag)
-            {
-                _timerRefreshRecommends.Stop();
-            }
-            else
-            {
-                _timerRefreshRecommends.Start();
-                RefreshRecommends(null, null);
-            }
-        }
-
         private List<Person> TopPerson = new List<Person>();
         private void DownloadRecommends()
         {
-
+#if PUBLISH
+            ParseHtml(TestData.GAME_SHOW_HTML);
+#else
             NetworkUtils.DownloadString(Constants.Instance.URL_BASE + Constants.Instance.URL_GAME_SHOW, (ok, html, error) =>
             {
                 if (ok)
                 {
-                    HtmlParser.HtmlParser.ParseRecommends(html, (rs) =>
-                    {
-                        UiDispatcher.BeginInvoke(new Action(() =>
-                        {
-                            AllRecommends.Clear();
-                            foreach (var item in rs)
-                            {
-                                AllRecommends.Add(item);
-                            }
-                            ReloadList();
-                            App.Icon.Text = "高手推荐了" + AllRecommends.Count((i) => IsTopPerson(i.Person)) + "条,一共有" + _recommends.Count + "条推荐,点击查看";
-                            if (EnableEmailNotify)
-                            {
-                                NotifyViaEmail();
-                            }
-                        }));
-                    });
+                    ParseHtml(html);
                 }
             });
+#endif
+        }
+
+        private void ParseHtml(string html)
+        {
+            HtmlParser.HtmlParser.ParseRecommends(html, (rs) =>
+            {
+                UiDispatcher.BeginInvoke(new Action(() =>
+                {
+                    AddRecommends(rs);
+                }));
+            });
+        }
+
+        private void AddRecommends(List<Recommend> rs)
+        {
+            NotifyBalloonTip(rs);
+            AllRecommends.Clear();
+            foreach (var item in rs)
+            {
+                AllRecommends.Add(item);
+            }
+            ReloadList();
+            App.Icon.Text = DateTime.Now.ToString("HH:mm:ss") + ":高手推荐了" + AllRecommends.Count((i) => IsTopPerson(i.Person)) + "条,一共有" + _recommends.Count + "条推荐,点击查看";
+            if (EnableEmailNotify)
+            {
+                NotifyViaEmail();
+            }
+        }
+
+        private void NotifyBalloonTip(List<Recommend> rs)
+        {
+            var newRecommends = (from item in rs where IsTopNewRecommend(item) select item).Except(from item in AllRecommends select item);
+            string recs = RecommendsToString(newRecommends);
+            if (!string.IsNullOrEmpty(recs))
+            {
+                App.Icon.ShowBalloonTip(5 * 60 * 1000, "高手有"+newRecommends.Count() + "条新推荐", recs, System.Windows.Forms.ToolTipIcon.Info);
+            }
+        }
+
+        private bool IsTopNewRecommend(Recommend item)
+        {
+            return IsTopPerson(item.Person) && item.PreferResult != PreferResult.Waiting;
+        }
+
+        private string RecommendsToString(IEnumerable<Recommend> list)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in list)
+            {
+                sb.AppendLine(RecommendToString(item));
+            }
+            return sb.ToString();
         }
 
         private string RecommendToString(Recommend item)
@@ -178,23 +237,16 @@ namespace BetStrategy.ViewModels
         private void NotifyViaEmail()
         {
             string subject = "高手们推荐啦:" + DateTime.Now.ToLongDateString();
-            StringBuilder sb = new StringBuilder();
-            foreach (var item in AllRecommends)
-            {
-                if (IsTopPerson(item.Person))
-                {
-                    sb.AppendLine(RecommendToString(item));
-                }
-            }
-            if (sb.Length > 0)
+            string recs = RecommendsToString(AllRecommends.Where((i) => IsTopPerson(i.Person)));
+            if (!string.IsNullOrEmpty(recs))
             {
                 try
                 {
-                    EmailHelper.SendEmailViaGmail(EmailConfig.Instance.Username, EmailConfig.Instance.ToAddress, EmailConfig.Instance.Username, EmailConfig.Instance.Password, subject, sb.ToString());
+                    EmailHelper.SendEmailViaGmail(EmailConfig.Instance.Username, EmailConfig.Instance.ToAddress, EmailConfig.Instance.Username, EmailConfig.Instance.Password, subject, recs);
                 }
                 catch (System.Exception ex)
                 {
-                    App.Icon.Text = "你的邮件配置好像是出问题了.要不就是你的网络发不出去邮件.尝试修改配置后重启吧.";
+                    App.Icon.Text = "你的邮件配置好像是出问题了.要不就是你的网络发不出去邮件.尝试修改配置后重启吧.\n" + ex.Message;
                     EnableEmailNotify = false;
                 }
             }
@@ -210,52 +262,18 @@ namespace BetStrategy.ViewModels
             return personInTopPerson != null && personInTopPerson.Profit >= Constants.Instance.COUNT_MIN_PROFIT;
         }
 
-        private void DownloadTopPerson()
-        {
-            NetworkUtils.DownloadString(Constants.Instance.URL_BASE + Constants.Instance.URL_GAME_TOP, (ok, html, error) =>
-            {
-                if (ok)
-                {
-                    HtmlParser.HtmlParser.ParseTopPerson(html, (persons) =>
-                    {
-                        UiDispatcher.BeginInvoke(new Action(() =>
-                        {
-                            TopPerson.Clear();
-                            List<Person> bestPerson = new List<Person>();
-                            foreach (var p in persons)
-                            {
-                                TopPerson.Add(p);
-                                if (!bestPerson.Any((t) => t.Profit == p.Profit) && p.Profit > 0)
-                                {
-                                    bestPerson.Add(p);
-                                }
-                            }
-
-                            bestPerson.Sort(new Comparison<Person>((Person p, Person q) =>
-                            {
-                                return q.Profit.CompareTo(p.Profit);
-                            }));
-
-                            foreach (var item in bestPerson)
-                            {
-                                _topWinsList.Add(item);
-                            }
-
-                            if (TopPerson.Count > 0)
-                            {
-                                DownloadRecommends();
-                            }
-                        }));
-                    });
-                }
-            });
-        }
-
-        private static TopPersonRecommendsViewModel _instance = new TopPersonRecommendsViewModel();
+        private static TopPersonRecommendsViewModel _instance;
         public static TopPersonRecommendsViewModel Instance
         {
             get
             {
+                lock (typeof(TopPersonRecommendsViewModel))
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new TopPersonRecommendsViewModel();
+                    }
+                }
                 return _instance;
             }
         }
@@ -267,6 +285,10 @@ namespace BetStrategy.ViewModels
             _timerRefreshRecommends.Interval = new TimeSpan(0, Constants.Instance.INT_MINUTES_UPDATE_RECOMMEND, 30);
             _timerRefreshRecommends.Tick += RefreshRecommends;
             _timerRefreshRecommends.Start();
+        }
+
+        public void StartUpdate()
+        {
             GetTopPerson();
         }
 
@@ -344,6 +366,24 @@ namespace BetStrategy.ViewModels
             {
                 _recommends.Add(item);
             }
+        }
+
+        private string PersonString(Person p)
+        {
+            return string.Format("净胜{0}场:{1}推{2}胜{3}半胜{4}走{5}半负{6}负", p.Profit, p.Total, p.Win, p.HalfWin, p.Draw, p.HalfLose, p.Lose);
+        }
+
+        private void ViewPerson(Recommend obj)
+        {
+            var person = TopPerson.FirstOrDefault((i) => i.Name == obj.Person.Name);
+            string title = string.Empty;
+            string tipText = "没有找到该高手信息";
+            if (person != null)
+            {
+                title = person.Name;
+                tipText = PersonString(person);
+            }
+            App.Icon.ShowBalloonTip(3000, title, tipText, System.Windows.Forms.ToolTipIcon.Info);
         }
     }
 }

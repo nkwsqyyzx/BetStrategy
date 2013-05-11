@@ -10,10 +10,34 @@ using WSQ.CSharp.Serialization;
 
 namespace BetStrategy.ViewModels
 {
+    public class Data
+    {
+        public DateTime LastUpdateTime { get; set; }
+
+        public List<Person> TopPersons { get; set; }
+
+        private bool IsLatest()
+        {
+            return LastUpdateTime != null &&
+                TopPersons != null &&
+                TopPersons.Count > 0 &&
+                DateTime.Now.Subtract(LastUpdateTime).TotalMinutes < Constants.Instance.INT_MINUTES_UPDATE_TOP_PERSON;
+        }
+
+        public bool IsReady
+        {
+            get
+            {
+                return IsLatest();
+            }
+        }
+    }
+
     public class TopPersonProvider
     {
         private static string FILE = "TopPersonCaches.txt";
-        private static FileStreamSerializer<TopPersonProvider> serializer = new JsonSerializer<TopPersonProvider>();
+        private Data data;
+        private static FileStreamSerializer<Data> serializer = new JsonSerializer<Data>();
 
         private static TopPersonProvider _instance;
         public static TopPersonProvider Instance
@@ -31,7 +55,7 @@ namespace BetStrategy.ViewModels
             }
         }
 
-        private TopPersonProvider()
+        public TopPersonProvider()
         {
             var saved = serializer.Deserialize(FILE);
             if (saved == null)
@@ -40,23 +64,29 @@ namespace BetStrategy.ViewModels
             }
             else
             {
-                LastUpdateTime = saved.LastUpdateTime;
-                TopPersons = saved.TopPersons;
+                data = saved;
             }
         }
 
         private void Update()
         {
-            UpdateTopPerson((result) =>
+            UpdateTopPerson(Save);
+        }
+
+        private void Save(List<Person> result)
+        {
+            if (data == null)
             {
-                LastUpdateTime = DateTime.Now;
-                TopPersons = new List<Person>();
-                foreach (var p in result)
-                {
-                    TopPersons.Add(p);
-                }
-                serializer.Serialize(FILE, this);
-            });
+                data = new Data();
+                data.TopPersons = new List<Person>();
+            }
+            data.LastUpdateTime = DateTime.Now;
+            data.TopPersons.Clear();
+            foreach (var p in result)
+            {
+                data.TopPersons.Add(p);
+            }
+            serializer.Serialize(FILE, data);
         }
 
         private void UpdateTopPerson(Action<List<Person>> finished)
@@ -65,11 +95,15 @@ namespace BetStrategy.ViewModels
             {
                 if (ok)
                 {
-                    HtmlParser.HtmlParser.ParseTopPerson(html, finished);
+                    HtmlParser.HtmlParser.ParseTopPerson(html, (rs) =>
+                    {
+                        Save(rs);
+                        finished(rs);
+                    });
                 }
-                else if (TopPersons != null && TopPersons.Count > 0)
+                else if (data != null && data.TopPersons != null && data.TopPersons.Count > 0)
                 {
-                    finished(TopPersons);
+                    finished(data.TopPersons);
                 }
                 else
                 {
@@ -78,19 +112,12 @@ namespace BetStrategy.ViewModels
             });
         }
 
-        private bool IsLatest()
-        {
-            return LastUpdateTime != null &&
-                TopPersons != null &&
-                TopPersons.Count > 0 &&
-                DateTime.Now.Subtract(LastUpdateTime).TotalMinutes < Constants.Instance.INT_MINUTES_UPDATE_TOP_PERSON;
-        }
 
         public void GetTopPerson(Action<DateTime, List<Person>> finished)
         {
-            if (IsLatest())
+            if (data != null && data.IsReady)
             {
-                finished(LastUpdateTime, TopPersons);
+                finished(data.LastUpdateTime, data.TopPersons);
             }
             else
             {
@@ -98,20 +125,6 @@ namespace BetStrategy.ViewModels
                 {
                     finished(DateTime.Now, result);
                 });
-            }
-        }
-
-        [JsonProperty]
-        public DateTime LastUpdateTime { get; set; }
-
-        [JsonProperty]
-        private List<Person> TopPersons { get; set; }
-
-        public bool IsReady
-        {
-            get
-            {
-                return IsLatest();
             }
         }
     }
