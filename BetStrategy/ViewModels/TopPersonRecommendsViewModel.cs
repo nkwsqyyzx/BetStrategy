@@ -211,7 +211,7 @@ namespace BetStrategy.ViewModels
 
         private bool IsTopNewRecommend(Recommend item)
         {
-            return IsTopPerson(item.Person) && item.PreferResult != PreferResult.Waiting;
+            return IsTopPerson(item.Person) && item.PreferResult == PreferResult.Waiting;
         }
 
         private string RecommendsToString(IEnumerable<Recommend> list)
