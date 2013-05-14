@@ -10,11 +10,13 @@ using WSQ.CSharp.Serialization;
 
 namespace BetStrategy.ViewModels
 {
-    public class Data
+    public class DataInternal
     {
         public DateTime LastUpdateTime { get; set; }
 
         public List<Person> TopPersons { get; set; }
+
+        public List<string> PreferMost { get; set; }
 
         private bool IsLatest()
         {
@@ -36,8 +38,8 @@ namespace BetStrategy.ViewModels
     public class TopPersonProvider
     {
         private static string FILE = "TopPersonCaches.txt";
-        private Data data;
-        private static FileStreamSerializer<Data> serializer = new JsonSerializer<Data>();
+        private DataInternal data;
+        private static FileStreamSerializer<DataInternal> serializer = new JsonSerializer<DataInternal>();
 
         private static TopPersonProvider _instance;
         public static TopPersonProvider Instance
@@ -77,14 +79,32 @@ namespace BetStrategy.ViewModels
         {
             if (data == null)
             {
-                data = new Data();
+                data = new DataInternal();
+            }
+            if (data.TopPersons == null)
+            {
                 data.TopPersons = new List<Person>();
             }
+            if (data.PreferMost == null)
+            {
+                data.PreferMost = new List<string>();
+            }
+
             data.LastUpdateTime = DateTime.Now;
             data.TopPersons.Clear();
             foreach (var p in result)
             {
                 data.TopPersons.Add(p);
+            }
+
+            if (data.PreferMost.Count == 0)
+            {
+                int max = Math.Min(result.Count, 8);
+                var list = result.Take(max);
+                foreach (var item in list)
+                {
+                    data.PreferMost.Add(item.Name);
+                }
             }
             serializer.Serialize(FILE, data);
         }
@@ -125,6 +145,18 @@ namespace BetStrategy.ViewModels
                 {
                     finished(DateTime.Now, result);
                 });
+            }
+        }
+
+        public List<string> PreferMost
+        {
+            get
+            {
+                if (data != null && data.PreferMost != null && data.PreferMost.Count > 0)
+                {
+                    return data.PreferMost;
+                }
+                return new List<string>();
             }
         }
     }

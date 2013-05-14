@@ -51,6 +51,21 @@ namespace BetStrategy.ViewModels
             }
         }
 
+        private bool _isPreferMostChecked = true;
+        public bool CheckBoxPreferMostIsChecked
+        {
+            get
+            {
+                return _isPreferMostChecked;
+            }
+            set
+            {
+                _isPreferMostChecked = value;
+                NotifyPropertyChange(() => CheckBoxPreferMostIsChecked);
+                ReloadList();
+            }
+        }
+
         private Person _person = null;
         public Person SelectedProfitPerson
         {
@@ -137,7 +152,7 @@ namespace BetStrategy.ViewModels
         private void ReloadList()
         {
             _recommends.Clear();
-            if (SelectedProfitPerson != null)
+            if (SelectedProfitPerson != null || _isPreferMostChecked)
             {
                 foreach (var item in AllRecommends)
                 {
@@ -205,7 +220,7 @@ namespace BetStrategy.ViewModels
             string recs = RecommendsToString(newRecommends);
             if (!string.IsNullOrEmpty(recs))
             {
-                App.Icon.ShowBalloonTip(5 * 60 * 1000, "高手有"+newRecommends.Count() + "条新推荐", recs, System.Windows.Forms.ToolTipIcon.Info);
+                App.Icon.ShowBalloonTip(5 * 60 * 1000, "高手有" + newRecommends.Count() + "条新推荐", recs, System.Windows.Forms.ToolTipIcon.Info);
             }
         }
 
@@ -258,8 +273,15 @@ namespace BetStrategy.ViewModels
 
         private bool IsTopPerson(Person p)
         {
-            var personInTopPerson = TopPerson.FindLast((i) => i.Name == p.Name);
-            return personInTopPerson != null && personInTopPerson.Profit >= Constants.Instance.COUNT_MIN_PROFIT;
+            if (_isPreferMostChecked)
+            {
+                return TopPersonProvider.Instance.PreferMost.Contains(p.Name);
+            }
+            else
+            {
+                var personInTopPerson = TopPerson.FindLast((i) => i.Name == p.Name);
+                return personInTopPerson != null && personInTopPerson.Profit >= Constants.Instance.COUNT_MIN_PROFIT;
+            }
         }
 
         private static TopPersonRecommendsViewModel _instance;
