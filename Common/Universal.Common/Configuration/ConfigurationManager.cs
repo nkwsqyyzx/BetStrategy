@@ -98,10 +98,6 @@ namespace WSQ.CSharp.Configuration
                 {
                     return (T)configs[Key(key)];
                 }
-                else if (kv is JObject)
-                {
-                    return JsonConvert.DeserializeObject<T>(kv.ToString());
-                }
                 else
                 {
                     throw new ArgumentException("Wrong Configuration Key Value Pair.");

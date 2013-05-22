@@ -4,7 +4,6 @@ namespace WSQ.CSharp.Serialization
 {
     public interface ISerializer<T>
     {
-
         /// <summary>
         /// Serialize data to stream.
         /// </summary>

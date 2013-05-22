@@ -7,7 +7,6 @@ namespace WSQ.CSharp.Serialization
 {
     public class JsonSerializer<T> : FileStreamSerializer<T>
     {
-        private const int BYTES_READ = 1024;
         private static JsonSerializerSettings setting = new JsonSerializerSettings()
         {
             TypeNameHandling = TypeNameHandling.Auto,
