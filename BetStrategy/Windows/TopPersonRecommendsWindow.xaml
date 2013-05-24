@@ -7,7 +7,7 @@
                 xmlns:converters="clr-namespace:BetStrategy.ViewModels"
                 Title="牛人最新推荐"
                 WindowStartupLocation="CenterScreen"
-		ShowInTaskbar ="False" Visibility="Visible" Height="600" Width="1200">
+                ShowInTaskbar ="False" Visibility="Visible" Height="600" Width="1200">
 
     <Window.Resources>
         <converters:PreferResultToStringConverter x:Key="CON" />
