@@ -19,7 +19,7 @@ namespace WSQ.CSharp.Serialization
             child.Name = "Child";
             child.Age = 18;
 
-            child.Parents = new List<SerializationTest> { 
+            child.Parents = new List<SerializationTest> {
                 new SerializationTest(){ Name = "Mother", Age = 50} ,
                 new SerializationTest(){ Name = "Father",Age = 52}
             };
@@ -43,7 +43,10 @@ namespace WSQ.CSharp.Serialization
             child.Name = "Child";
             child.Age = 18;
 
-            child.Parents = new List<SerializationTest> {                 new SerializationTest(){ Name = "Mother", Age = 50} ,                new SerializationTest(){ Name = "Father",Age = 52}            };
+            child.Parents = new List<SerializationTest> {
+                new SerializationTest(){ Name = "Mother", Age = 50} ,
+                new SerializationTest(){ Name = "Father",Age = 52}
+            };
             dic["key3"] = child;
 
             SerializationManager.Instance.GetInstance<Dictionary<string, object>>().Serialize("complicated.txt", dic);
@@ -53,6 +56,17 @@ namespace WSQ.CSharp.Serialization
         public void TestDeserializeDictionary()
         {
             var dic = SerializationManager.Instance.GetInstance<Dictionary<string, object>>().Deserialize("complicated.txt");
+        }
+
+        [TestMethod]
+        public void TestSerializeDirectory()
+        {
+            var dic = new Dictionary<string, object>();
+            dic.Add("k1", 1000);
+            dic.Add("k2", "hello,world");
+            dic.Add("k3", new List<object>() { 1000, "hello" });
+
+            SerializationManager.Instance.GetInstance<Dictionary<string, object>>().Serialize("dir1/dir2/dir3/save.txt", dic);
         }
     }
 }

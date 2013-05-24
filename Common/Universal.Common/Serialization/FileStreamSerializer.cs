@@ -61,7 +61,13 @@ namespace WSQ.CSharp.Serialization
         /// <returns></returns>
         protected Stream GetWriteStream(string fileName)
         {
-            return File.Create(Path.Combine(Environment.CurrentDirectory, fileName));
+            var path = Path.Combine(Environment.CurrentDirectory, fileName);
+            var dir = Path.GetDirectoryName(path);
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            return File.Create(path);
         }
 
         /// <summary>
