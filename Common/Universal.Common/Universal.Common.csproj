@@ -36,11 +36,13 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ConfigAttribute.cs" />
@@ -48,6 +50,7 @@
     <Compile Include="Configuration\EnumKeyForConfiguration.cs" />
     <Compile Include="Configuration\IConfig.cs" />
     <Compile Include="Configuration\SerializableDictionary.cs" />
+    <Compile Include="Helper\DispatcherHelper.cs" />
     <Compile Include="Log\Implement\DebugLogSaver.cs" />
     <Compile Include="Log\Implement\FileLogSaver.cs" />
     <Compile Include="Log\Interface\ILogSaver.cs" />
@@ -61,6 +64,7 @@
     <Compile Include="Net\TextHttpTask.cs" />
     <Compile Include="Extensions\TypePropertyReflection.cs" />
     <Compile Include="Helper\EmailHelper.cs" />
+    <Compile Include="Net\_webClient_DownloadDataCompleted.cs" />
     <Compile Include="Serialization\FileStreamSerializer.cs" />
     <Compile Include="Serialization\ISerializer.cs" />
     <Compile Include="Serialization\ISerializerFactory.cs" />

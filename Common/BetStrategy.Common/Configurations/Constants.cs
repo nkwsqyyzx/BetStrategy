@@ -41,12 +41,14 @@ namespace BetStrategy.Common.Configurations
                     XPATH_GAME_SHOW_RESULT = "/html[1]/body[1]/table[1]/tr",
                     COUNT_GAME_SHOW_RESULT_COLUMNS = 11,
                     URL_GAME_TOP = "game_top.asp",
+		    URL_GAME_USER = "Game_User.asp?id=",
                     XPATH_GAME_TOP_RESULT = "html[1]/body[1]/table[1]/tr",
                     COUNT_GAME_TOP_RESULT_COLUMNS = 10,
                     FILEPATH_GAME_TOP_BEST = "filepath_game_top_best.json.txt",
                     COUNT_MIN_PROFIT = 7.0f,
                     INT_MINUTES_UPDATE_TOP_PERSON = 600,
-                    INT_MINUTES_UPDATE_RECOMMEND = 17
+                    INT_MINUTES_UPDATE_RECOMMEND = 17,
+		    INT_MINUTES_UPDATE_YIELD_ROI = 24*60
                 });
             });
             _instance = config.Get<Constants>(ENUMCONSTANT.CONTENT);
@@ -66,6 +68,11 @@ namespace BetStrategy.Common.Configurations
         /// 每隔这一段时间后更新推荐
         /// </summary>
         public int INT_MINUTES_UPDATE_RECOMMEND { get; set; }
+
+	/// <summary>
+	/// 每隔这段时间后刷新推荐人员的推荐
+	/// </summary>
+        public int INT_MINUTES_UPDATE_YIELD_ROI { get; set; }
 
         #region 擂台
         /// <summary>
@@ -89,6 +96,11 @@ namespace BetStrategy.Common.Configurations
         /// 擂台排行榜
         /// </summary>
         public string URL_GAME_TOP { get; set; }
+
+        /// <summary>
+        /// 擂台参赛纪录页面地址
+        /// </summary>
+        public string URL_GAME_USER { get; set; }
 
         /// <summary>
         /// 擂台排行榜页面结果在HTML中的XPATH

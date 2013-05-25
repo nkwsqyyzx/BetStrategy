@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Text;
+using System.Web;
 
 namespace WSQ.CSharp.Net
 {
@@ -54,38 +53,15 @@ namespace WSQ.CSharp.Net
             TaskPool.Instance.CancelAll();
         }
 
-        /// <summary>
-        /// Get string from stream with UTF-8 encoding
-        /// </summary>
-        /// <param name="stream"></param>
-        /// <returns>Converted string, string.Empty if failed</returns>
-        private static string GetTextFromStream(Stream stream)
+	/// <summary>
+	/// encoding url.
+	/// </summary>
+	/// <param name="url"></param>
+	/// <param name="coding"></param>
+	/// <returns></returns>
+        public static string UrlEncode(string url, Encoding coding) 
         {
-            return GetTextFromStream(stream, Encoding.UTF8);
-        }
-
-        /// <summary>
-        /// Get string from stream, default encoding is UTF-8
-        /// </summary>
-        /// <param name="stream"></param>
-        /// <returns>Converted string, string.Empty if failed</returns>
-        private static string GetTextFromStream(Stream stream, Encoding encoding)
-        {
-            string ret = string.Empty;
-            StreamReader reader = new StreamReader(stream, encoding);
-            try
-            {
-                ret = reader.ReadToEnd();
-            }
-            catch (Exception ex) 
-            {
-                System.Diagnostics.Debug.WriteLine("GetTextFromStream failed:" + ex.Message);
-            }
-            finally
-            {
-                reader.Close();
-            }
-            return ret;
+            return HttpUtility.UrlEncode(url, coding);
         }
     }
 }

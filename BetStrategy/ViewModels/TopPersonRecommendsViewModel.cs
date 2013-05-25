@@ -392,7 +392,7 @@ namespace BetStrategy.ViewModels
 
         private string PersonString(Person p)
         {
-            return string.Format("净胜{0}场:{1}推{2}胜{3}半胜{4}走{5}半负{6}负", p.Profit, p.Total, p.Win, p.HalfWin, p.Draw, p.HalfLose, p.Lose);
+            return string.Format("净胜{0}场:{1}推{2}胜{3}半胜{4}走{5}半负{6}负", p.Profit, p.Total, p.Win, p.WinHalf, p.Draw, p.LoseHalf, p.Lose);
         }
 
         private void ViewPerson(Recommend obj)

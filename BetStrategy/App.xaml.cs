@@ -20,6 +20,7 @@ namespace BetStrategy
 	    Icon.BalloonTipClicked += Icon_BalloonTipClicked;
             Icon.Icon = new System.Drawing.Icon("Resources\\SysTray.ico");
             Icon.Visible = true;
+            WSQ.CSharp.Helper.DispatcherHelper.InitializeDispatcher();
             base.OnStartup(e);
         }
 

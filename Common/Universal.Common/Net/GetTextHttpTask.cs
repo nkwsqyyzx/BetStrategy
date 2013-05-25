@@ -16,6 +16,9 @@ namespace WSQ.CSharp.Net
         public GetTextHttpTask(string url)
             : base(url)
         {
+            //_webClient.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.2; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0");
+            //_webClient.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+            //_webClient.Headers.Add("Accept-Language", "zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3");
             _webClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(WebClient_DownloadStringCompleted);
         }
 
@@ -41,7 +44,7 @@ namespace WSQ.CSharp.Net
         /// </summary>
         protected override void DoStart()
         {
-            _webClient.DownloadStringAsync(new Uri(_url, UriKind.Absolute));
+            _webClient.DownloadStringAsync(new Uri(_url, UriKind.RelativeOrAbsolute));
         }
     }
 }

@@ -9,7 +9,6 @@ namespace BetStrategy.ViewModels
     {
         #region GAME_SHOW_HTML
         public static string GAME_SHOW_HTML = @"
-
 <script src=""inc/global.js""></script>
 
 <!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Transitional//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"">
@@ -1450,9 +1449,9 @@ namespace BetStrategy.ViewModels
 
 
 ";
-#endregion
+        #endregion
         #region GAME_TOP HTML
-        public static string HTML_GAME_TOP = @"
+        public static string GAME_HTML_TOP = @"
 <!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Transitional//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"">
 <html xmlns=""http://www.w3.org/1999/xhtml"">
 <script src=""inc/global.js""></script>
@@ -7955,6 +7954,984 @@ namespace BetStrategy.ViewModels
 
 </body>
 </html>";
+        #endregion
+        #region GAME_USER
+        public static string GAME_USER_HTML = @"
+<script src=""inc/global.js""></script>
+<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Transitional//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"">
+<html xmlns=""http://www.w3.org/1999/xhtml"">
+<head>
+<meta http-equiv=""Content-Type"" content=""text/html; charset=gb2312"">
+<meta http-equiv=""X-UA-Compatible"" content=""IE=7"" />
+<title>的擂台参赛记录</title>
+<link href=""skin/321800.css"" rel=""stylesheet"" type=""text/css"" />
+</HEAD>
+<BODY>
+
+<br />
+<div align=""center""><h2><font color=""#CC0000"">《格力电器》擂台参赛记录</font></h2></div>
+<table width=""1000"" border=""0"" align=""center"" cellpadding=""0"" cellspacing=""1"" bgcolor=""#0000a5"" class=""menu"">
+  <tr>
+    <td height=""22"" align=""center"" background=""skin/88.gif"" style=""color:#0000D5; font-size:14px"">擂台期数</td>
+    <td align=""center"" background=""skin/88.gif"" style=""color:#0000D5; font-size:14px"">所属赛事</td>
+    <td align=""center"" background=""skin/88.gif"" style=""color:#0000D5; font-size:14px"">开赛时间</td>
+    <td align=""center"" background=""skin/88.gif"" style=""color:#0000D5; font-size:14px"">主场球队</td>
+    <td align=""center"" background=""skin/88.gif"" style=""color:#F00; font-size:14px"">盘口</td>
+    <td align=""center"" background=""skin/88.gif"" style=""color:#0000D5; font-size:14px"">客场球队</td>
+    <td align=""center"" background=""skin/88.gif"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">推荐</font>/<font color=""#FF0000"">水位</font></td>
+    <td align=""center"" background=""skin/88.gif"" style=""color:#0000D5; font-size:14px"">比分</td>
+    <td align=""center"" background=""skin/88.gif"" style=""color:#0000D5; font-size:14px"">结果</td>
+    <td align=""center"" background=""skin/88.gif"" style=""color:#0000D5; font-size:14px"">发布时间</td>
+    <td align=""center"" background=""skin/88.gif"" style=""color:#0000D5; font-size:14px"">发表用户</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第47期</td>
+    <td align=""center"" bgcolor=""#6F6161"" style=""color:#fff; font-size:14px"">法乙</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-25 02:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">卡昂</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">一球/球半</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">GFC阿些斯奧</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">卡昂/0.950</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输半</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-24 23:07</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第47期</td>
+    <td align=""center"" bgcolor=""#7D4000"" style=""color:#fff; font-size:14px"">土甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-23 23:59</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">馬尼沙斯堡</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">半球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">阿達納</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">阿達納/0.900</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-23 21:28</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第47期</td>
+    <td align=""center"" bgcolor=""#004488"" style=""color:#fff; font-size:14px"">瑞典超</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-24 01:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">艾夫斯堡</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">球半</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">布諾馬博亞納</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">艾夫斯堡/0.900</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">6-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-23 09:48</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第47期</td>
+    <td align=""center"" bgcolor=""#2f3fd2"" style=""color:#fff; font-size:14px"">奧甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-23 02:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">華卡迪路</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">平手</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格拉茨</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">華卡迪路/0.810</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-22 07:09</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第47期</td>
+    <td align=""center"" bgcolor=""#438E0B"" style=""color:#fff; font-size:14px"">西乙</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-21 03:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">CD瓜達拉哈拉</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">半球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">梅西亞</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">梅西亞/0.850</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">3-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-20 22:38</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第47期</td>
+    <td align=""center"" bgcolor=""#CC3399"" style=""color:#fff; font-size:14px"">德北聯</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-20 00:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">漢維德</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5/3球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">吉奧利</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.860</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-19 21:15</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第47期</td>
+    <td align=""center"" bgcolor=""#666699"" style=""color:#fff; font-size:14px"">斯亞甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-18 23:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">哥里卡</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">拖里格拉瓦</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.850</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">0-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-18 21:05</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第47期</td>
+    <td align=""center"" bgcolor=""#137AAC"" style=""color:#fff; font-size:14px"">芬超</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-17 23:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">赫爾辛基</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">TPS杜古</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.970</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">0-2</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-17 17:36</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第47期</td>
+    <td align=""center"" bgcolor=""#666666"" style=""color:#fff; font-size:14px"">挪威超</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-17 01:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">洛辛堡</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">3球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">薩普斯堡08</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.810</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">4-2</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-16 13:54</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第47期</td>
+    <td align=""center"" bgcolor=""#3366CC"" style=""color:#fff; font-size:14px"">南非甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-15 21:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">波羅克瓦尼城</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">非洲勇士</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.850</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">4-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-15 17:32</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第47期</td>
+    <td align=""center"" bgcolor=""#008787"" style=""color:#fff; font-size:14px"">友誼賽</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-15 01:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">威登布拉克</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5/3球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">慕士達</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.900</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢半</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-14 22:09</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第46期</td>
+    <td align=""center"" bgcolor=""#F75000"" style=""color:#fff; font-size:14px"">歐冠盃</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-23 18:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">柏雷素爾</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">貴州人和</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.820</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-23 16:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第46期</td>
+    <td align=""center"" bgcolor=""#6E3D9D"" style=""color:#fff; font-size:14px"">俄甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-22 21:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">彼特若堤斯特</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">半球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">沃爾加</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">沃爾加/0.850</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-22 19:29</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第46期</td>
+    <td align=""center"" bgcolor=""#33CCCC"" style=""color:#fff; font-size:14px"">意丙盃</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-21 22:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">安芝</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2/2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">莫斯科戴拿模</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.900</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">3-3</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-21 21:34</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第46期</td>
+    <td align=""center"" bgcolor=""#990099"" style=""color:#fff; font-size:14px"">德甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-20 21:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">漢堡</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">杜塞爾多夫</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.900</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-20 21:06</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第46期</td>
+    <td align=""center"" bgcolor=""#FF4EA6"" style=""color:#fff; font-size:14px"">荷乙</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-20 02:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">阿高斯</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">3.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">恩浩雲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.850</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">0-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-19 22:58</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第46期</td>
+    <td align=""center"" bgcolor=""#660000"" style=""color:#fff; font-size:14px"">自由盃</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-19 06:45</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">利伯泰德</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2/2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">堤格雷</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.900</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">3-5</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-18 21:41</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第46期</td>
+    <td align=""center"" bgcolor=""#279A99"" style=""color:#fff; font-size:14px"">波青聯</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-17 17:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">列治亞青年隊U21</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">球半</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">派雅斯特青年隊U21</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">列治亞青年隊U21/0.830</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">7-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-17 14:47</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第46期</td>
+    <td align=""center"" bgcolor=""#cc3300"" style=""color:#fff; font-size:14px"">英冠</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-17 02:45</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">米德爾斯堡</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">諾定咸森林</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.820</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-16 22:07</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第46期</td>
+    <td align=""center"" bgcolor=""#006633"" style=""color:#fff; font-size:14px"">西甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-16 03:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">馬略卡</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">半球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">切爾達</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">切爾達/1.030</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-15 21:41</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第46期</td>
+    <td align=""center"" bgcolor=""#660033"" style=""color:#fff; font-size:14px"">美職業</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-14 23:59</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">蒙特利爾衝擊</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">半球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">哥倫布機員</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">哥倫布機員/0.800</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">04-14 22:29</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第45期</td>
+    <td align=""center"" bgcolor=""#3a794e"" style=""color:#fff; font-size:14px"">歐青U21</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-26 21:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">白俄羅斯U21</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">冰島U21</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.800</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-2</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-26 19:56</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第45期</td>
+    <td align=""center"" bgcolor=""#2CAF2C"" style=""color:#fff; font-size:14px"">日職乙</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-24 15:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">神戶勝利船</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">草津溫泉群馬</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.820</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">4-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-24 13:48</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第45期</td>
+    <td align=""center"" bgcolor=""#FF1010"" style=""color:#fff; font-size:14px"">韓聯盟</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-23 14:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">慶州KHNP</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">金海</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.800</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-23 13:29</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第45期</td>
+    <td align=""center"" bgcolor=""#266013"" style=""color:#fff; font-size:14px"">南美預選</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-23 08:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">阿根廷</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">3/3.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">委內瑞拉</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.800</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">3-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输半</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-22 13:18</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第45期</td>
+    <td align=""center"" bgcolor=""#CCBB24"" style=""color:#fff; font-size:14px"">印尼甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-21 16:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">柏斯達突隆格恭</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">帕爾斯巴邦卡蘭</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.800</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-21 16:04</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第45期</td>
+    <td align=""center"" bgcolor=""#DDDD00"" style=""color:#fff; font-size:14px"">巴聖錦標</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-21 06:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">歐斯特</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">平/半</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">伯拉根森</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">歐斯特/0.850</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-2</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输半</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-20 22:24</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第45期</td>
+    <td align=""center"" bgcolor=""#0076B1"" style=""color:#fff; font-size:14px"">意乙</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-20 03:45</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">阿斯科利</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2/2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">里賈納</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.820</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">0-3</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-19 14:23</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第45期</td>
+    <td align=""center"" bgcolor=""#8C8A64"" style=""color:#fff; font-size:14px"">希臘超</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-19 01:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">彭拉伊高斯</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">半球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">薩丁</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">薩丁/0.890</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">0-2</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-18 23:04</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第45期</td>
+    <td align=""center"" bgcolor=""#FF3333"" style=""color:#fff; font-size:14px"">英超</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-17 23:59</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">切爾西</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">3球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">西漢姆</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.840</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-17 21:54</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第45期</td>
+    <td align=""center"" bgcolor=""#660033"" style=""color:#fff; font-size:14px"">美職業</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-17 00:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">紐約紅牛</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">半球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">華盛頓聯隊</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">華盛頓聯隊/0.830</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">0-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-16 22:41</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第45期</td>
+    <td align=""center"" bgcolor=""#D761B0"" style=""color:#fff; font-size:14px"">德丙聯</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-16 02:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">安達赫治</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">平/半</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">賽瑞貝肯</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">賽瑞貝肯/0.800</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">0-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢半</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-15 21:38</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第45期</td>
+    <td align=""center"" bgcolor=""#660000"" style=""color:#fff; font-size:14px"">自由盃</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-15 08:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">聖喬希奧魯羅</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2/2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">米倫拿列奧</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.860</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢半</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-14 21:34</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第45期</td>
+    <td align=""center"" bgcolor=""#1D448B"" style=""color:#fff; font-size:14px"">意丙2A</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-13 21:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">瓦利歐斯特</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2/2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">亞歷山德利亞</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.800</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-13 19:01</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第45期</td>
+    <td align=""center"" bgcolor=""#4756D8"" style=""color:#fff; font-size:14px"">奧乙</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-13 01:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第一維也納</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">路斯登洛</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.910</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">03-12 20:12</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第44期</td>
+    <td align=""center"" bgcolor=""#6633CC"" style=""color:#fff; font-size:14px"">南聯盃</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">02-13 21:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">米拉諾</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">山達皇家祖魯</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.850</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">0-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">02-13 20:09</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第44期</td>
+    <td align=""center"" bgcolor=""#008787"" style=""color:#fff; font-size:14px"">友誼賽</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">02-12 23:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">歷基亞(中)</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">3球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">克拉斯諾達爾</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.990</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">02-12 20:23</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第44期</td>
+    <td align=""center"" bgcolor=""#008787"" style=""color:#fff; font-size:14px"">友誼賽</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">02-12 02:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">莫斯科中央陸軍(中)</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5/3球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">華拿倫加</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.920</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-3</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">02-11 20:16</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第44期</td>
+    <td align=""center"" bgcolor=""#008888"" style=""color:#fff; font-size:14px"">葡超</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">02-11 02:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">國民隊</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">受一球/球半</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">賓菲加</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">國民隊/0.900</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-2</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">02-10 23:05</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第43期</td>
+    <td align=""center"" bgcolor=""#0099CC"" style=""color:#fff; font-size:14px"">葡甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-12 23:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">阿魯卡</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">半球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">波蒂蒙尼斯</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">波蒂蒙尼斯/0.910</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-12 15:34</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第43期</td>
+    <td align=""center"" bgcolor=""#663333"" style=""color:#fff; font-size:14px"">法甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-12 04:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">巴黎聖日門</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">3球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">阿些斯奧</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.800</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">0-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-11 12:27</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第43期</td>
+    <td align=""center"" bgcolor=""#008787"" style=""color:#fff; font-size:14px"">友誼賽</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-10 21:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">卡拉布克士邦(中)</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">半球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">威廉二世</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">威廉二世/0.840</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-10 16:04</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第43期</td>
+    <td align=""center"" bgcolor=""#996733"" style=""color:#fff; font-size:14px"">印度甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-09 18:15</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">巴得斯尤</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">球半</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">派欖阿羅</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">巴得斯尤/0.800</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">3-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-09 13:55</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第43期</td>
+    <td align=""center"" bgcolor=""#008787"" style=""color:#fff; font-size:14px"">友誼賽</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-08 23:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">鹿特丹斯巴達(中)</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">3球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">賀芬咸</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.870</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">0-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-08 21:46</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第43期</td>
+    <td align=""center"" bgcolor=""#297CA5"" style=""color:#fff; font-size:14px"">法國盃</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-08 03:45</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">伊斯特</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">受平/半</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">華倫西恩斯</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">伊斯特/0.800</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢半</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-07 22:26</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第43期</td>
+    <td align=""center"" bgcolor=""#006633"" style=""color:#fff; font-size:14px"">西甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-07 04:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">馬略卡</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2/2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">馬德里體育會</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.920</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输半</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-06 16:15</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第43期</td>
+    <td align=""center"" bgcolor=""#438E0B"" style=""color:#fff; font-size:14px"">西乙</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-06 01:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">維拉利爾</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">半球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">巴塞羅那B隊</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">巴塞羅那B隊/0.860</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-3</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">01-05 12:34</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第42期</td>
+    <td align=""center"" bgcolor=""#5E3000"" style=""color:#fff; font-size:14px"">土超</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-15 02:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">伊斯基錫海斯普</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">柏薩士邦</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.880</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-2</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-14 22:29</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第42期</td>
+    <td align=""center"" bgcolor=""#008787"" style=""color:#fff; font-size:14px"">友誼賽</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-13 19:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">博爾切圖</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">維澤夫洛茲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.860</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">0-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-13 15:24</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第42期</td>
+    <td align=""center"" bgcolor=""#808080"" style=""color:#fff; font-size:14px"">英聯盃</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-13 03:45</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">史雲斯</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">半/一</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">米德爾斯堡</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">史雲斯/0.840</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢半</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-12 15:25</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第42期</td>
+    <td align=""center"" bgcolor=""#6F6161"" style=""color:#fff; font-size:14px"">法乙</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-12 03:55</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">利文斯</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">半球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">GFC阿些斯奧</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">GFC阿些斯奧/0.810</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-11 19:23</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第42期</td>
+    <td align=""center"" bgcolor=""#5F9292"" style=""color:#fff; font-size:14px"">波蘭甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-11 01:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">華沙普隆尼亞</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">沙斯辛</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.800</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-10 16:05</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第42期</td>
+    <td align=""center"" bgcolor=""#438E0B"" style=""color:#fff; font-size:14px"">西乙</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-09 19:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">哥杜巴</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">平/半</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">希杭</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">希杭/0.970</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢半</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-09 17:43</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第42期</td>
+    <td align=""center"" bgcolor=""#5F9292"" style=""color:#fff; font-size:14px"">波蘭甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-08 22:45</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">路賓</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">平/半</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">克拉科夫</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">克拉科夫/0.830</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">4-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-08 19:50</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第42期</td>
+    <td align=""center"" bgcolor=""#5F9292"" style=""color:#fff; font-size:14px"">波蘭甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-08 03:45</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">斯拉斯克</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">歷基亞</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.820</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-07 13:19</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第42期</td>
+    <td align=""center"" bgcolor=""#6F00DD"" style=""color:#fff; font-size:14px"">歐霸盃</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-07 02:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">哥本哈根</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">平/半</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">布格勒斯特星隊</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">布格勒斯特星隊/0.880</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢半</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-06 21:33</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第42期</td>
+    <td align=""center"" bgcolor=""#855074"" style=""color:#fff; font-size:14px"">女亞冠U19</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-05 17:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">越南女足U19</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">3/3.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">台灣女足U19</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.850</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">3-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">12-05 15:55</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第41期</td>
+    <td align=""center"" bgcolor=""#FF4C10"" style=""color:#fff; font-size:14px"">澳職聯</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">11-03 18:45</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">珀斯光榮</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">紐卡斯托</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">小球/0.970</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">3-2</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">11-03 14:54</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第41期</td>
+    <td align=""center"" bgcolor=""#E6BE00"" style=""color:#fff; font-size:14px"">烏克U21</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">11-02 19:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">薩克達U21</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">球半/两球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">米達雷治U21</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">薩克達U21/0.900</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">0-2</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">11-02 18:26</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第41期</td>
+    <td align=""center"" bgcolor=""#0088FF"" style=""color:#fff; font-size:14px"">意甲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">11-02 03:45</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">熱拿亞</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">受平/半</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">費倫天拿</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">費倫天拿/0.890</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">0-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">11-01 21:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第41期</td>
+    <td align=""center"" bgcolor=""#FA0052"" style=""color:#fff; font-size:14px"">荷蘭盃</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">11-01 01:45</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">RKC華域克</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">半/一</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">施禾尼</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">施禾尼/0.840</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-4</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">10-31 21:20</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第41期</td>
+    <td align=""center"" bgcolor=""#a00800"" style=""color:#fff; font-size:14px"">德國盃</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">10-31 03:30</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">緬恩斯</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5/3球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">艾格比治</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.860</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">10-30 19:48</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第41期</td>
+    <td align=""center"" bgcolor=""#778800"" style=""color:#fff; font-size:14px"">蘇青聯</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">10-30 02:45</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">盧加諾</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">平/半</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">溫特圖爾</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">溫特圖爾/0.940</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-2</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">10-29 22:35</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第40期</td>
+    <td align=""center"" bgcolor=""#6490D2"" style=""color:#fff; font-size:14px"">匈聯盃</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">10-10 21:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">席歐福克</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">佩克斯</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.810</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">0-0</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">10-10 20:46</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第40期</td>
+    <td align=""center"" bgcolor=""#E08B36"" style=""color:#fff; font-size:14px"">英依超</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">10-10 02:45</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">馬格特</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">半/一</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">康戈爾流浪者</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">馬格特/0.880</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">0-2</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#333333"">输盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">10-09 20:11</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第40期</td>
+    <td align=""center"" bgcolor=""#0076B1"" style=""color:#fff; font-size:14px"">意乙</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">10-09 02:45</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">利禾奴</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">2/2.5球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">士比西亞</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.810</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">1-5</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#FF0000"">赢盘</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">10-08 22:09</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第40期</td>
+    <td align=""center"" bgcolor=""#7a5c42"" style=""color:#fff; font-size:14px"">阿塞超</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">10-08 19:00</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">巴庫尼菲治</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">3球</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">托武茲</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">大球/0.820</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">2-1</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px""><font color=""#006600"">走水</font></td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">10-08 17:13</td>
+    <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">格力电器</td>
+  </tr>
+
+  <tr class=""menu"">
+    <td height=""25"" colspan=""11"" align=""center"" bgcolor=""#FFFFFF""><div class=""tzpage"">当前页次：1 / 1 共 1 页 共 67 条 每页显示100条
+ [首页] [上一页] [下一页] [尾页]</div></td>
+  </tr>
+</table>
+<br />
+
+</body></HTML>
+";
         #endregion
     }
 }

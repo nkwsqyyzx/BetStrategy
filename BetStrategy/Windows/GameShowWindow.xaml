@@ -11,7 +11,7 @@
                 Width="1000">
 
     <Window.DataContext>
-        <vm:GameShowViewModel/>
+        <vm:TestViewModel/>
     </Window.DataContext>
 
     <Window.Resources>

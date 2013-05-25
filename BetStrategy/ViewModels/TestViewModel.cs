@@ -29,10 +29,20 @@ namespace BetStrategy.ViewModels
             }
         }
 
+        private ObservableCollection<YieldRoiPerson> _topYieldRoiPerson = null;
+        public ObservableCollection<YieldRoiPerson> TopYieldRoiPerson
+        {
+            get
+            {
+                return _topYieldRoiPerson;
+            }
+        }
+
         public TestViewModel()
         {
             InitRecommends();
             InitTopPerson();
+            InitTopYieldRoiPerson();
         }
 
         private void InitRecommends()
@@ -143,26 +153,36 @@ namespace BetStrategy.ViewModels
         private void InitTopPerson()
         {
             _topPerson = new ObservableCollection<Person>();
-            _topPerson.Add(new Person() { Name = "无聊玩玩", Profit = 11.5f, Total = 25, Win = 14, HalfWin = 5, Lose = 5, HalfLose = 0, Draw = 1 });
-            _topPerson.Add(new Person() { Name = "多伦多猛龙", Profit = 11f, Total = 27, Win = 16, HalfWin = 3, Lose = 6, HalfLose = 1, Draw = 1 });
-            _topPerson.Add(new Person() { Name = "纽约火焰", Profit = 11f, Total = 24, Win = 14, HalfWin = 4, Lose = 5, HalfLose = 0, Draw = 1 });
-            _topPerson.Add(new Person() { Name = "财爷win888", Profit = 10.5f, Total = 28, Win = 18, HalfWin = 0, Lose = 7, HalfLose = 1, Draw = 2 });
-            _topPerson.Add(new Person() { Name = "重在参与", Profit = 10f, Total = 28, Win = 16, HalfWin = 2, Lose = 7, HalfLose = 0, Draw = 3 });
-            _topPerson.Add(new Person() { Name = "天巧星燕青", Profit = 10f, Total = 24, Win = 14, HalfWin = 4, Lose = 6, HalfLose = 0, Draw = 0 });
-            _topPerson.Add(new Person() { Name = "喜龙泪", Profit = 9f, Total = 26, Win = 11, HalfWin = 6, Lose = 4, HalfLose = 2, Draw = 3 });
-            _topPerson.Add(new Person() { Name = "重新来过", Profit = 9f, Total = 26, Win = 15, HalfWin = 2, Lose = 7, HalfLose = 0, Draw = 2 });
-            _topPerson.Add(new Person() { Name = "球王之王", Profit = 8.5f, Total = 29, Win = 15, HalfWin = 4, Lose = 8, HalfLose = 1, Draw = 0 });
-            _topPerson.Add(new Person() { Name = "剑岛", Profit = 8.5f, Total = 24, Win = 14, HalfWin = 3, Lose = 7, HalfLose = 0, Draw = 0 });
-            _topPerson.Add(new Person() { Name = "茶居", Profit = 8f, Total = 32, Win = 19, HalfWin = 0, Lose = 11, HalfLose = 0, Draw = 2 });
-            _topPerson.Add(new Person() { Name = "哥是杯清茶", Profit = 8f, Total = 28, Win = 16, HalfWin = 2, Lose = 8, HalfLose = 2, Draw = 0 });
-            _topPerson.Add(new Person() { Name = "足球擂台", Profit = 7.5f, Total = 29, Win = 16, HalfWin = 1, Lose = 7, HalfLose = 4, Draw = 1 });
-            _topPerson.Add(new Person() { Name = "余韵犹在", Profit = 7.5f, Total = 26, Win = 13, HalfWin = 3, Lose = 7, HalfLose = 0, Draw = 3 });
-            _topPerson.Add(new Person() { Name = "十万火急", Profit = 7.5f, Total = 23, Win = 14, HalfWin = 0, Lose = 6, HalfLose = 1, Draw = 2 });
-            _topPerson.Add(new Person() { Name = "凤凰谷", Profit = 7.5f, Total = 22, Win = 12, HalfWin = 3, Lose = 5, HalfLose = 2, Draw = 0 });
-            _topPerson.Add(new Person() { Name = "重在娱乐", Profit = 7f, Total = 28, Win = 15, HalfWin = 3, Lose = 9, HalfLose = 1, Draw = 0 });
-            _topPerson.Add(new Person() { Name = "红红火火", Profit = 7f, Total = 26, Win = 15, HalfWin = 2, Lose = 9, HalfLose = 0, Draw = 0 });
-            _topPerson.Add(new Person() { Name = "竹叶青", Profit = 6.5f, Total = 31, Win = 17, HalfWin = 1, Lose = 10, HalfLose = 2, Draw = 1 });
-            _topPerson.Add(new Person() { Name = "火車頭", Profit = 6.5f, Total = 26, Win = 13, HalfWin = 2, Lose = 7, HalfLose = 1, Draw = 3 });
+            _topPerson.Add(new Person() { Name = "无聊玩玩", Profit = 11.5f, Total = 25, Win = 14, WinHalf = 5, Lose = 5, LoseHalf = 0, Draw = 1 });
+            _topPerson.Add(new Person() { Name = "多伦多猛龙", Profit = 11f, Total = 27, Win = 16, WinHalf = 3, Lose = 6, LoseHalf = 1, Draw = 1 });
+            _topPerson.Add(new Person() { Name = "纽约火焰", Profit = 11f, Total = 24, Win = 14, WinHalf = 4, Lose = 5, LoseHalf = 0, Draw = 1 });
+            _topPerson.Add(new Person() { Name = "财爷win888", Profit = 10.5f, Total = 28, Win = 18, WinHalf = 0, Lose = 7, LoseHalf = 1, Draw = 2 });
+            _topPerson.Add(new Person() { Name = "重在参与", Profit = 10f, Total = 28, Win = 16, WinHalf = 2, Lose = 7, LoseHalf = 0, Draw = 3 });
+            _topPerson.Add(new Person() { Name = "天巧星燕青", Profit = 10f, Total = 24, Win = 14, WinHalf = 4, Lose = 6, LoseHalf = 0, Draw = 0 });
+            _topPerson.Add(new Person() { Name = "喜龙泪", Profit = 9f, Total = 26, Win = 11, WinHalf = 6, Lose = 4, LoseHalf = 2, Draw = 3 });
+            _topPerson.Add(new Person() { Name = "重新来过", Profit = 9f, Total = 26, Win = 15, WinHalf = 2, Lose = 7, LoseHalf = 0, Draw = 2 });
+            _topPerson.Add(new Person() { Name = "球王之王", Profit = 8.5f, Total = 29, Win = 15, WinHalf = 4, Lose = 8, LoseHalf = 1, Draw = 0 });
+            _topPerson.Add(new Person() { Name = "剑岛", Profit = 8.5f, Total = 24, Win = 14, WinHalf = 3, Lose = 7, LoseHalf = 0, Draw = 0 });
+            _topPerson.Add(new Person() { Name = "茶居", Profit = 8f, Total = 32, Win = 19, WinHalf = 0, Lose = 11, LoseHalf = 0, Draw = 2 });
+            _topPerson.Add(new Person() { Name = "哥是杯清茶", Profit = 8f, Total = 28, Win = 16, WinHalf = 2, Lose = 8, LoseHalf = 2, Draw = 0 });
+            _topPerson.Add(new Person() { Name = "足球擂台", Profit = 7.5f, Total = 29, Win = 16, WinHalf = 1, Lose = 7, LoseHalf = 4, Draw = 1 });
+            _topPerson.Add(new Person() { Name = "余韵犹在", Profit = 7.5f, Total = 26, Win = 13, WinHalf = 3, Lose = 7, LoseHalf = 0, Draw = 3 });
+            _topPerson.Add(new Person() { Name = "十万火急", Profit = 7.5f, Total = 23, Win = 14, WinHalf = 0, Lose = 6, LoseHalf = 1, Draw = 2 });
+            _topPerson.Add(new Person() { Name = "凤凰谷", Profit = 7.5f, Total = 22, Win = 12, WinHalf = 3, Lose = 5, LoseHalf = 2, Draw = 0 });
+            _topPerson.Add(new Person() { Name = "重在娱乐", Profit = 7f, Total = 28, Win = 15, WinHalf = 3, Lose = 9, LoseHalf = 1, Draw = 0 });
+            _topPerson.Add(new Person() { Name = "红红火火", Profit = 7f, Total = 26, Win = 15, WinHalf = 2, Lose = 9, LoseHalf = 0, Draw = 0 });
+            _topPerson.Add(new Person() { Name = "竹叶青", Profit = 6.5f, Total = 31, Win = 17, WinHalf = 1, Lose = 10, LoseHalf = 2, Draw = 1 });
+            _topPerson.Add(new Person() { Name = "火車頭", Profit = 6.5f, Total = 26, Win = 13, WinHalf = 2, Lose = 7, LoseHalf = 1, Draw = 3 });
+        }
+
+        private void InitTopYieldRoiPerson()
+        {
+            _topYieldRoiPerson = new ObservableCollection<YieldRoiPerson>();
+            foreach (var i in TopPersonProvider.Instance.PreferMost)
+            {
+                var p = new YieldRoiPerson(i);
+                _topYieldRoiPerson.Add(p);
+            }
         }
     }
 }

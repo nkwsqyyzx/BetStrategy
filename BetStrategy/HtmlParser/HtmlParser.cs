@@ -44,6 +44,10 @@ namespace BetStrategy.HtmlParser
             float.TryParse(szOdds, out odds);
             Recommend rec = new Recommend()
             {
+		// 擂台期数:第45期
+		Current = results[0],
+                // 所属赛事:挪威超
+                League = results[1],
                 // 开赛时间:04-27 16:30
                 Time1 = results[2],
                 // 主队:中央海岸學院
@@ -99,7 +103,7 @@ namespace BetStrategy.HtmlParser
 
             int halfWin = 0;
             int.TryParse(r[5].Substring(0, r[5].Length - 1), out halfWin);
-            p.HalfWin = halfWin;
+            p.WinHalf = halfWin;
 
             int lose = 0;
             int.TryParse(r[6].Substring(0, r[6].Length - 1), out lose);
@@ -107,7 +111,7 @@ namespace BetStrategy.HtmlParser
 
             int halfLose = 0;
             int.TryParse(r[7].Substring(0, r[7].Length - 1), out halfLose);
-            p.HalfLose = halfLose;
+            p.LoseHalf = halfLose;
 
             int draw = 0;
             int.TryParse(r[8].Substring(0, r[8].Length - 1), out draw);

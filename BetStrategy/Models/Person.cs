@@ -25,7 +25,7 @@ namespace BetStrategy.Models
 	/// <summary>
 	/// 赢半的场次
 	/// </summary>
-        public int HalfWin { get; set; }
+        public int WinHalf { get; set; }
 
 	/// <summary>
 	/// 输的场次
@@ -35,7 +35,7 @@ namespace BetStrategy.Models
 	/// <summary>
 	/// 输半的场次
 	/// </summary>
-        public int HalfLose { get; set; }
+        public int LoseHalf { get; set; }
 
 	/// <summary>
 	/// 走水场次

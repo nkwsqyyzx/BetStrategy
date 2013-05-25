@@ -7,6 +7,16 @@ namespace BetStrategy.Models
     /// </summary>
     public class Recommend
     {
+	/// <summary>
+	/// 当前期
+	/// </summary>
+        public string Current { get; set; }
+
+        /// <summary>
+        /// 联赛
+        /// </summary>
+        public string League { get; set; }
+
         /// <summary>
         /// 开赛时间
         /// </summary>

@@ -102,10 +102,12 @@
     <Compile Include="ViewModels\PreferResultToStringConverter.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NotifyModel.cs" />
+    <Compile Include="ViewModels\YieldRoiPerson.cs" />
     <Compile Include="ViewModels\TestData.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="ViewModels\TopPersonProvider.cs" />
     <Compile Include="ViewModels\TopPersonRecommendsViewModel.cs" />
+    <Compile Include="ViewModels\YieldRoiProvider.cs" />
     <Compile Include="Windows\BaseWindow.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -123,6 +125,9 @@
     <Compile Include="Windows\TopPersonRecommendsWindow.xaml.cs">
       <DependentUpon>TopPersonRecommendsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\YieldRoiWindow.xaml.cs">
+      <DependentUpon>YieldRoiWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Windows\GameShowWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -136,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\TopPersonRecommendsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\YieldRoiWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
