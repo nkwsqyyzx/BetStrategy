@@ -15,7 +15,9 @@ namespace BetStrategy.ViewModels
         public YieldRoiPerson(string name)
         {
             _recommends = new List<Recommend>();
-            LoadPerson(name);
+            BackgroundWorker bw = new BackgroundWorker();
+            bw.DoWork += (o, e) => LoadPerson(name);
+            bw.RunWorkerAsync();
         }
 
         private void LoadPerson(string name)
@@ -39,13 +41,15 @@ namespace BetStrategy.ViewModels
                 {
                     _recommends.Add(i);
                 }
+                RefreshYieldAndRoi();
+
                 Draw = _recommends.Count((i) => i.PreferResult == PreferResult.Useless);
                 Lose = _recommends.Count((i) => i.PreferResult == PreferResult.Lose);
                 LoseHalf = _recommends.Count((i) => i.PreferResult == PreferResult.LoseHalf);
                 WinHalf = _recommends.Count((i) => i.PreferResult == PreferResult.WinHalf);
                 Win = _recommends.Count((i) => i.PreferResult == PreferResult.Win);
-
-                RefreshYieldAndRoi();
+                Total = _recommends.Count;
+                Profit = Win + WinHalf * 0.5f - Lose - LoseHalf * 0.5f;
                 // notify all properties.
                 NotifyPropertyChange(string.Empty);
             };

@@ -44,20 +44,20 @@ namespace BetStrategy.HtmlParser
             float.TryParse(szOdds, out odds);
             Recommend rec = new Recommend()
             {
-		// 擂台期数:第45期
-		Current = results[0],
+                // 擂台期数:第45期
+                Current = results[0],
                 // 所属赛事:挪威超
                 League = results[1],
                 // 开赛时间:04-27 16:30
                 Time1 = results[2],
                 // 主队:中央海岸學院
-                Host = new Team() { TeamName = results[3] },
+                Host = results[3],
                 // 盘口:2.5/3球
-                OddStake = new OddStake() { Description = results[4] },
+                OddStake = results[4],
                 // 客队:馬柯尼
-                Guest = new Team() { TeamName = results[5] },
+                Guest = results[5],
                 // 推荐内容:大球
-                Prefer = new Prefer() { Description = prefer },
+                Prefer = prefer,
                 // 赔率:0.86
                 Odds = odds,
                 // 比赛最终结果:0-1
@@ -67,7 +67,7 @@ namespace BetStrategy.HtmlParser
                 // 推荐时间:04-27 16:00
                 Time2 = results[9],
                 // 推荐人:地狱黑仔王
-                Person = new Person() { Name = results[10] }
+                Person = results[10]
             };
 
             return rec;

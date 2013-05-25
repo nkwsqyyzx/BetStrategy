@@ -25,22 +25,22 @@ namespace BetStrategy.Models
         /// <summary>
         /// 主队
         /// </summary>
-        public Team Host { get; set; }
+        public string Host { get; set; }
 
         /// <summary>
         /// 盘口
         /// </summary>
-        public OddStake OddStake { get; set; }
+        public string OddStake { get; set; }
 
         /// <summary>
         /// 客队
         /// </summary>
-        public Team Guest { get; set; }
+        public string Guest { get; set; }
 
         /// <summary>
         /// 推荐
         /// </summary>
-        public Prefer Prefer { get; set; }
+        public string Prefer { get; set; }
 
         /// <summary>
         /// 推荐的赔率
@@ -65,6 +65,6 @@ namespace BetStrategy.Models
         /// <summary>
         /// 推荐人
         /// </summary>
-        public Person Person { get; set; }
+        public string Person { get; set; }
     }
 }

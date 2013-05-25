@@ -241,11 +241,11 @@ namespace BetStrategy.ViewModels
 
         private string RecommendToString(Recommend item)
         {
-            string body = item.Person.Name + " 推荐了: "
-                    + item.Host.TeamName + " "
-                    + item.OddStake.Description + " "
+            string body = item.Person + " 推荐了: "
+                    + item.Host + " "
+                    + item.OddStake + " "
                     + item.Odds.ToString() + " "
-                    + item.Guest.TeamName + " 推荐:" + item.Prefer.Description;
+                    + item.Guest + " 推荐:" + item.Prefer;
             return body;
         }
 
@@ -271,15 +271,15 @@ namespace BetStrategy.ViewModels
             }
         }
 
-        private bool IsTopPerson(Person p)
+        private bool IsTopPerson(string name)
         {
             if (_isPreferMostChecked)
             {
-                return TopPersonProvider.Instance.PreferMost.Contains(p.Name);
+                return TopPersonProvider.Instance.PreferMost.Contains(name);
             }
             else
             {
-                var personInTopPerson = TopPerson.FindLast((i) => i.Name == p.Name);
+                var personInTopPerson = TopPerson.FindLast((i) => i.Name == name);
                 return personInTopPerson != null && personInTopPerson.Profit >= Constants.Instance.COUNT_MIN_PROFIT;
             }
         }
@@ -370,10 +370,11 @@ namespace BetStrategy.ViewModels
                 rms.Sort(new Comparison<Recommend>(delegate(Recommend x, Recommend y)
                     {
                         int result = 0;
+			/* fixme
                         if (x.Person.Profit > y.Person.Profit)
                             result = 1;
                         if (x.Person.Profit < y.Person.Profit)
-                            result = -1;
+                            result = -1;*/
                         return (direction == ListSortDirection.Descending ? -1 : 1) * result;
                     }));
             }
@@ -397,7 +398,7 @@ namespace BetStrategy.ViewModels
 
         private void ViewPerson(Recommend obj)
         {
-            var person = TopPerson.FirstOrDefault((i) => i.Name == obj.Person.Name);
+            var person = TopPerson.FirstOrDefault((i) => i.Name == obj.Person);
             string title = string.Empty;
             string tipText = "没有找到该高手信息";
             if (person != null)

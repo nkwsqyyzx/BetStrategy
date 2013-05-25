@@ -76,7 +76,7 @@ namespace BetStrategy.ViewModels
                     System.Diagnostics.Debug.WriteLine(string.Format("ERROR WHEN GETTING {0} PROFILE.ERROR:{1}", name, error));
                 }
             };
-#if TEST
+#if !TEST
             NetworkUtils.DownloadString(url, (ok, html, error) => callback(ok, html, error));
 #else
             callback(true, TestData.GAME_USER_HTML, "");
@@ -85,7 +85,7 @@ namespace BetStrategy.ViewModels
 
         private static string GetPersonRecommendsPath(string name)
         {
-            return Path.Combine(Environment.CurrentDirectory, RECOMMENDS_DIR + "/" + name + ".json.txt");
+            return Path.Combine(Environment.CurrentDirectory, RECOMMENDS_DIR + "/" + name + ".txt");
         }
 
         private void Save(string name, List<Recommend> recommends)

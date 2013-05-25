@@ -113,9 +113,8 @@ namespace BetStrategy.ViewModels
             {
                 foreach (var item in _allRecommends)
                 {
-                    if (best.Any((b) => b.Name == item.Person.Name))
+                    if (best.Any((b) => b.Name == item.Person))
                     {
-                        item.Person = best.First((b) => b.Name == item.Person.Name);
                         bRs.Add(item);
                     }
                 }
@@ -140,10 +139,11 @@ namespace BetStrategy.ViewModels
                 rms.Sort(new Comparison<Recommend>(delegate(Recommend x, Recommend y)
                     {
                         int result = 0;
+			/* fixme
                         if (x.Person.Profit > y.Person.Profit)
                             result = 1;
                         if (x.Person.Profit < y.Person.Profit)
-                            result = -1;
+                            result = -1;*/
                         return (direction == ListSortDirection.Descending ? -1 : 1) * result;
                     }));
             }

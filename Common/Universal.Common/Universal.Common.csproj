@@ -64,7 +64,6 @@
     <Compile Include="Net\TextHttpTask.cs" />
     <Compile Include="Extensions\TypePropertyReflection.cs" />
     <Compile Include="Helper\EmailHelper.cs" />
-    <Compile Include="Net\_webClient_DownloadDataCompleted.cs" />
     <Compile Include="Serialization\FileStreamSerializer.cs" />
     <Compile Include="Serialization\ISerializer.cs" />
     <Compile Include="Serialization\ISerializerFactory.cs" />
