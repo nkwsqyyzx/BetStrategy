@@ -105,10 +105,10 @@ namespace BetStrategy.ViewModels
             });
         }
 
-        static FileStreamSerializer<List<Person>> serializer = new JsonSerializer<List<Person>>();
+        static IFileSerializer serializer = SerializationManager.Instance.GetInstance();
         private void ViewBest()
         {
-            List<Person> best = serializer.Deserialize(Constants.Instance.FILEPATH_GAME_TOP_BEST);
+            List<Person> best = serializer.Deserialize<List<Person>>(Constants.Instance.FILEPATH_GAME_TOP_BEST);
             List<Recommend> bRs = new List<Recommend>();
             if (best != null && best.Count > 0)
             {

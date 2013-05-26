@@ -191,7 +191,7 @@ namespace BetStrategy.ViewModels
                     Action action = () => { _topYieldRoiPerson.Add(p); };
                     action.RunOnUI();
                     // 避免加载太快
-                    Thread.Sleep(ran.Next(1645, 6895));
+//                    Thread.Sleep(ran.Next(1645, 6895));
                 }
             };
             bw.RunWorkerAsync();

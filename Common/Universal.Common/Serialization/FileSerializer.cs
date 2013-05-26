@@ -3,7 +3,7 @@ using System.IO;
 
 namespace WSQ.CSharp.Serialization
 {
-    public abstract class FileStreamSerializer : IFileSerializer
+    public abstract class FileSerializer : IFileSerializer
     {
         public abstract void Serialize<T>(Stream stream, T data);
 

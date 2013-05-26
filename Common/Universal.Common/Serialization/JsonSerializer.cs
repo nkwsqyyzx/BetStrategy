@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Formatters;
 
 namespace WSQ.CSharp.Serialization
 {
-    public class JsonSerializer<T> : FileStreamSerializer<T>
+    public class JsonSerializer : FileSerializer
     {
         private static JsonSerializerSettings setting = new JsonSerializerSettings()
         {
@@ -13,7 +13,7 @@ namespace WSQ.CSharp.Serialization
             TypeNameAssemblyFormat = FormatterAssemblyStyle.Full
         };
 
-        public override void Serialize(Stream stream, T data)
+        public override void Serialize<T>(Stream stream, T data)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace WSQ.CSharp.Serialization
             }
         }
 
-        public override T Deserialize(Stream stream)
+        public override T Deserialize<T>(Stream stream)
         {
             T data = default(T);
             try

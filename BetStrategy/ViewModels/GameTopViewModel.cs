@@ -100,7 +100,7 @@ namespace BetStrategy.ViewModels
                     best.Add(p);
                 }
             }
-            FileStreamSerializer<List<Person>> serializer = new JsonSerializer<List<Person>>();
+            IFileSerializer serializer = SerializationManager.Instance.GetInstance();
             serializer.Serialize(Constants.Instance.FILEPATH_GAME_TOP_BEST, best);
         }
     }

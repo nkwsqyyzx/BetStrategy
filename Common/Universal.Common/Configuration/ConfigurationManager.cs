@@ -12,18 +12,18 @@ namespace WSQ.CSharp.Configuration
         private SerializableDictionary<string, object> configs;
         private static string DEFAULT_CONFIGURATION_FILE = "configuration.json.txt";
 
-        private FileStreamSerializer<SerializableDictionary<string, object>> serializer = new JsonSerializer<SerializableDictionary<string, object>>();
+        private IFileSerializer serializer = SerializationManager.Instance.GetInstance();
 
         private static Dictionary<string, IConfig> savedConfigurationManagers = new Dictionary<string, IConfig>();
         private string configurationFile;
 
-        private ConfigurationManager(string configurationFile,Action<IConfig> initWhenNOFile)
+        private ConfigurationManager(string configurationFile, Action<IConfig> initWhenNOFile)
         {
             this.configurationFile = configurationFile;
             Load(initWhenNOFile);
         }
 
-        public static IConfig GetInstance(string configurationFile = null,Action<IConfig> initWhenNOFile = null)
+        public static IConfig GetInstance(string configurationFile = null, Action<IConfig> initWhenNOFile = null)
         {
             if (configurationFile == null)
                 configurationFile = DEFAULT_CONFIGURATION_FILE;
@@ -34,7 +34,7 @@ namespace WSQ.CSharp.Configuration
             }
             else
             {
-                config = new ConfigurationManager(configurationFile,initWhenNOFile);
+                config = new ConfigurationManager(configurationFile, initWhenNOFile);
                 savedConfigurationManagers[configurationFile] = config;
             }
             return config;
@@ -42,7 +42,7 @@ namespace WSQ.CSharp.Configuration
 
         private void Load(Action<IConfig> initWhenNOFile)
         {
-            configs = serializer.Deserialize(configurationFile);
+            configs = serializer.Deserialize<SerializableDictionary<string, object>>(configurationFile);
             if (configs == null)
             {
                 configs = new SerializableDictionary<string, object>();

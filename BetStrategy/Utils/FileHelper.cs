@@ -9,18 +9,22 @@ using WSQ.CSharp.Serialization;
 
 namespace BetStrategy.Utils
 {
+    /// <summary>
+    /// 处理文件读写的类
+    /// </summary>
     public class FileHelper
     {
         private static string REC_BASE_DIR = "Person.Recommends";
-        private static FileStreamSerializer<Recommend> RecommendSerializer = SerializationManager.Instance.GetInstance<Recommend>();
+        private static IFileSerializer RecommendSerializer = SerializationManager.Instance.GetInstance();
 
         private static string GetPersonRecommendsDir(string name)
         {
             return Path.Combine(Environment.CurrentDirectory, REC_BASE_DIR, name);
         }
+
         private static string GetRecommendPath(Recommend rec)
         {
-            return Path.Combine(GetPersonRecommendsDir(rec.Person), Regex.Replace(rec.Time2, "[- :]", "_") + ".txt");
+            return Path.Combine(GetPersonRecommendsDir(rec.Person), "Recommends", Regex.Replace(rec.Time2, "[- :]", "_") + ".txt");
         }
 
         public static void SaveRecommend(Recommend rec)
@@ -41,7 +45,7 @@ namespace BetStrategy.Utils
             var files = Directory.EnumerateFiles(GetPersonRecommendsDir(name));
             foreach (var file in files)
             {
-                var rec = RecommendSerializer.Deserialize(Path.Combine(GetPersonRecommendsDir(name), file));
+                var rec = RecommendSerializer.Deserialize<Recommend>(Path.Combine(GetPersonRecommendsDir(name), file));
                 onRecommend(rec);
             }
             if (finish != null)

@@ -38,7 +38,7 @@ namespace CommonTest
         [TestMethod]
         public void TestJsonSerealizer()
         {
-            FileStreamSerializer<UnitTest1> serializer = new JsonSerializer<UnitTest1>();
+            IFileSerializer serializer = SerializationManager.Instance.GetInstance();
 
             UnitTest1 skdjskdjk = new UnitTest1()
             {

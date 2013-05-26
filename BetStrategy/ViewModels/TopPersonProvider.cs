@@ -40,7 +40,7 @@ namespace BetStrategy.ViewModels
     {
         private static string FILE = "TopPersonCaches.txt";
         private DataInternal data;
-        private static FileStreamSerializer<DataInternal> serializer = new JsonSerializer<DataInternal>();
+        private static IFileSerializer serializer = SerializationManager.Instance.GetInstance();
 
         private static TopPersonProvider _instance;
         public static TopPersonProvider Instance
@@ -60,7 +60,7 @@ namespace BetStrategy.ViewModels
 
         public TopPersonProvider()
         {
-            var saved = serializer.Deserialize(FILE);
+            var saved = serializer.Deserialize<DataInternal>(FILE);
             if (saved == null)
             {
                 Update();

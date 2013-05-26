@@ -22,38 +22,45 @@ namespace BetStrategy.ViewModels
 
         private void LoadPerson(string name)
         {
+            Name = name;
             YieldRoiProvider pro = YieldRoiProvider.Instance;
             Action<List<Recommend>> callback = (recommends) =>
             {
-                Refresh(name, recommends);
+                Refresh(recommends);
             };
-            pro.GetPersonRecommends(name, callback);
+            pro.GetPersonRecommends(name, null);
         }
 
-        private void Refresh(string name, List<Recommend> recommends)
+        private void Refresh(List<Recommend> recommends)
         {
             // must run on UITHREAD.
             Action action = () =>
             {
-                Name = name;
-                _recommends.Clear();
                 foreach (var i in recommends)
                 {
-                    _recommends.Add(i);
+                    if (!_recommends.Any((m) => m.Time2 == i.Time2))
+                    {
+                        _recommends.Add(i);
+                    }
                 }
                 RefreshYieldAndRoi();
 
-                Draw = _recommends.Count((i) => i.PreferResult == PreferResult.Useless);
-                Lose = _recommends.Count((i) => i.PreferResult == PreferResult.Lose);
-                LoseHalf = _recommends.Count((i) => i.PreferResult == PreferResult.LoseHalf);
-                WinHalf = _recommends.Count((i) => i.PreferResult == PreferResult.WinHalf);
-                Win = _recommends.Count((i) => i.PreferResult == PreferResult.Win);
-                Total = _recommends.Count;
-                Profit = Win + WinHalf * 0.5f - Lose - LoseHalf * 0.5f;
+                RefreshProfit();
                 // notify all properties.
                 NotifyPropertyChange(string.Empty);
             };
             action.RunOnUI();
+        }
+
+        private void RefreshProfit()
+        {
+            Draw = _recommends.Count((i) => i.PreferResult == PreferResult.Useless);
+            Lose = _recommends.Count((i) => i.PreferResult == PreferResult.Lose);
+            LoseHalf = _recommends.Count((i) => i.PreferResult == PreferResult.LoseHalf);
+            WinHalf = _recommends.Count((i) => i.PreferResult == PreferResult.WinHalf);
+            Win = _recommends.Count((i) => i.PreferResult == PreferResult.Win);
+            Total = _recommends.Count;
+            Profit = Win + WinHalf * 0.5f - Lose - LoseHalf * 0.5f;
         }
 
         private static float GainLose(Recommend rc)
@@ -107,6 +114,7 @@ namespace BetStrategy.ViewModels
         /// <summary>
         /// 所有推荐列表
         /// </summary>
+	[Newtonsoft.Json.JsonIgnore]
         public List<Recommend> Recommends
         {
             get

@@ -24,13 +24,13 @@ namespace WSQ.CSharp.Serialization
                 new SerializationTest(){ Name = "Father",Age = 52}
             };
 
-            SerializationManager.Instance.GetInstance<SerializationTest>().Serialize("Family.txt", child);
+            SerializationManager.Instance.GetInstance().Serialize("Family.txt", child);
         }
 
         [TestMethod]
         public void TestDeserialize()
         {
-            SerializationTest child = SerializationManager.Instance.GetInstance<SerializationTest>().Deserialize("Family.txt");
+            SerializationTest child = SerializationManager.Instance.GetInstance().Deserialize<SerializationTest>("Family.txt");
         }
 
         [TestMethod]
@@ -49,13 +49,13 @@ namespace WSQ.CSharp.Serialization
             };
             dic["key3"] = child;
 
-            SerializationManager.Instance.GetInstance<Dictionary<string, object>>().Serialize("complicated.txt", dic);
+            SerializationManager.Instance.GetInstance().Serialize("complicated.txt", dic);
         }
 
         [TestMethod]
         public void TestDeserializeDictionary()
         {
-            var dic = SerializationManager.Instance.GetInstance<Dictionary<string, object>>().Deserialize("complicated.txt");
+            var dic = SerializationManager.Instance.GetInstance().Deserialize<Dictionary<string, object>>("complicated.txt");
         }
 
         [TestMethod]
@@ -66,7 +66,7 @@ namespace WSQ.CSharp.Serialization
             dic.Add("k2", "hello,world");
             dic.Add("k3", new List<object>() { 1000, "hello" });
 
-            SerializationManager.Instance.GetInstance<Dictionary<string, object>>().Serialize("dir1/dir2/dir3/save.txt", dic);
+            SerializationManager.Instance.GetInstance().Serialize("dir1/dir2/dir3/save.txt", dic);
         }
     }
 }

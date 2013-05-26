@@ -17,7 +17,7 @@ namespace ProjectUnitTest
             YieldRoiProvider pro = YieldRoiProvider.Instance;
             pro.GetPersonRecommends("格力电器", (ls) =>
             {
-                foreach (var rec in ls)
+                foreach (var rec in ls.Recommends)
                 {
                     System.Diagnostics.Debug.WriteLine(rec.Prefer);
                 }
@@ -46,6 +46,25 @@ namespace ProjectUnitTest
             {
                 System.Diagnostics.Debug.WriteLine(rs.Count);
             });
+        }
+
+        [TestMethod]
+        public void TestSaveRecommends() 
+        {
+            HtmlParser.ParseRecommends(TestData.GAME_USER_HTML, (rs) =>
+            {
+                FileHelper.SaveRecommends(rs);
+            });
+        }
+
+        [TestMethod]
+        public void TestGetRecommends() 
+        {
+            FileHelper.GetAllRecommends("格力电器", (rec) => 
+            {
+                System.Diagnostics.Debug.WriteLine(rec.Host + " " + rec.OddStake + " " + rec.Guest + ":" + rec.Result);
+            });
+            Thread.Sleep(100000);
         }
     }
 }

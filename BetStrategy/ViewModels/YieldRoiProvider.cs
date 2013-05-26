@@ -10,51 +10,54 @@ using WSQ.CSharp.Serialization;
 
 namespace BetStrategy.ViewModels
 {
-    public class RecommendsData
+    internal class _YieldRoi
     {
         public string Name { get; set; }
         public DateTime LastUpdateTime { get; set; }
-        public List<Recommend> Recommends { get; set; }
+        public YieldRoiPerson Data { get; set; }
+
+        [Newtonsoft.Json.JsonIgnore]
+        private bool IsLatest
+        {
+            get
+            {
+                return true;
+            }
+        }
     }
 
     public class YieldRoiProvider
     {
-        private static FileStreamSerializer<RecommendsData> serializer = SerializationManager.Instance.GetInstance<RecommendsData>();
-        private static string RECOMMENDS_DIR = "Recommends";
-
+        #region INSTANCE
         private static YieldRoiProvider _instance = new YieldRoiProvider();
-        public static YieldRoiProvider Instance 
+        public static YieldRoiProvider Instance
         {
             get
             {
                 return _instance;
             }
         }
+        #endregion
 
         private YieldRoiProvider() { }
 
-        public void GetPersonRecommends(string name, Action<List<Recommend>> finish)
+        public void GetPersonRecommends(string name, Action<YieldRoiPerson> finish)
         {
             Load(name, finish);
         }
 
-        private bool IsDataLatest(RecommendsData data)
+        private void Load(string name, Action<YieldRoiPerson> finish)
         {
-            return data != null && data.Recommends != null && data.Recommends.Count > 0 &&
-                DateTime.Now.Subtract(data.LastUpdateTime).TotalMinutes < Constants.Instance.INT_MINUTES_UPDATE_YIELD_ROI;
-        }
-
-        private void Load(string name, Action<List<Recommend>> finish)
-        {
-            var data = serializer.Deserialize(GetPersonRecommendsPath(name));
-            if (IsDataLatest(data))
-            {
-                finish(data.Recommends);
-            }
-            else
-            {
-                DownloadRecommends(name, finish);
-            }
+            /*
+                if (IsDataLatest(data))
+                {
+                    finish(data.Recommends);
+                }
+                else
+                {
+                    DownloadRecommends(name, finish);
+                }
+            */
         }
 
         private void DownloadRecommends(string name, Action<List<Recommend>> finish)
@@ -66,7 +69,7 @@ namespace BetStrategy.ViewModels
                 {
                     HtmlParser.ParseRecommends(html, (rs) =>
                     {
-                        Save(name, rs);
+                        Save(rs);
                         finish(rs);
                     });
                 }
@@ -82,15 +85,9 @@ namespace BetStrategy.ViewModels
 #endif
         }
 
-        private static string GetPersonRecommendsPath(string name)
+        private void Save(List<Recommend> recommends)
         {
-            return Path.Combine(Environment.CurrentDirectory, RECOMMENDS_DIR + "/" + name + ".txt");
-        }
-
-        private void Save(string name, List<Recommend> recommends)
-        {
-            var data = new RecommendsData() { Name = name, LastUpdateTime = DateTime.Now, Recommends = recommends };
-            serializer.Serialize(GetPersonRecommendsPath(name), data);
+            FileHelper.SaveRecommends(recommends);
         }
     }
 }

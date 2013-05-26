@@ -3,9 +3,9 @@ namespace WSQ.CSharp.Serialization
 {
     public class SerializationFactory : ISerializationFactory
     {
-        public FileStreamSerializer<T> GetInstance<T>()
+        public IFileSerializer GetInstance()
         {
-            return new JsonSerializer<T>(); 
+            return new JsonSerializer();
         }
     }
 }

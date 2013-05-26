@@ -96,6 +96,7 @@
     <Compile Include="Models\Prefer.cs" />
     <Compile Include="Models\Recommend.cs" />
     <Compile Include="Models\Team.cs" />
+    <Compile Include="Utils\FileHelper.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\GameShowViewModel.cs" />
     <Compile Include="ViewModels\GameTopViewModel.cs" />
