@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
 using WSQ.CSharp.Net;
 using WSQ.CSharp.Serialization;
 
@@ -77,15 +78,24 @@ namespace BetStrategy.ViewModels
             serializer.Serialize(GetCachedYieldRoiPerson(person.Name), data);
         }
 
-        public void DownloadRecommends(string name, Action<List<Recommend>> finish)
+        public void DownloadRecommends(string name, int page, Action<List<Recommend>> finish)
         {
             var url = Constants.Instance.URL_BASE + Constants.Instance.URL_GAME_USER + NetworkUtils.UrlEncode(name, Encoding.GetEncoding("GB2312"));
+            if (page > 0)
+            {
+                url = url + "&page=" + page.ToString();
+            }
             Action<bool, string, string> callback = (ok, html, error) =>
             {
                 if (ok)
                 {
                     HtmlParser.ParseRecommends(html, (rs) =>
                     {
+                        if (rs.Count == 100)
+                        {
+                            Thread.Sleep(4203);
+                            DownloadRecommends(name, page + 1, finish);
+                        }
                         Save(rs);
                         if (finish != null)
                         {

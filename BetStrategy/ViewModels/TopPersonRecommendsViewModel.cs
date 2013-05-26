@@ -14,6 +14,8 @@ using WSQ.CSharp.Net;
 using System.Linq;
 using GalaSoft.MvvmLight;
 using BetStrategy.Utils;
+using System.Windows;
+using BetStrategy.Windows;
 
 namespace BetStrategy.ViewModels
 {
@@ -372,11 +374,11 @@ namespace BetStrategy.ViewModels
                 rms.Sort(new Comparison<Recommend>(delegate(Recommend x, Recommend y)
                     {
                         int result = 0;
-			/* fixme
-                        if (x.Person.Profit > y.Person.Profit)
-                            result = 1;
-                        if (x.Person.Profit < y.Person.Profit)
-                            result = -1;*/
+                        /* fixme
+                                    if (x.Person.Profit > y.Person.Profit)
+                                        result = 1;
+                                    if (x.Person.Profit < y.Person.Profit)
+                                        result = -1;*/
                         return (direction == ListSortDirection.Descending ? -1 : 1) * result;
                     }));
             }
@@ -398,17 +400,25 @@ namespace BetStrategy.ViewModels
             return string.Format("净胜{0}场:{1}推{2}胜{3}半胜{4}走{5}半负{6}负", p.Profit, p.Total, p.Win, p.WinHalf, p.Draw, p.LoseHalf, p.Lose);
         }
 
+        private Dictionary<string, Window> Windows = new Dictionary<string, Window>();
         private void ViewPerson(Recommend obj)
         {
-            var person = TopPerson.FirstOrDefault((i) => i.Name == obj.Person);
-            string title = string.Empty;
-            string tipText = "没有找到该高手信息";
-            if (person != null)
+            Window window = null;
+            if (Windows.ContainsKey(obj.Person))
             {
-                title = person.Name;
-                tipText = PersonString(person);
+                window = Windows[obj.Person];
+                window.Activate();
             }
-            App.Icon.ShowBalloonTip(3000, title, tipText, System.Windows.Forms.ToolTipIcon.Info);
+            else
+            {
+                window = new PersonRecommendsWindow();
+                var vm = new PersonRecommendsViewModel();
+                window.DataContext = vm;
+                window.Loaded += (o, e) => vm.Load(obj.Person);
+                window.Closed += (o, e) => { Windows.Remove(obj.Person); };
+                Windows[obj.Person] = window;
+                window.Show();
+            }
         }
     }
 }

@@ -11,7 +11,10 @@ namespace BetStrategy.Windows
     {
         protected BaseViewModel _viewModel = null;
 
-        public BaseWindow() { }
+        public BaseWindow()
+        {
+	    this.DataContextChanged += BaseWindow_DataContextChanged;
+        }
 
         private void BaseWindow_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {

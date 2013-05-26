@@ -133,7 +133,6 @@ namespace BetStrategy.ViewModels
             });
         }
 
-
         public void GetTopPerson(Action<DateTime, List<Person>> finished)
         {
             if (data != null && data.IsReady)

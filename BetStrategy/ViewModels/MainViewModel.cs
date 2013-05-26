@@ -34,7 +34,7 @@ namespace BetStrategy.ViewModels
                     {
                         if (WinGameShow == null)
                         {
-                            WinGameShow = new GameShowWindow();
+                            WinGameShow = new PersonRecommendsWindow();
                             WinGameShow.Closed += (o, e) => WinGameShow = null;
                         }
                         WinGameShow.Show();
@@ -76,7 +76,7 @@ namespace BetStrategy.ViewModels
                     {
                         if (WinGameBest == null)
                         {
-                            WinGameBest = new GameShowWindow();
+                            WinGameBest = new PersonRecommendsWindow();
                             WinGameBest.Closed += (o, e) => WinGameBest = null;
                         }
                         WinGameBest.Show();

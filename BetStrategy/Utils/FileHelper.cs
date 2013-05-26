@@ -15,9 +15,28 @@ namespace BetStrategy.Utils
         private static string CACHE_DIR = "cache";
         private static IFileSerializer Serializer = SerializationManager.Instance.GetInstance();
 
+        private static string Escape(string name)
+        {
+            var chs = Path.GetInvalidPathChars();
+
+            if (name.IndexOfAny(chs) < 0)
+            {
+                return name;
+            }
+            else
+            {
+                var result = name;
+                foreach (var ch in chs)
+                {
+                    result = result.Replace(ch, '_');
+                }
+                return result;
+            }
+        }
+
         public static string GetPersonCacheDir(string name)
         {
-            return Path.Combine(Environment.CurrentDirectory, CACHE_DIR, name);
+            return Path.Combine(Environment.CurrentDirectory, CACHE_DIR, Escape(name));
         }
 
         private static string GetPersonRecommendsDir(string name)

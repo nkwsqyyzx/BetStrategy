@@ -100,6 +100,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\GameShowViewModel.cs" />
     <Compile Include="ViewModels\GameTopViewModel.cs" />
+    <Compile Include="ViewModels\PersonRecommendsViewModel.cs" />
     <Compile Include="ViewModels\PreferResultToStringConverter.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NotifyModel.cs" />
@@ -115,8 +116,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Windows\GameShowWindow.xaml.cs">
-      <DependentUpon>GameShowWindow.xaml</DependentUpon>
+    <Compile Include="Windows\PersonRecommendsWindow.xaml.cs">
+      <DependentUpon>PersonRecommendsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\GameTopWindow.xaml.cs">
       <DependentUpon>GameTopWindow.xaml</DependentUpon>
@@ -130,7 +131,7 @@
     <Compile Include="Windows\YieldRoiWindow.xaml.cs">
       <DependentUpon>YieldRoiWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Windows\GameShowWindow.xaml">
+    <Page Include="Windows\PersonRecommendsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -218,7 +219,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

@@ -5,6 +5,8 @@ using System.Threading;
 using System.IO;
 using System.Net;
 using BetStrategy.Utils;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace ProjectUnitTest
 {
@@ -23,7 +25,7 @@ namespace ProjectUnitTest
         }
 
         [TestMethod]
-        public void TestGet() 
+        public void TestGet()
         {
             string Url = "http://www.yn1999.com/Game_User.asp?id=章鱼帝";
             HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(Url);
@@ -46,7 +48,7 @@ namespace ProjectUnitTest
         }
 
         [TestMethod]
-        public void TestSaveRecommends() 
+        public void TestSaveRecommends()
         {
             HtmlParser.ParseRecommends(TestData.GAME_USER_HTML, (rs) =>
             {
@@ -55,13 +57,33 @@ namespace ProjectUnitTest
         }
 
         [TestMethod]
-        public void TestGetRecommends() 
+        public void TestGetRecommends()
         {
-            FileHelper.GetAllRecommends("格力电器", (rec) => 
+            FileHelper.GetAllRecommends("格力电器", (rec) =>
             {
                 System.Diagnostics.Debug.WriteLine(rec.Host + " " + rec.OddStake + " " + rec.Guest + ":" + rec.Result);
             });
             Thread.Sleep(100000);
+        }
+
+        [TestMethod]
+        public void DownloadPersonRecommends()
+        {
+            foreach (var name in TestData.TopPersons)
+            {
+                YieldRoiProvider.Instance.DownloadRecommends(name, 0, null);
+	    }
+            Thread.Sleep(1000 * 1000);
+        }
+
+        [TestMethod]
+        public void TestAddEmtpyString()
+        {
+            List<string> list = new List<string>();
+            list.Add("");
+            list.Add("");
+            list.Add("");
+            list.Add("");
         }
     }
 }

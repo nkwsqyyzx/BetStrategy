@@ -26,7 +26,7 @@ namespace BetStrategy.Windows
             InitializeComponent();
             this.DataContext = TopPersonRecommendsViewModel.Instance;
             this.Closing += TopPersonRecommendsWindow_Closing;
-            ViewModel.StartUpdate();
+            this.Activated += (o, e) => ViewModel.StartUpdate();
         }
 
         private void TopPersonRecommendsWindow_Closing(object sender, CancelEventArgs e)

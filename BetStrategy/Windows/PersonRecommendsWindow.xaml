@@ -5,14 +5,9 @@
                 xmlns:vm="clr-namespace:BetStrategy.ViewModels"
                 xmlns:resx="clr-namespace:BetStrategy.Properties"
                 xmlns:converters="clr-namespace:BetStrategy.ViewModels"
-                Title="GameShowWindow"
                 WindowStartupLocation="CenterScreen"
                 Height="600"
                 Width="1000">
-
-    <Window.DataContext>
-        <vm:TestViewModel/>
-    </Window.DataContext>
 
     <Window.Resources>
         <converters:PreferResultToStringConverter x:Key="CON" />
@@ -25,32 +20,20 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Grid HorizontalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300" />
-                    <ColumnDefinition Width="300" />
-                </Grid.ColumnDefinitions>
-                <Button Command="{Binding CommandRefresh}" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Content="刷新"/>
-                <Button Command="{Binding CommandViewBest}" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Content="只看牛人"/>
-            </Grid>
+            <TextBlock Text="{Binding Summary}"/>
         </StackPanel>
 
         <ScrollViewer Grid.Row="1">
             <ListView ItemsSource="{Binding Recommends}"
 		     ScrollViewer.VerticalScrollBarVisibility="Visible"
                      ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                     HorizontalAlignment="Center" 
-                     Margin="30,10,10,10" 
+                     HorizontalAlignment="Center"
+                     Margin="30,10,10,10"
                      VerticalAlignment="Stretch">
                 <ListView.View>
-                    <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Authors">
-                        <GridView.ColumnHeaderContextMenu>
-                            <ContextMenu >
-                                <MenuItem Header="Ascending" Click="MenuItem_Click"/>
-                                <MenuItem Header="Descending" Click="MenuItem_Click"/>
-                            </ContextMenu>
-                        </GridView.ColumnHeaderContextMenu>
+                    <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="所有推荐">
                         <GridViewColumn Width="80" Header="开赛时间" DisplayMemberBinding="{Binding Path=Time1}" />
+                        <GridViewColumn Width="80" Header="期数" DisplayMemberBinding="{Binding Path=Current}" />
                         <GridViewColumn Width="130" Header="主场球队" DisplayMemberBinding="{Binding Path=Host}" />
                         <GridViewColumn Width="80" Header="盘口" DisplayMemberBinding="{Binding Path=OddStake}" />
                         <GridViewColumn Width="130" Header="客场球队" DisplayMemberBinding="{Binding Path=Guest}" />
