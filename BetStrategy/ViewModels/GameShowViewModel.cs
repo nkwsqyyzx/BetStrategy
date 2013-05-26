@@ -92,7 +92,7 @@ namespace BetStrategy.ViewModels
         {
             HtmlParser.ParseRecommends(html, (results) =>
             {
-                UiDispatcher.BeginInvoke(new Action(() =>
+                (new Action(() =>
                 {
                     _allRecommends.Clear();
                     _recommends.Clear();
@@ -101,7 +101,7 @@ namespace BetStrategy.ViewModels
                         _allRecommends.Add(rec);
                         _recommends.Add(rec);
                     }
-                }));
+                })).RunOnUI();
             });
         }
 

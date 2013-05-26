@@ -193,10 +193,10 @@ namespace BetStrategy.ViewModels
             HtmlParser.ParseRecommends(html, (rs) =>
             {
                 FileHelper.SaveRecommends(rs);
-                UiDispatcher.BeginInvoke(new Action(() =>
+                (new Action(() =>
                 {
                     AddRecommends(rs);
-                }));
+                })).RunOnUI();
             });
         }
 
@@ -324,7 +324,7 @@ namespace BetStrategy.ViewModels
                 if (last == LastTimeUpdatePerson)
                     return;
                 LastTimeUpdatePerson = last;
-                UiDispatcher.BeginInvoke(new Action(() =>
+                (new Action(() =>
                 {
                     TopPerson.Clear();
                     List<Person> bestPerson = new List<Person>();
@@ -351,7 +351,7 @@ namespace BetStrategy.ViewModels
                     {
                         DownloadRecommends();
                     }
-                }));
+                })).RunOnUI();
             });
         }
 

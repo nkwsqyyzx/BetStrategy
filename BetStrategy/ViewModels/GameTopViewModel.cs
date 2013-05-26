@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
+using WSQ.CSharp.Helper;
 using WSQ.CSharp.Extensions;
 using WSQ.CSharp.Net;
 using WSQ.CSharp.Serialization;
@@ -62,14 +63,14 @@ namespace BetStrategy.ViewModels
         {
             HtmlParser.ParseTopPerson(html, (persons) =>
             {
-                UiDispatcher.BeginInvoke(new Action(() =>
+                (new Action(() =>
                 {
                     TopPerson.Clear();
                     foreach (var p in persons)
                     {
                         TopPerson.Add(p);
                     }
-                }));
+                })).RunOnUI();
             });
         }
 
