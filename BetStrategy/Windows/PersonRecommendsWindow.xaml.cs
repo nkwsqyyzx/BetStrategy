@@ -16,9 +16,9 @@ using System.Windows.Shapes;
 namespace BetStrategy.Windows
 {
     /// <summary>
-    /// Interaction logic for GameShowWindow.xaml
+    /// Interaction logic for PersonRecommendsWindow.xaml
     /// </summary>
-    public partial class GameShowWindow : BaseWindow
+    public partial class PersonRecommendsWindow : BaseWindow
     {
         private GridViewColumnHeader _lastHeaderClicked;
         private ListSortDirection _lastDirection;
@@ -30,7 +30,7 @@ namespace BetStrategy.Windows
             }
         }
 
-        public GameShowWindow()
+        public PersonRecommendsWindow()
         {
             InitializeComponent();
         }
