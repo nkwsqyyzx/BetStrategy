@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using WSQ.CSharp.Serialization;
 
@@ -14,22 +12,27 @@ namespace BetStrategy.Utils
     /// </summary>
     public class FileHelper
     {
-        private static string REC_BASE_DIR = "Person.Recommends";
-        private static IFileSerializer RecommendSerializer = SerializationManager.Instance.GetInstance();
+        private static string CACHE_DIR = "cache";
+        private static IFileSerializer Serializer = SerializationManager.Instance.GetInstance();
+
+        public static string GetPersonCacheDir(string name)
+        {
+            return Path.Combine(Environment.CurrentDirectory, CACHE_DIR, name);
+        }
 
         private static string GetPersonRecommendsDir(string name)
         {
-            return Path.Combine(Environment.CurrentDirectory, REC_BASE_DIR, name);
+            return Path.Combine(GetPersonCacheDir(name), "Recommends");
         }
 
         private static string GetRecommendPath(Recommend rec)
         {
-            return Path.Combine(GetPersonRecommendsDir(rec.Person), "Recommends", Regex.Replace(rec.Time2, "[- :]", "_") + ".txt");
+            return Path.Combine(GetPersonRecommendsDir(rec.Person), Regex.Replace(rec.Time2, "[- :]", "_") + ".txt");
         }
 
         public static void SaveRecommend(Recommend rec)
         {
-            RecommendSerializer.Serialize(GetRecommendPath(rec), rec);
+            Serializer.Serialize(GetRecommendPath(rec), rec);
         }
 
         public static void SaveRecommends(IEnumerable<Recommend> recs)
@@ -40,17 +43,28 @@ namespace BetStrategy.Utils
             }
         }
 
-        public static void GetAllRecommends(string name, Action<Recommend> onRecommend, Action finish = null)
+        public static void GetAllRecommends(string name, Action<Recommend> onRecommend, Action<bool> finish = null)
         {
-            var files = Directory.EnumerateFiles(GetPersonRecommendsDir(name));
-            foreach (var file in files)
+            var dir = GetPersonRecommendsDir(name);
+            if (Directory.Exists(dir))
             {
-                var rec = RecommendSerializer.Deserialize<Recommend>(Path.Combine(GetPersonRecommendsDir(name), file));
-                onRecommend(rec);
+                var files = Directory.EnumerateFiles(dir);
+                foreach (var file in files)
+                {
+                    var rec = Serializer.Deserialize<Recommend>(Path.Combine(GetPersonCacheDir(name), file));
+                    onRecommend(rec);
+                }
+                if (finish != null)
+                {
+                    finish(true);
+                }
             }
-            if (finish != null)
+            else
             {
-                finish();
+                if (finish != null)
+                {
+                    finish(false);
+                }
             }
         }
     }

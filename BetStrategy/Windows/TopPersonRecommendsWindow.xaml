@@ -56,15 +56,15 @@
                             </ContextMenu>
                         </GridView.ColumnHeaderContextMenu>
                         <GridViewColumn Width="80" Header="开赛时间" DisplayMemberBinding="{Binding Path=Time1}" />
-                        <GridViewColumn Width="130" Header="主场球队" DisplayMemberBinding="{Binding Path=Host.TeamName}" />
-                        <GridViewColumn Width="80" Header="盘口" DisplayMemberBinding="{Binding Path=OddStake.Description}" />
-                        <GridViewColumn Width="130" Header="客场球队" DisplayMemberBinding="{Binding Path=Guest.TeamName}" />
-                        <GridViewColumn Width="130" Header="推荐" DisplayMemberBinding="{Binding Path=Prefer.Description}" />
+                        <GridViewColumn Width="130" Header="主场球队" DisplayMemberBinding="{Binding Path=Host}" />
+                        <GridViewColumn Width="80" Header="盘口" DisplayMemberBinding="{Binding Path=OddStake}" />
+                        <GridViewColumn Width="130" Header="客场球队" DisplayMemberBinding="{Binding Path=Guest}" />
+                        <GridViewColumn Width="130" Header="推荐" DisplayMemberBinding="{Binding Path=Prefer}" />
                         <GridViewColumn Width="40" Header="水位" DisplayMemberBinding="{Binding Path=Odds}" />
                         <GridViewColumn Width="50" Header="比分" DisplayMemberBinding="{Binding Path=Result}" />
                         <GridViewColumn Width="60" Header="比赛结果" DisplayMemberBinding="{Binding Path=PreferResult,Converter={StaticResource CON}}" />
                         <GridViewColumn Width="80" Header="发布时间" DisplayMemberBinding="{Binding Path=Time2}" />
-                        <GridViewColumn Width="130" Header="发表用户" DisplayMemberBinding="{Binding Path=Person.Name}" />
+                        <GridViewColumn Width="130" Header="发表用户" DisplayMemberBinding="{Binding Path=Person}" />
                         <GridViewColumn Width="80" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>

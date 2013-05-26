@@ -14,14 +14,17 @@ namespace BetStrategy.ViewModels
     {
         public string Name { get; set; }
         public DateTime LastUpdateTime { get; set; }
-        public YieldRoiPerson Data { get; set; }
+        public YieldRoiPerson Person { get; set; }
 
+        /// <summary>
+        /// 数据保留24小时.
+        /// </summary>
         [Newtonsoft.Json.JsonIgnore]
-        private bool IsLatest
+        public bool IsLatest
         {
             get
             {
-                return true;
+                return Person != null && DateTime.Now.Subtract(LastUpdateTime).TotalMinutes < 24 * 60;
             }
         }
     }
@@ -39,28 +42,42 @@ namespace BetStrategy.ViewModels
         }
         #endregion
 
+        private IFileSerializer serializer = SerializationManager.Instance.GetInstance();
         private YieldRoiProvider() { }
-
-        public void GetPersonRecommends(string name, Action<YieldRoiPerson> finish)
+        public void GetPersonRecommends(string name, Action<Recommend> finish)
         {
-            Load(name, finish);
+            FileHelper.GetAllRecommends(name, finish);
         }
 
-        private void Load(string name, Action<YieldRoiPerson> finish)
+        private string GetCachedYieldRoiPerson(string name)
         {
-            /*
-                if (IsDataLatest(data))
-                {
-                    finish(data.Recommends);
-                }
-                else
-                {
-                    DownloadRecommends(name, finish);
-                }
-            */
+            return Path.Combine(FileHelper.GetPersonCacheDir(name), "YieldRoi.txt");
         }
 
-        private void DownloadRecommends(string name, Action<List<Recommend>> finish)
+        public YieldRoiPerson GetPerson(string name)
+        {
+            var data = serializer.Deserialize<_YieldRoi>(GetCachedYieldRoiPerson(name));
+            if (data != null && data.IsLatest)
+            {
+                return data.Person;
+            }
+            else
+            {
+                var person = new YieldRoiPerson(name);
+                return person;
+            }
+        }
+
+        public void SavePerson(YieldRoiPerson person)
+        {
+            var data = new _YieldRoi();
+            data.LastUpdateTime = DateTime.Now;
+            data.Name = person.Name;
+            data.Person = person;
+            serializer.Serialize(GetCachedYieldRoiPerson(person.Name), data);
+        }
+
+        public void DownloadRecommends(string name, Action<List<Recommend>> finish)
         {
             var url = Constants.Instance.URL_BASE + Constants.Instance.URL_GAME_USER + NetworkUtils.UrlEncode(name, Encoding.GetEncoding("GB2312"));
             Action<bool, string, string> callback = (ok, html, error) =>
@@ -70,7 +87,10 @@ namespace BetStrategy.ViewModels
                     HtmlParser.ParseRecommends(html, (rs) =>
                     {
                         Save(rs);
-                        finish(rs);
+                        if (finish != null)
+                        {
+                            finish(rs);
+                        }
                     });
                 }
                 else

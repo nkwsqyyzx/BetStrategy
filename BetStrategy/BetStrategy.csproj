@@ -109,6 +109,7 @@
     <Compile Include="ViewModels\TopPersonProvider.cs" />
     <Compile Include="ViewModels\TopPersonRecommendsViewModel.cs" />
     <Compile Include="ViewModels\YieldRoiProvider.cs" />
+    <Compile Include="ViewModels\YieldRoiViewModel.cs" />
     <Compile Include="Windows\BaseWindow.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

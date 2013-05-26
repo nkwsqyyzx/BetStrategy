@@ -12,6 +12,8 @@ namespace BetStrategy.ViewModels
 {
     public class YieldRoiPerson : Person, INotifyPropertyChanged
     {
+        public YieldRoiPerson() { }
+
         public YieldRoiPerson(string name)
         {
             _recommends = new List<Recommend>();
@@ -24,24 +26,20 @@ namespace BetStrategy.ViewModels
         {
             Name = name;
             YieldRoiProvider pro = YieldRoiProvider.Instance;
-            Action<List<Recommend>> callback = (recommends) =>
+            Action<Recommend> callback = (rec) =>
             {
-                Refresh(recommends);
+                Add(rec);
             };
-            pro.GetPersonRecommends(name, null);
+            pro.GetPersonRecommends(name, callback);
         }
 
-        private void Refresh(List<Recommend> recommends)
+        private void Add(Recommend rec)
         {
-            // must run on UITHREAD.
             Action action = () =>
             {
-                foreach (var i in recommends)
+                if (!_recommends.Any((m) => m.Time2 == rec.Time2))
                 {
-                    if (!_recommends.Any((m) => m.Time2 == i.Time2))
-                    {
-                        _recommends.Add(i);
-                    }
+                    _recommends.Add(rec);
                 }
                 RefreshYieldAndRoi();
 
@@ -114,7 +112,7 @@ namespace BetStrategy.ViewModels
         /// <summary>
         /// 所有推荐列表
         /// </summary>
-	[Newtonsoft.Json.JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
         public List<Recommend> Recommends
         {
             get

@@ -192,6 +192,7 @@ namespace BetStrategy.ViewModels
         {
             HtmlParser.ParseRecommends(html, (rs) =>
             {
+                FileHelper.SaveRecommends(rs);
                 UiDispatcher.BeginInvoke(new Action(() =>
                 {
                     AddRecommends(rs);

@@ -17,10 +17,7 @@ namespace ProjectUnitTest
             YieldRoiProvider pro = YieldRoiProvider.Instance;
             pro.GetPersonRecommends("格力电器", (ls) =>
             {
-                foreach (var rec in ls.Recommends)
-                {
-                    System.Diagnostics.Debug.WriteLine(rec.Prefer);
-                }
+                System.Diagnostics.Debug.WriteLine(ls.Prefer);
             });
             Thread.Sleep(100000);
         }
