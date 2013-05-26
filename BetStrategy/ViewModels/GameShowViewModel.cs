@@ -1,5 +1,6 @@
 ﻿using BetStrategy.Common.Configurations;
 using BetStrategy.Models;
+using BetStrategy.Utils;
 using GalaSoft.MvvmLight.Command;
 using HtmlAgilityPack;
 using System;
@@ -89,7 +90,7 @@ namespace BetStrategy.ViewModels
 
         private void ParseRecommendsFromHtml(string html)
         {
-            HtmlParser.HtmlParser.ParseRecommends(html, (results) =>
+            HtmlParser.ParseRecommends(html, (results) =>
             {
                 UiDispatcher.BeginInvoke(new Action(() =>
                 {

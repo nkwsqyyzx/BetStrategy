@@ -1,5 +1,6 @@
 ﻿using BetStrategy.Common.Configurations;
 using BetStrategy.Models;
+using BetStrategy.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -115,7 +116,7 @@ namespace BetStrategy.ViewModels
             {
                 if (ok)
                 {
-                    HtmlParser.HtmlParser.ParseTopPerson(html, (rs) =>
+                    HtmlParser.ParseTopPerson(html, (rs) =>
                     {
                         Save(rs);
                         finished(rs);

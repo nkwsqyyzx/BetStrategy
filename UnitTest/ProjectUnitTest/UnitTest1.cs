@@ -4,7 +4,7 @@ using BetStrategy.ViewModels;
 using System.Threading;
 using System.IO;
 using System.Net;
-using BetStrategy.HtmlParser;
+using BetStrategy.Utils;
 
 namespace ProjectUnitTest
 {
@@ -19,7 +19,7 @@ namespace ProjectUnitTest
             {
                 foreach (var rec in ls)
                 {
-                    System.Diagnostics.Debug.WriteLine(rec.Prefer.Description);
+                    System.Diagnostics.Debug.WriteLine(rec.Prefer);
                 }
             });
             Thread.Sleep(100000);

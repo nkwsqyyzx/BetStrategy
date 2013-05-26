@@ -1,13 +1,13 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using BetStrategy.Models;
+using BetStrategy.Utils;
 using BetStrategy.ViewModels;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using WSQ.CSharp.Serialization;
-using Newtonsoft.Json;
-using BetStrategy.Models;
-using System.Collections.Generic;
-using BetStrategy.HtmlParser;
-using System.Diagnostics;
 
 namespace CommonTest
 {

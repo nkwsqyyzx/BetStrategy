@@ -89,7 +89,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="HtmlParser\HtmlParser.cs" />
+    <Compile Include="Utils\HtmlParser.cs" />
     <Compile Include="Models\Enumerations.cs" />
     <Compile Include="Models\OddStake.cs" />
     <Compile Include="Models\Person.cs" />

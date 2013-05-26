@@ -1,5 +1,6 @@
 ﻿using BetStrategy.Common.Configurations;
 using BetStrategy.Models;
+using BetStrategy.Utils;
 using GalaSoft.MvvmLight.Command;
 using HtmlAgilityPack;
 using System;
@@ -59,7 +60,7 @@ namespace BetStrategy.ViewModels
 
         private void ParseTopPersonFromHtml(string html)
         {
-            HtmlParser.HtmlParser.ParseTopPerson(html, (persons) =>
+            HtmlParser.ParseTopPerson(html, (persons) =>
             {
                 UiDispatcher.BeginInvoke(new Action(() =>
                 {

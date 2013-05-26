@@ -1,13 +1,12 @@
 ﻿using BetStrategy.Common.Configurations;
 using BetStrategy.Models;
+using BetStrategy.Utils;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Text;
 using WSQ.CSharp.Net;
 using WSQ.CSharp.Serialization;
-using System.Web;
-using System.IO;
 
 namespace BetStrategy.ViewModels
 {
@@ -65,7 +64,7 @@ namespace BetStrategy.ViewModels
             {
                 if (ok)
                 {
-                    HtmlParser.HtmlParser.ParseRecommends(html, (rs) =>
+                    HtmlParser.ParseRecommends(html, (rs) =>
                     {
                         Save(name, rs);
                         finish(rs);

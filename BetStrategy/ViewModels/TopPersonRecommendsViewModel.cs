@@ -13,6 +13,7 @@ using WSQ.CSharp.Helper;
 using WSQ.CSharp.Net;
 using System.Linq;
 using GalaSoft.MvvmLight;
+using BetStrategy.Utils;
 
 namespace BetStrategy.ViewModels
 {
@@ -189,7 +190,7 @@ namespace BetStrategy.ViewModels
 
         private void ParseHtml(string html)
         {
-            HtmlParser.HtmlParser.ParseRecommends(html, (rs) =>
+            HtmlParser.ParseRecommends(html, (rs) =>
             {
                 UiDispatcher.BeginInvoke(new Action(() =>
                 {
