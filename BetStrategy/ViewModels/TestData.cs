@@ -7987,7 +7987,7 @@ namespace BetStrategy.ViewModels
 
   <tr class=""menu"">
     <td height=""25"" align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">第47期</td>
-    <td align=""center"" bgcolor=""#6F6161"" style=""color:#fff; font-size:14px"">法乙</td>
+    <td align=""center"" bgcolor=""#6F6161"" style=""color:#fff; font-size:14px""></td>
     <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">05-25 02:30</td>
     <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#0000D5; font-size:14px"">卡昂</td>
     <td align=""center"" bgcolor=""#FFFFFF"" style=""color:#FF0000; font-size:14px"">一球/球半</td>

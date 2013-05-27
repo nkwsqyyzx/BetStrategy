@@ -20,9 +20,9 @@ namespace BetStrategy.Utils
             IList<string> values = new List<string>();
             foreach (var td in rowNode.ChildNodes)
             {
-                var result = td.InnerText.Trim();
-                if (!string.IsNullOrWhiteSpace(result))
+                if (td.Name == "td")
                 {
+                    var result = td.InnerText.Trim();
                     values.Add(result);
                 }
             }

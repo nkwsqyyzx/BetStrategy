@@ -40,11 +40,16 @@ namespace ProjectUnitTest
         }
 
         [TestMethod]
-        public void TesHtmlParser() {
+        public void TesHtmlParser()
+        {
             HtmlParser.ParseRecommends(TestData.GAME_USER_HTML, (rs) =>
             {
-                System.Diagnostics.Debug.WriteLine(rs.Count);
+                foreach (var rec in rs)
+                {
+                    System.Diagnostics.Debug.WriteLine("Host:" + rec.Host + " League:" + rec.League);
+		}
             });
+            Thread.Sleep(100000);
         }
 
         [TestMethod]
@@ -73,7 +78,7 @@ namespace ProjectUnitTest
             {
                 YieldRoiProvider.Instance.DownloadRecommends(name, 0, null);
 	    }
-            Thread.Sleep(1000 * 1000);
+            Thread.Sleep(1000 * 1000 * 1000);
         }
 
         [TestMethod]
