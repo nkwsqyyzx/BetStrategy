@@ -81,9 +81,11 @@ namespace BetStrategy.ViewModels
         public void DownloadRecommends(string name, int page, Action<List<Recommend>> finish)
         {
             var url = Constants.Instance.URL_BASE + Constants.Instance.URL_GAME_USER + NetworkUtils.UrlEncode(name, Encoding.GetEncoding("GB2312"));
+            page = page <= 0 ? 1 : page;
             if (page > 0)
             {
                 url = url + "&page=" + page.ToString();
+                System.Diagnostics.Debug.WriteLine("downloading " + name + " page " + page.ToString());
             }
             Action<bool, string, string> callback = (ok, html, error) =>
             {
@@ -93,7 +95,7 @@ namespace BetStrategy.ViewModels
                     {
                         if (rs.Count == 100)
                         {
-                            Thread.Sleep(4203);
+                            Thread.Sleep(5283);
                             DownloadRecommends(name, page + 1, finish);
                         }
                         Save(rs);
