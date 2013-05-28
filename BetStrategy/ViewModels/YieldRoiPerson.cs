@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using WSQ.CSharp.Helper;
+using BetStrategy.Utils;
 
 namespace BetStrategy.ViewModels
 {
@@ -14,99 +15,61 @@ namespace BetStrategy.ViewModels
     {
         public YieldRoiPerson() { }
 
-        public YieldRoiPerson(string name)
+        public YieldRoiPerson(string dir)
         {
             _recommends = new List<Recommend>();
             BackgroundWorker bw = new BackgroundWorker();
-            bw.DoWork += (o, e) => LoadPerson(name);
+            bw.DoWork += (o, e) => LoadPerson(dir);
             bw.RunWorkerAsync();
         }
 
-        private void LoadPerson(string name)
+        private void LoadPerson(string dir)
         {
-            Name = name;
+            Name = dir;
             YieldRoiProvider pro = YieldRoiProvider.Instance;
             Action<Recommend> callback = (rec) =>
             {
                 Add(rec);
             };
-            pro.GetPersonRecommends(name, callback);
+            pro.GetPersonRecommends(dir, callback,LoadFinish);
+        }
+
+        private void LoadFinish() 
+        {
+            new Action(() =>
+            {
+                RefreshYieldAndRoi();
+
+                YieldRoiHelper.RefreshProfit(_recommends, this);
+                // notify all properties.
+                NotifyPropertyChange(string.Empty);
+                YieldRoiProvider.Instance.SavePerson(this);
+            }).RunOnUI();
         }
 
         private void Add(Recommend rec)
         {
+            Name = rec.Person;
             Action action = () =>
             {
                 if (!_recommends.Any((m) => m.Time2 == rec.Time2))
                 {
                     _recommends.Add(rec);
                 }
-                RefreshYieldAndRoi();
-
-                RefreshProfit();
-                // notify all properties.
-                NotifyPropertyChange(string.Empty);
             };
             action.RunOnUI();
         }
 
-        private void RefreshProfit()
-        {
-            Draw = _recommends.Count((i) => i.PreferResult == PreferResult.Useless);
-            Lose = _recommends.Count((i) => i.PreferResult == PreferResult.Lose);
-            LoseHalf = _recommends.Count((i) => i.PreferResult == PreferResult.LoseHalf);
-            WinHalf = _recommends.Count((i) => i.PreferResult == PreferResult.WinHalf);
-            Win = _recommends.Count((i) => i.PreferResult == PreferResult.Win);
-            Total = _recommends.Count;
-            Profit = Win + WinHalf * 0.5f - Lose - LoseHalf * 0.5f;
-        }
-
-        private static float GainLose(Recommend rc)
-        {
-            float radio = 0.0f;
-            switch (rc.PreferResult)
-            {
-                case PreferResult.Lose: radio = -1.0f; break;
-                case PreferResult.LoseHalf: radio = -0.5f; break;
-                case PreferResult.Useless: radio = 0; break;
-                case PreferResult.Win: radio = 1.0f; break;
-                case PreferResult.WinHalf: radio = 0.5f; break;
-                case PreferResult.Waiting: radio = 0; break;
-                default: break;
-            }
-            return rc.Odds * radio;
-        }
-
         private void RefreshYieldAndRoi()
         {
-            TotalYield = CaluculateYield(_recommends);
-            TotalROI = CalculateRoi(_recommends);
+            TotalYield = YieldRoiHelper.CalculateYield(_recommends);
+            TotalROI = YieldRoiHelper.CalculateRoi(_recommends);
 
-            var list = (from item in _recommends where item.Current == _recommends[0].Current select item).ToList();
-            CurrentYield = CaluculateYield(list);
-            CurrentROI = CalculateRoi(list);
+            var list = (from item in _recommends where item.Current == _recommends[0].Current select item);
+            CurrentYield = YieldRoiHelper.CalculateYield(list);
+            CurrentROI = YieldRoiHelper.CalculateRoi(list);
         }
 
-        private float CalculateRoi(IList<Recommend> list)
-        {
-            var roi = 0.0f;
-            foreach (var item in list)
-            {
-                roi += GainLose(item);
-            }
-            return roi;
-        }
-
-        private float CaluculateYield(IList<Recommend> newItems)
-        {
-            var totalYield = 0.0f;
-            foreach (var rc in newItems)
-            {
-                var rec = rc as Recommend;
-                totalYield += GainLose(rec);
-            }
-            return newItems.Count > 0 ? totalYield / (float)newItems.Count : 0.0f;
-        }
 
         private List<Recommend> _recommends = null;
         /// <summary>

@@ -22,13 +22,14 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Grid HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
-                    <ColumnDefinition Width="200" />
-                    <ColumnDefinition Width="200" />
-                    <ColumnDefinition Width="200" />
-                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
                 </Grid.ColumnDefinitions>
-                <Button Command="{Binding CommandRefresh}" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Content="刷新"/>
+                <Button Command="{Binding CommandRefresh}" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Content="刷新"/>
                 <CheckBox Content="自定义关注列表" IsChecked="{Binding Path=CheckBoxPreferMostIsChecked,Mode=TwoWay}"  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <CheckBox Content="启用自动刷新" IsChecked="{Binding Path=CheckBoxIsChecked,Mode=TwoWay}"  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <CheckBox Content="启用邮件通知" IsChecked="{Binding Path=EnableEmailNotify,Mode=TwoWay}"  Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Top"/>
@@ -37,6 +38,7 @@
                           ItemsSource="{Binding TopPersonWinsList}"
                           DisplayMemberPath="Profit"
                           SelectedItem="{Binding Path=SelectedProfitPerson, Mode=TwoWay}"/>
+                <Button Command="{Binding CommandViewYield}" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Content="查看推荐Yield"/>
             </Grid>
         </StackPanel>
 
@@ -60,7 +62,7 @@
                         <GridViewColumn Width="80" Header="盘口" DisplayMemberBinding="{Binding Path=OddStake}" />
                         <GridViewColumn Width="130" Header="客场球队" DisplayMemberBinding="{Binding Path=Guest}" />
                         <GridViewColumn Width="130" Header="推荐" DisplayMemberBinding="{Binding Path=Prefer}" />
-                        <GridViewColumn Width="40" Header="水位" DisplayMemberBinding="{Binding Path=Odds}" />
+                        <GridViewColumn Width="50" Header="水位" DisplayMemberBinding="{Binding Path=Odds}" />
                         <GridViewColumn Width="50" Header="比分" DisplayMemberBinding="{Binding Path=Result}" />
                         <GridViewColumn Width="60" Header="比赛结果" DisplayMemberBinding="{Binding Path=PreferResult,Converter={StaticResource CON}}" />
                         <GridViewColumn Width="80" Header="发布时间" DisplayMemberBinding="{Binding Path=Time2}" />

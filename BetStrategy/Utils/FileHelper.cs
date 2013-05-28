@@ -62,7 +62,24 @@ namespace BetStrategy.Utils
             }
         }
 
-        public static void GetAllRecommends(string name, Action<Recommend> onRecommend, Action<bool> finish = null)
+        public static void GetAllPerson(Action<string> onPerson, Action finish = null)
+        {
+            var dir = CACHE_DIR;
+            if (Directory.Exists(dir))
+            {
+                var subdirs = Directory.EnumerateDirectories(dir);
+                foreach (var sdir in subdirs)
+                {
+                    onPerson(Path.GetFileName(sdir));
+                }
+            }
+            if (finish != null)
+            {
+                finish();
+            }
+        }
+
+        public static void GetAllRecommends(string name, Action<Recommend> onRecommend, Action finish = null)
         {
             var dir = GetPersonRecommendsDir(name);
             if (Directory.Exists(dir))
@@ -73,17 +90,10 @@ namespace BetStrategy.Utils
                     var rec = Serializer.Deserialize<Recommend>(Path.Combine(GetPersonCacheDir(name), file));
                     onRecommend(rec);
                 }
-                if (finish != null)
-                {
-                    finish(true);
-                }
             }
-            else
+            if (finish != null)
             {
-                if (finish != null)
-                {
-                    finish(false);
-                }
+                finish();
             }
         }
     }

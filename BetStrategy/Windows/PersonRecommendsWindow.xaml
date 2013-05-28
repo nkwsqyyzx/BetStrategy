@@ -6,6 +6,7 @@
                 xmlns:resx="clr-namespace:BetStrategy.Properties"
                 xmlns:converters="clr-namespace:BetStrategy.ViewModels"
                 WindowStartupLocation="CenterScreen"
+		Title="{Binding Title}"
                 Height="600"
                 Width="1200">
 
@@ -38,7 +39,7 @@
                         <GridViewColumn Width="80" Header="盘口" DisplayMemberBinding="{Binding Path=OddStake}" />
                         <GridViewColumn Width="130" Header="客场球队" DisplayMemberBinding="{Binding Path=Guest}" />
                         <GridViewColumn Width="130" Header="推荐" DisplayMemberBinding="{Binding Path=Prefer}" />
-                        <GridViewColumn Width="40" Header="水位" DisplayMemberBinding="{Binding Path=Odds}" />
+                        <GridViewColumn Width="50" Header="水位" DisplayMemberBinding="{Binding Path=Odds}" />
                         <GridViewColumn Width="50" Header="比分" DisplayMemberBinding="{Binding Path=Result}" />
                         <GridViewColumn Width="60" Header="比赛结果" DisplayMemberBinding="{Binding Path=PreferResult,Converter={StaticResource CON}}" />
                         <GridViewColumn Width="80" Header="发布时间" DisplayMemberBinding="{Binding Path=Time2}" />

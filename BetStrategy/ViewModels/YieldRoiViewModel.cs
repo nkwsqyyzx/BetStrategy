@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using WSQ.CSharp.Helper;
 using WSQ.CSharp.Extensions;
+using BetStrategy.Utils;
 
 namespace BetStrategy.ViewModels
 {
@@ -18,17 +19,25 @@ namespace BetStrategy.ViewModels
             }
         }
 
+        public YieldRoiViewModel() 
+        {
+            InitTopYieldRoiPerson();
+        }
+
         private void InitTopYieldRoiPerson()
         {
             _topYieldRoiPerson = new ObservableCollection<YieldRoiPerson>();
             BackgroundWorker bw = new BackgroundWorker();
             bw.DoWork += (o, e) =>
             {
-                foreach (var i in TopPersonProvider.Instance.PreferMost)
+                Action<string> action = (dir) => 
                 {
-                    Action action = () => { _topYieldRoiPerson.Add(YieldRoiProvider.Instance.GetPerson(i)); };
-                    action.RunOnUI();
-                }
+                    new Action(() => 
+                    {
+                        _topYieldRoiPerson.Add(YieldRoiProvider.Instance.GetPerson(dir)); 
+                    }).RunOnUI();
+                };
+                FileHelper.GetAllPerson((dir) => action(dir));
             };
             bw.RunWorkerAsync();
         }

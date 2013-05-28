@@ -138,6 +138,34 @@ namespace BetStrategy.ViewModels
             }
         }
 
+        private ICommand _cmdViewYield;
+        public ICommand CommandViewYield
+        {
+            get
+            {
+                if (_cmdViewYield == null)
+                {
+                    _cmdViewYield = new RelayCommand(() =>
+                    {
+                        ShowYieldWindow();
+                    });
+                }
+                return _cmdViewYield;
+            }
+        }
+
+        private Window YieldView;
+        private void ShowYieldWindow()
+        {
+            if (YieldView == null)
+            {
+                YieldView = new YieldRoiWindow();
+                YieldView.Closed += (o, e) => { YieldView = null; };
+            }
+            YieldView.Show();
+            YieldView.Activate();
+        }
+
         private ICommand _viewPerson = null;
         public ICommand CommandViewPerson
         {
@@ -177,7 +205,7 @@ namespace BetStrategy.ViewModels
         private List<Person> TopPerson = new List<Person>();
         private void DownloadRecommends()
         {
-#if PUBLISH
+#if !PUBLISH
             ParseHtml(TestData.GAME_SHOW_HTML);
 #else
             NetworkUtils.DownloadString(Constants.Instance.URL_BASE + Constants.Instance.URL_GAME_SHOW, (ok, html, error) =>

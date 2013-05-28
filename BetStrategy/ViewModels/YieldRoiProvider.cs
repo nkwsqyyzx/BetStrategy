@@ -45,9 +45,9 @@ namespace BetStrategy.ViewModels
 
         private IFileSerializer serializer = SerializationManager.Instance.GetInstance();
         private YieldRoiProvider() { }
-        public void GetPersonRecommends(string name, Action<Recommend> finish)
+        public void GetPersonRecommends(string name, Action<Recommend> onRecommend, Action finish = null)
         {
-            FileHelper.GetAllRecommends(name, finish);
+            FileHelper.GetAllRecommends(name, onRecommend, finish);
         }
 
         private string GetCachedYieldRoiPerson(string name)
