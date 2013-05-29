@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using WSQ.CSharp.Helper;
+using BetStrategy.Utils;
 
 namespace BetStrategy.ViewModels
 {
@@ -43,7 +44,7 @@ namespace BetStrategy.ViewModels
 
         public TestViewModel()
         {
-            InitRecommends();
+            InitRecommends("jack");
             InitTopPerson();
             InitTopYieldRoiPerson();
         }
@@ -192,6 +193,17 @@ namespace BetStrategy.ViewModels
                 }
             };
             bw.RunWorkerAsync();
+        }
+
+        private void InitRecommends(string name)
+        {
+            _recommends = new ObservableCollection<Recommend>();
+            _recommends.Add(new Recommend() { Time1 = "05-01 07:15", Host = "堤格雷", OddStake = "2/2.5球", Guest = "奧林匹亞", Prefer = "小球", Odds = 0.940f, Result = "-", PreferResult = (PreferResult)converter.ConvertBack("等待", typeof(PreferResult), null, null), Time2 = "04-30 23:03", Person = "bin-bin" });
+            _recommends.Add(new Recommend() { Time1 = "05-01 02:45", Host = "米禾爾", OddStake = "平手", Guest = "水晶宮", Prefer = "水晶宮", Odds = 0.800f, Result = "-", PreferResult = (PreferResult)converter.ConvertBack("赢半", typeof(PreferResult), null, null), Time2 = "04-30 22:56", Person = "运达不来霉" });
+            _recommends.Add(new Recommend() { Time1 = "05-01 02:00", Host = "喜百年U20", OddStake = "球半/两球", Guest = "登地U20", Prefer = "喜百年U20", Odds = 0.920f, Result = "-", PreferResult = (PreferResult)converter.ConvertBack("赢盘", typeof(PreferResult), null, null), Time2 = "04-30 23:02", Person = "回心融雪衣" });
+            _recommends.Add(new Recommend() { Time1 = "04-30 23:50", Host = "艾恩", OddStake = "平/半", Guest = "艾斯迪格拿", Prefer = "艾斯迪格拿", Odds = 0.860f, Result = "-", PreferResult = (PreferResult)converter.ConvertBack("输盘", typeof(PreferResult), null, null), Time2 = "04-30 23:01", Person = "不学无术" });
+            _recommends.Add(new Recommend() { Time1 = "05-01 02:45", Host = "車斯曼", OddStake = "半球", Guest = "赫默爾亨普斯特德城", Prefer = "赫默爾亨普斯特德城", Odds = 0.800f, Result = "-", PreferResult = (PreferResult)converter.ConvertBack("输半", typeof(PreferResult), null, null), Time2 = "04-30 22:57", Person = "sos73" });
+            _recommends.Add(new Recommend() { Time1 = "05-01 07:15", Host = "堤格雷", OddStake = "平/半", Guest = "奧林匹亞", Prefer = "奧林匹亞", Odds = 1.020f, Result = "-", PreferResult = (PreferResult)converter.ConvertBack("走水", typeof(PreferResult), null, null), Time2 = "04-30 22:56", Person = "茶居" });
         }
     }
 }
