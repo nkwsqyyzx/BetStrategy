@@ -77,49 +77,5 @@ namespace BetStrategy.ViewModels
             data.Person = person;
             serializer.Serialize(GetCachedYieldRoiPerson(person.Name), data);
         }
-
-        public void DownloadRecommends(string name, int page, Action<List<Recommend>> finish)
-        {
-            var url = Constants.Instance.URL_BASE + Constants.Instance.URL_GAME_USER + NetworkUtils.UrlEncode(name, Encoding.GetEncoding("GB2312"));
-            page = page <= 0 ? 1 : page;
-            if (page > 0)
-            {
-                url = url + "&page=" + page.ToString();
-                System.Diagnostics.Debug.WriteLine("downloading " + name + " page " + page.ToString());
-            }
-            Action<bool, string, string> callback = (ok, html, error) =>
-            {
-                if (ok)
-                {
-                    HtmlParser.ParseRecommends(html, (rs) =>
-                    {
-                        if (rs.Count == 100)
-                        {
-                            Thread.Sleep(5283);
-                            DownloadRecommends(name, page + 1, finish);
-                        }
-                        Save(rs);
-                        if (finish != null)
-                        {
-                            finish(rs);
-                        }
-                    });
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine(string.Format("ERROR WHEN GETTING {0} PROFILE.ERROR:{1}", name, error));
-                }
-            };
-#if !TEST
-            NetworkUtils.DownloadString(url, (ok, html, error) => callback(ok, html, error));
-#else
-            callback(true, TestData.GAME_USER_HTML, "");
-#endif
-        }
-
-        private void Save(List<Recommend> recommends)
-        {
-            FileHelper.SaveRecommends(recommends);
-        }
     }
 }

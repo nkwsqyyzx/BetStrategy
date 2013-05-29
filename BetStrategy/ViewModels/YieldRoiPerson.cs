@@ -13,11 +13,14 @@ namespace BetStrategy.ViewModels
 {
     public class YieldRoiPerson : Person, INotifyPropertyChanged
     {
-        public YieldRoiPerson() { }
-
-        public YieldRoiPerson(string dir)
+        public YieldRoiPerson()
         {
             _recommends = new List<Recommend>();
+        }
+
+        public YieldRoiPerson(string dir)
+            : this()
+        {
             BackgroundWorker bw = new BackgroundWorker();
             bw.DoWork += (o, e) => LoadPerson(dir);
             bw.RunWorkerAsync();

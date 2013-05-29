@@ -182,17 +182,10 @@ namespace BetStrategy.ViewModels
         private void InitTopYieldRoiPerson()
         {
             _topYieldRoiPerson = new ObservableCollection<YieldRoiPerson>();
-            BackgroundWorker bw = new BackgroundWorker();
-            bw.DoWork += (o, e) =>
-            {
-                Random ran = new Random(0);
-                foreach (var i in TopPersonProvider.Instance.PreferMost)
-                {
-                    Action action = () => { _topYieldRoiPerson.Add(YieldRoiProvider.Instance.GetPerson(i)); };
-                    action.RunOnUI();
-                }
-            };
-            bw.RunWorkerAsync();
+            _topYieldRoiPerson.Add(new YieldRoiPerson() { Name= "10分钟到账", TotalYield= 0.422222227f, CurrentYield= 0.422222227f, TotalROI= 3.8f, CurrentROI= 3.8f, Profit= 5.0f, Total= 9, Win= 5, WinHalf= 2, Lose= 1, LoseHalf= 0, Draw= 0 });
+            _topYieldRoiPerson.Add(new YieldRoiPerson() { Name= "无聊玩玩", TotalYield= -0.422222227f, CurrentYield= 0.422222227f, TotalROI= 3.8f, CurrentROI= 3.8f, Profit= 5.0f, Total= 9, Win= 5, WinHalf= 2, Lose= 1, LoseHalf= 0, Draw= 0 });
+            _topYieldRoiPerson.Add(new YieldRoiPerson() { Name= "多伦多猛龙", TotalYield= 0.422222227f, CurrentYield= -0.422222227f, TotalROI= 3.8f, CurrentROI= 3.8f, Profit= 5.0f, Total= 9, Win= 5, WinHalf= 2, Lose= 1, LoseHalf= 0, Draw= 0 });
+            _topYieldRoiPerson.Add(new YieldRoiPerson() { Name= "纽约火焰", TotalYield= 0.422222227f, CurrentYield= 0.422222227f, TotalROI= 3.8f, CurrentROI= 3.8f, Profit= 5.0f, Total= 9, Win= 5, WinHalf= 2, Lose= 1, LoseHalf= 0, Draw= 0 });
         }
 
         private void InitRecommends(string name)

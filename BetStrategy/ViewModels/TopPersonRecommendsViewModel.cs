@@ -173,7 +173,7 @@ namespace BetStrategy.ViewModels
             {
                 if (_viewPerson == null)
                 {
-                    _viewPerson = new RelayCommand<Recommend>(ViewPerson);
+                    _viewPerson = new RelayCommand<Recommend>((rec) => ViewHelper.ViewPerson(rec.Person));
                 }
                 return _viewPerson;
             }
@@ -205,7 +205,7 @@ namespace BetStrategy.ViewModels
         private List<Person> TopPerson = new List<Person>();
         private void DownloadRecommends()
         {
-#if !PUBLISH
+#if  PUBLISH
             ParseHtml(TestData.GAME_SHOW_HTML);
 #else
             NetworkUtils.DownloadString(Constants.Instance.URL_BASE + Constants.Instance.URL_GAME_SHOW, (ok, html, error) =>
@@ -426,27 +426,6 @@ namespace BetStrategy.ViewModels
         private string PersonString(Person p)
         {
             return string.Format("净胜{0}场:{1}推{2}胜{3}半胜{4}走{5}半负{6}负", p.Profit, p.Total, p.Win, p.WinHalf, p.Draw, p.LoseHalf, p.Lose);
-        }
-
-        private Dictionary<string, Window> Windows = new Dictionary<string, Window>();
-        private void ViewPerson(Recommend obj)
-        {
-            Window window = null;
-            if (Windows.ContainsKey(obj.Person))
-            {
-                window = Windows[obj.Person];
-                window.Activate();
-            }
-            else
-            {
-                window = new PersonRecommendsWindow();
-                var vm = new PersonRecommendsViewModel();
-                window.DataContext = vm;
-                window.Loaded += (o, e) => vm.Load(obj.Person);
-                window.Closed += (o, e) => { Windows.Remove(obj.Person); };
-                Windows[obj.Person] = window;
-                window.Show();
-            }
         }
     }
 }

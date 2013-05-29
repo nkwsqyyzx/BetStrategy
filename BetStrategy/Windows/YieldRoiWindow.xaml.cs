@@ -29,6 +29,10 @@ namespace BetStrategy.Windows
 
         private void GridViewColumnHeaderClickedHandler(object sender, RoutedEventArgs e)
         {
+            if (!(e.OriginalSource is GridViewColumnHeader))
+            {
+                return;
+            }
             var sortBy = ((e.OriginalSource as GridViewColumnHeader).Column.DisplayMemberBinding as Binding).Path.Path;
             var dir = ListSortDirection.Ascending;
             if (SortDict.ContainsKey(sortBy))

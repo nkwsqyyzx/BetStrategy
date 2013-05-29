@@ -9,25 +9,12 @@
                 WindowStartupLocation="CenterScreen"
                 ShowInTaskbar ="False" Visibility="Visible" Height="600" Width="1200">
 
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <vm:TestViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
 
     <Window.Resources>
         <converters:PreferResultToStringConverter x:Key="CON" />
-        <Style x:Key="ItemContStyle" TargetType="{x:Type ListViewItem}">
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="Height" Value="26" />
-            <Setter Property="Background" Value="#ccffffff" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding PreferResult}" Value="Win">
-                    <Setter Property="Foreground" Value="#f01234" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding PreferResult}" Value="Waiting">
-                    <Setter Property="Foreground" Value="#123456" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
     </Window.Resources>
 
     <Grid>
@@ -63,7 +50,7 @@
             <ListView ItemsSource="{Binding Recommends}"
 		     ScrollViewer.VerticalScrollBarVisibility="Visible"
                      ScrollViewer.HorizontalScrollBarVisibility="Visible" 
-                     ItemContainerStyle="{StaticResource ItemContStyle}"
+                     ItemContainerStyle="{StaticResource App_RecommendItemStyle}"
                      DockPanel.Dock="Top"
                      GridViewColumnHeader.Click="MenuItem_Click"
                      HorizontalAlignment="Center"

@@ -27,6 +27,7 @@
             <ListView ItemsSource="{Binding Recommends}"
                 ScrollViewer.VerticalScrollBarVisibility="Visible"
                 ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                ItemContainerStyle="{StaticResource App_RecommendItemStyle}"
 		DockPanel.Dock="Top"
                 HorizontalAlignment="Center"
                 Margin="30,0,10,10"

@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTest", "UnitTest\Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectUnitTest", "UnitTest\ProjectUnitTest\ProjectUnitTest.csproj", "{AFC06BF6-D39E-4B60-AD17-BEEF107A869D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Downloader", "Downloader", "{BF56C93C-EFC9-4E85-B381-4DDFF291A7F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Downloader", "Downloader\Downloader.csproj", "{9C200CDC-16B6-41C6-9777-E00ABF4C6CB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,10 @@ Global
 		{AFC06BF6-D39E-4B60-AD17-BEEF107A869D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFC06BF6-D39E-4B60-AD17-BEEF107A869D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFC06BF6-D39E-4B60-AD17-BEEF107A869D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C200CDC-16B6-41C6-9777-E00ABF4C6CB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C200CDC-16B6-41C6-9777-E00ABF4C6CB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C200CDC-16B6-41C6-9777-E00ABF4C6CB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C200CDC-16B6-41C6-9777-E00ABF4C6CB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,5 +101,6 @@ Global
 		{193BB801-054F-4729-9D5D-FCE1E32594BF} = {ED377D5D-0458-49A0-9155-9644D31C65B4}
 		{A4F36939-3FED-4744-838E-9602B4F8C7E9} = {A62BE580-B7B9-4DFA-A28E-82DFCDEAA7B2}
 		{A84C8572-14CE-405A-B8F1-3B32EC3B2D60} = {A62BE580-B7B9-4DFA-A28E-82DFCDEAA7B2}
+		{9C200CDC-16B6-41C6-9777-E00ABF4C6CB2} = {BF56C93C-EFC9-4E85-B381-4DDFF291A7F2}
 	EndGlobalSection
 EndGlobal

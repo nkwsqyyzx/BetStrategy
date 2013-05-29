@@ -4,10 +4,35 @@
              StartupUri="Windows/TopPersonRecommendsWindow.xaml"
              >
     <Application.Resources>
-            <ContextMenu Name="ContextMenu" 
+        <ContextMenu Name="ContextMenu" 
                          x:Key="NotifierContextMenu" 
                          Placement="MousePoint">
-                <MenuItem Header="Close" Click="Menu_Close"/>
-            </ContextMenu>
+            <MenuItem Header="Close" Click="Menu_Close"/>
+        </ContextMenu>
+        <Style x:Key="App_RecommendItemStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Height" Value="26" />
+            <Setter Property="Background" Value="#ccffffff" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding PreferResult}" Value="WinHalf">
+                    <Setter Property="Foreground" Value="#f01234" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding PreferResult}" Value="Win">
+                    <Setter Property="Foreground" Value="#f01234" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding PreferResult}" Value="Useless">
+                    <Setter Property="Foreground" Value="#ff787878" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding PreferResult}" Value="Waiting">
+                    <Setter Property="Foreground" Value="#ff333333" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding PreferResult}" Value="LoseHalf">
+                    <Setter Property="Foreground" Value="Green" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding PreferResult}" Value="Lose">
+                    <Setter Property="Foreground" Value="Green" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>
