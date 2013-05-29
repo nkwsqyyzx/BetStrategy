@@ -15,39 +15,51 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button Content="刷新" Command="{Binding CommandRefresh}" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75"/>
+        <Grid Grid.Row ="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width ="100" />
+                <ColumnDefinition Width ="100" />
+                <ColumnDefinition Width ="100" />
+                <ColumnDefinition Width ="100" />
+                <ColumnDefinition Width ="100" />
+                <ColumnDefinition Width ="100" />
+                <ColumnDefinition Width ="100" />
+                <ColumnDefinition Width ="100" />
+            </Grid.ColumnDefinitions>
+                <Button Content="刷新" Command="{Binding CommandRefresh}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="76" Margin="0,11"/>
+        </Grid>
 
-        <ScrollViewer Grid.Row="1">
+        <DockPanel Grid.Row="1">
             <ListView ItemsSource="{Binding TopYieldRoiPerson}"
-                      ScrollViewer.VerticalScrollBarVisibility="Visible"
-                      ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                      HorizontalAlignment="Center"
-                      Margin="30,10,10,10"
-		      GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler"
-                      VerticalAlignment="Stretch">
-                <ListView.View>
-                        <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="点击排序">
-
-                        <GridViewColumn Width="130" Header="会员名称" DisplayMemberBinding="{Binding Path=Name}" />
-                        <GridViewColumn Width="100" Header="TotalYield" DisplayMemberBinding="{Binding Path=TotalYield}" />
-                        <GridViewColumn Width="100" Header="CurrentYield" DisplayMemberBinding="{Binding Path=CurrentYield}" />
-                        <GridViewColumn Width="90" Header="TotalROI" DisplayMemberBinding="{Binding Path=TotalROI}" />
-                        <GridViewColumn Width="80" Header="CurrentROI" DisplayMemberBinding="{Binding Path=CurrentROI}" />
-                        <GridViewColumn Width="60" Header="净胜" DisplayMemberBinding="{Binding Path=Profit}" />
-                        <GridViewColumn Width="60" Header="总发布" DisplayMemberBinding="{Binding Path=Total}" />
-                        <GridViewColumn Width="50" Header="全赢" DisplayMemberBinding="{Binding Path=Win}" />
-                        <GridViewColumn Width="50" Header="赢半" DisplayMemberBinding="{Binding Path=WinHalf}" />
-                        <GridViewColumn Width="50" Header="全输" DisplayMemberBinding="{Binding Path=Lose}" />
-                        <GridViewColumn Width="50" Header="输半" DisplayMemberBinding="{Binding Path=LoseHalf}" />
-                        <GridViewColumn Width="50" Header="走水" DisplayMemberBinding="{Binding Path=Draw}" />
-
+                  Grid.Row="1"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  HorizontalAlignment="Center"
+                  Margin="30,10,10,10"
+                  DockPanel.Dock="Top"
+                  GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler"
+                  VerticalAlignment="Stretch">
+            <ListView.View>
+                    <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="点击排序">
+                    <GridViewColumn Width="130" Header="会员名称" DisplayMemberBinding="{Binding Path=Name}" />
+                    <GridViewColumn Width="100" Header="TotalYield" DisplayMemberBinding="{Binding Path=TotalYield}" />
+                    <GridViewColumn Width="100" Header="CurrentYield" DisplayMemberBinding="{Binding Path=CurrentYield}" />
+                    <GridViewColumn Width="90" Header="TotalROI" DisplayMemberBinding="{Binding Path=TotalROI}" />
+                    <GridViewColumn Width="80" Header="CurrentROI" DisplayMemberBinding="{Binding Path=CurrentROI}" />
+                    <GridViewColumn Width="60" Header="净胜" DisplayMemberBinding="{Binding Path=Profit}" />
+                    <GridViewColumn Width="60" Header="总发布" DisplayMemberBinding="{Binding Path=Total}" />
+                    <GridViewColumn Width="50" Header="全赢" DisplayMemberBinding="{Binding Path=Win}" />
+                    <GridViewColumn Width="50" Header="赢半" DisplayMemberBinding="{Binding Path=WinHalf}" />
+                    <GridViewColumn Width="50" Header="全输" DisplayMemberBinding="{Binding Path=Lose}" />
+                    <GridViewColumn Width="50" Header="输半" DisplayMemberBinding="{Binding Path=LoseHalf}" />
+                    <GridViewColumn Width="50" Header="走水" DisplayMemberBinding="{Binding Path=Draw}" />
                     </GridView>
                 </ListView.View>
             </ListView>
-        </ScrollViewer>
+        </DockPanel>
     </Grid>
 </src:BaseWindow>

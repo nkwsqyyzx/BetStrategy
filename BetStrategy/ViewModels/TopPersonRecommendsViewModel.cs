@@ -205,7 +205,7 @@ namespace BetStrategy.ViewModels
         private List<Person> TopPerson = new List<Person>();
         private void DownloadRecommends()
         {
-#if PUBLISH
+#if !PUBLISH
             ParseHtml(TestData.GAME_SHOW_HTML);
 #else
             NetworkUtils.DownloadString(Constants.Instance.URL_BASE + Constants.Instance.URL_GAME_SHOW, (ok, html, error) =>

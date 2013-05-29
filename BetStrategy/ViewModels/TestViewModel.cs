@@ -187,12 +187,8 @@ namespace BetStrategy.ViewModels
                 Random ran = new Random(0);
                 foreach (var i in TopPersonProvider.Instance.PreferMost)
                 {
-                    //var p = new YieldRoiPerson(i);
-                    //Action action = () => { _topYieldRoiPerson.Add(p); };
                     Action action = () => { _topYieldRoiPerson.Add(YieldRoiProvider.Instance.GetPerson(i)); };
                     action.RunOnUI();
-                    // 避免加载太快
-//                    Thread.Sleep(ran.Next(1645, 6895));
                 }
             };
             bw.RunWorkerAsync();

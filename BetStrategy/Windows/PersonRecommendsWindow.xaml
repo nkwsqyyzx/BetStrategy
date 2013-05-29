@@ -23,30 +23,28 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <TextBlock Text="{Binding Summary}"/>
         </StackPanel>
-
-        <ScrollViewer Grid.Row="1">
-            <ListView ItemsSource="{Binding Recommends}"
-		     ScrollViewer.VerticalScrollBarVisibility="Visible"
-                     ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                     HorizontalAlignment="Center"
-                     Margin="30,10,10,10"
-                     VerticalAlignment="Stretch">
-                <ListView.View>
-                    <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="所有推荐">
-                        <GridViewColumn Width="80" Header="开赛时间" DisplayMemberBinding="{Binding Path=Time1}" />
-                        <GridViewColumn Width="80" Header="期数" DisplayMemberBinding="{Binding Path=Current}" />
-                        <GridViewColumn Width="130" Header="主场球队" DisplayMemberBinding="{Binding Path=Host}" />
-                        <GridViewColumn Width="80" Header="盘口" DisplayMemberBinding="{Binding Path=OddStake}" />
-                        <GridViewColumn Width="130" Header="客场球队" DisplayMemberBinding="{Binding Path=Guest}" />
-                        <GridViewColumn Width="130" Header="推荐" DisplayMemberBinding="{Binding Path=Prefer}" />
-                        <GridViewColumn Width="50" Header="水位" DisplayMemberBinding="{Binding Path=Odds}" />
-                        <GridViewColumn Width="50" Header="比分" DisplayMemberBinding="{Binding Path=Result}" />
-                        <GridViewColumn Width="60" Header="比赛结果" DisplayMemberBinding="{Binding Path=PreferResult,Converter={StaticResource CON}}" />
-                        <GridViewColumn Width="80" Header="发布时间" DisplayMemberBinding="{Binding Path=Time2}" />
-                        <GridViewColumn Width="130" Header="发表用户" DisplayMemberBinding="{Binding Path=Person}" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </ScrollViewer>
+        <ListView ItemsSource="{Binding Recommends}"
+                  Grid.Row="1"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  HorizontalAlignment="Center"
+                  Margin="30,10,10,10"
+                  VerticalAlignment="Stretch">
+            <ListView.View>
+                <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="所有推荐">
+                    <GridViewColumn Width="80" Header="开赛时间" DisplayMemberBinding="{Binding Path=Time1}" />
+                    <GridViewColumn Width="80" Header="期数" DisplayMemberBinding="{Binding Path=Current}" />
+                    <GridViewColumn Width="130" Header="主场球队" DisplayMemberBinding="{Binding Path=Host}" />
+                    <GridViewColumn Width="80" Header="盘口" DisplayMemberBinding="{Binding Path=OddStake}" />
+                    <GridViewColumn Width="130" Header="客场球队" DisplayMemberBinding="{Binding Path=Guest}" />
+                    <GridViewColumn Width="130" Header="推荐" DisplayMemberBinding="{Binding Path=Prefer}" />
+                    <GridViewColumn Width="50" Header="水位" DisplayMemberBinding="{Binding Path=Odds}" />
+                    <GridViewColumn Width="50" Header="比分" DisplayMemberBinding="{Binding Path=Result}" />
+                    <GridViewColumn Width="60" Header="比赛结果" DisplayMemberBinding="{Binding Path=PreferResult,Converter={StaticResource CON}}" />
+                    <GridViewColumn Width="80" Header="发布时间" DisplayMemberBinding="{Binding Path=Time2}" />
+                    <GridViewColumn Width="130" Header="发表用户" DisplayMemberBinding="{Binding Path=Person}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </src:BaseWindow>
