@@ -38,8 +38,7 @@ namespace BetStrategy.Windows
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var contextMenu = (sender as MenuItem).Parent as ContextMenu;
-            var headerClicked = contextMenu.PlacementTarget as GridViewColumnHeader;
+            var headerClicked = e.OriginalSource as GridViewColumnHeader;
             ListSortDirection direction;
 
             if (headerClicked != null)
@@ -62,7 +61,11 @@ namespace BetStrategy.Windows
                         }
                     }
 
-                    string header = (headerClicked.Column.DisplayMemberBinding as Binding).Path.Path;
+                    string header = "Person";
+                    if (headerClicked.Column.DisplayMemberBinding != null)
+                    {
+                        header = (headerClicked.Column.DisplayMemberBinding as Binding).Path.Path;
+                    }
                     Sort(header, direction);
 
                     if (direction == ListSortDirection.Ascending)

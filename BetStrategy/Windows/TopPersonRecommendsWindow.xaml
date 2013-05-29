@@ -9,17 +9,21 @@
                 WindowStartupLocation="CenterScreen"
                 ShowInTaskbar ="False" Visibility="Visible" Height="600" Width="1200">
 
-    <Window.Resources>
+    <!--<Window.DataContext>
+        <vm:TestViewModel/>
+    </Window.DataContext>-->
+
+        <Window.Resources>
         <converters:PreferResultToStringConverter x:Key="CON" />
     </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Margin="0,5"  HorizontalAlignment="Center">
             <Grid HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150" />
@@ -42,21 +46,17 @@
             </Grid>
         </StackPanel>
 
-        <ScrollViewer Grid.Row="1">
+        <DockPanel Grid.Row="1">
             <ListView ItemsSource="{Binding Recommends}"
 		     ScrollViewer.VerticalScrollBarVisibility="Visible"
                      ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                     DockPanel.Dock="Top"
+                     GridViewColumnHeader.Click="MenuItem_Click"
                      HorizontalAlignment="Center"
-                     Margin="30,10,10,10"
+                     Margin="30,0,10,10"
                      VerticalAlignment="Stretch">
                 <ListView.View>
-                    <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Authors">
-                        <GridView.ColumnHeaderContextMenu>
-                            <ContextMenu >
-                                <MenuItem Header="Ascending" Click="MenuItem_Click"/>
-                                <MenuItem Header="Descending" Click="MenuItem_Click"/>
-                            </ContextMenu>
-                        </GridView.ColumnHeaderContextMenu>
+                    <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="点击排序">
                         <GridViewColumn Width="80" Header="开赛时间" DisplayMemberBinding="{Binding Path=Time1}" />
                         <GridViewColumn Width="130" Header="主场球队" DisplayMemberBinding="{Binding Path=Host}" />
                         <GridViewColumn Width="80" Header="盘口" DisplayMemberBinding="{Binding Path=OddStake}" />
@@ -66,22 +66,20 @@
                         <GridViewColumn Width="50" Header="比分" DisplayMemberBinding="{Binding Path=Result}" />
                         <GridViewColumn Width="60" Header="比赛结果" DisplayMemberBinding="{Binding Path=PreferResult,Converter={StaticResource CON}}" />
                         <GridViewColumn Width="80" Header="发布时间" DisplayMemberBinding="{Binding Path=Time2}" />
-                        <GridViewColumn Width="130" Header="发表用户" DisplayMemberBinding="{Binding Path=Person}" />
-                        <GridViewColumn Width="80" >
+                        <GridViewColumn Width="160" Header="发布用户" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Name="btnDownload"
-                                                Content="查看推荐人"
-                                                CommandParameter="{Binding}"
-                                                Command="{Binding Path=DataContext.CommandViewPerson, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
-                                    </StackPanel>
+                                    <Button Background="#cecece" Width="140" HorizontalAlignment="Center"
+                                            HorizontalContentAlignment="Center"
+                                            Content="{Binding Path=Person}"
+                                            CommandParameter="{Binding}"
+                                            Command="{Binding Path=DataContext.CommandViewPerson, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-        </ScrollViewer>
+        </DockPanel>
     </Grid>
 </src:BaseWindow>
