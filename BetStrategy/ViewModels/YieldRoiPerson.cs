@@ -63,8 +63,25 @@ namespace BetStrategy.ViewModels
             action.RunOnUI();
         }
 
+        private void Sort(List<Recommend> recs)
+        {
+            recs.Sort(new Comparison<Recommend>((s, r) =>
+            {
+                int first = r.Current.CompareTo(s.Current);
+                if (first == 0)
+                {
+                    return r.Time2.CompareTo(s.Time2);
+                }
+                else
+                {
+                    return first;
+                }
+            }));
+        }
+
         private void RefreshYieldAndRoi()
         {
+            Sort(_recommends);
             TotalYield = YieldRoiHelper.CalculateYield(_recommends);
             TotalROI = YieldRoiHelper.CalculateRoi(_recommends);
 
