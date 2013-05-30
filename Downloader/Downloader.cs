@@ -20,7 +20,7 @@ namespace RecommendsDownloader
             if (page > 0)
             {
                 url = url + "&page=" + page.ToString();
-                System.Diagnostics.Debug.WriteLine("downloading " + name + " page " + page.ToString());
+                System.Console.Out.WriteLine("downloading " + name + " page " + page.ToString());
             }
             Action<bool, string, string> callback = (ok, html, error) =>
             {
@@ -75,6 +75,7 @@ namespace RecommendsDownloader
                 {
                     HtmlParser.ParseRecommends(html, (rs) =>
                     {
+                        System.Console.Out.WriteLine("Page " + current + " Finished!");
                         Save(rs);
                         Thread.Sleep(5283);
                         current += 1;
@@ -83,7 +84,7 @@ namespace RecommendsDownloader
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine(string.Format("ERROR WHEN GETTING {0} PROFILE.ERROR",  error));
+                    System.Console.Out.WriteLine(string.Format("ERROR WHEN GETTING {0} PROFILE.ERROR",  error));
                 }
             };
 

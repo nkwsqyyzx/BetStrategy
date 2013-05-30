@@ -12,11 +12,28 @@ namespace RecommendsDownloader
     {
         static void Main(string[] args)
         {
-            Downloader.DownloadRecommends(5, () => 
+            int count = 5;
+            if (args.Length >= 1)
             {
-                Environment.Exit(0);
-            });
+                int c;
+                if (int.TryParse(args[0], out c))
+                {
+                    count = c;
+                }
+                else
+                {
+                    System.Console.Out.WriteLine("Usage:Downloader [num]");
+                    Finish();
+                }
+            }
+            System.Console.Out.WriteLine("begin to download " + count + " pages");
+            Downloader.DownloadRecommends(count, Finish);
             Thread.Sleep(1000 * 1000 * 1000);
+        }
+
+        private static void Finish()
+        {
+            Environment.Exit(0);
         }
     }
 }
