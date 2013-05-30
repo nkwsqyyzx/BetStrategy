@@ -26,6 +26,14 @@ namespace BetStrategy.ViewModels
             bw.RunWorkerAsync();
         }
 
+	/// <summary>
+	/// 刷新Yield/ROI等数据
+	/// </summary>
+        public void Refresh()
+        {
+            LoadPerson(this.Name);
+        }
+
         private void LoadPerson(string dir)
         {
             Name = dir;

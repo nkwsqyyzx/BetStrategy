@@ -62,6 +62,27 @@ namespace BetStrategy.ViewModels
                 return _viewPerson;
             }
         }
+
+        private ICommand _cmdRefresh = null;
+        public ICommand CommandRefresh
+        {
+            get
+            {
+                if (_cmdRefresh == null)
+                {
+                    _cmdRefresh = new RelayCommand(() => RefreshList());
+                }
+                return _cmdRefresh;
+            }
+        }
+
+        private void RefreshList()
+        {
+            foreach (var p in Persons)
+            {
+                p.Refresh();
+            }
+        }
         #endregion
 
         public YieldRoiViewModel()
