@@ -31,7 +31,11 @@ namespace BetStrategy.ViewModels
         {
             get
             {
+#if !PUBLISH
+		return true;
+#else
                 return IsLatest();
+#endif
             }
         }
     }

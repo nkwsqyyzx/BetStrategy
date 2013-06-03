@@ -10,7 +10,7 @@ using BetStrategy.Utils;
 
 namespace BetStrategy.ViewModels
 {
-    public class PersonRecommendsViewModel : BaseViewModel
+    public class RecommendsViewModel : BaseViewModel
     {
         #region BIND_PROPERTIES
         private string _summary;

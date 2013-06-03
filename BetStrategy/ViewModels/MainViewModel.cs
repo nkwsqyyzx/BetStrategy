@@ -32,16 +32,24 @@ namespace BetStrategy.ViewModels
                 {
                     _cmdGameShow = new RelayCommand(() =>
                     {
-                        if (WinGameShow == null)
-                        {
-                            WinGameShow = new PersonRecommendsWindow();
-                            WinGameShow.Closed += (o, e) => WinGameShow = null;
-                        }
-                        WinGameShow.Show();
+                        GameShow();
                     });
                 }
                 return _cmdGameShow;
             }
+        }
+
+        /// <summary>
+        /// 展示擂台参赛纪录
+        /// </summary>
+        private void GameShow()
+        {
+            if (WinGameShow == null)
+            {
+                WinGameShow = new RecommendsWindow();
+                WinGameShow.Closed += (o, e) => WinGameShow = null;
+            }
+            WinGameShow.Show();
         }
 
         private ICommand _cmdGameTop;
@@ -53,16 +61,24 @@ namespace BetStrategy.ViewModels
                 {
                     _cmdGameTop = new RelayCommand(() =>
                     {
-                        if (WinGameTop == null)
-                        {
-                            WinGameTop = new GameTopWindow();
-                            WinGameTop.Closed += (o, e) => WinGameTop = null;
-                        }
-                        WinGameTop.Show();
+                        GameTop();
                     });
                 }
                 return _cmdGameTop;
             }
+        }
+
+        /// <summary>
+        /// 推荐牛人排行榜
+        /// </summary>
+        private void GameTop()
+        {
+            if (WinGameTop == null)
+            {
+                WinGameTop = new YieldRoiWindow();
+                WinGameTop.Closed += (o, e) => WinGameTop = null;
+            }
+            WinGameTop.Show();
         }
 
         private ICommand _cmdBest;
@@ -74,16 +90,48 @@ namespace BetStrategy.ViewModels
                 {
                     _cmdBest = new RelayCommand(() =>
                     {
-                        if (WinGameBest == null)
-                        {
-                            WinGameBest = new PersonRecommendsWindow();
-                            WinGameBest.Closed += (o, e) => WinGameBest = null;
-                        }
-                        WinGameBest.Show();
+                        BestRecommends();
                     });
                 }
                 return _cmdBest;
             }
+        }
+
+        /// <summary>
+        /// 牛人的最新推荐
+        /// </summary>
+        private void BestRecommends()
+        {
+            if (WinGameBest == null)
+            {
+                WinGameBest = new RecommendsWindow();
+                WinGameBest.Closed += (o, e) => WinGameBest = null;
+            }
+            WinGameBest.Show();
+        }
+
+        private ICommand _cmdUnkown;
+        public ICommand CommandUnkownRecommends
+        {
+            get
+            {
+                if (_cmdUnkown == null)
+                {
+                    _cmdUnkown = new RelayCommand(() =>
+                    {
+                        UnknownRecommends();
+                    });
+                }
+                return _cmdUnkown;
+            }
+        }
+
+        /// <summary>
+        /// 查看尚未出结果的比赛
+        /// </summary>
+        private void UnknownRecommends()
+        {
+
         }
 
         private bool _check;

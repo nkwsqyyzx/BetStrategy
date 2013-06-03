@@ -26,8 +26,8 @@ namespace BetStrategy.Utils
             }
             else
             {
-                window = new PersonRecommendsWindow();
-                var vm = new PersonRecommendsViewModel();
+                window = new RecommendsWindow();
+                var vm = new RecommendsViewModel();
                 window.DataContext = vm;
                 window.Loaded += (o, e) => vm.Load(name);
                 window.Closed += (o, e) => { Windows.Remove(name); };

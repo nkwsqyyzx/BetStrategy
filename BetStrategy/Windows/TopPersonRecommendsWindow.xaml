@@ -9,9 +9,9 @@
                 WindowStartupLocation="CenterScreen"
                 ShowInTaskbar ="False" Visibility="Visible" Height="600" Width="1200">
 
-    <!--<Window.DataContext>
+    <Window.DataContext>
         <vm:TestViewModel/>
-    </Window.DataContext>-->
+    </Window.DataContext>
 
     <Window.Resources>
         <converters:PreferResultToStringConverter x:Key="CON" />
