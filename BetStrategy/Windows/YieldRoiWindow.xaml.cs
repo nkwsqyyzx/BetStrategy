@@ -33,7 +33,12 @@ namespace BetStrategy.Windows
             {
                 return;
             }
-            var sortBy = ((e.OriginalSource as GridViewColumnHeader).Column.DisplayMemberBinding as Binding).Path.Path;
+            var binding = (e.OriginalSource as GridViewColumnHeader).Column.DisplayMemberBinding as Binding;
+            if (binding == null)
+            {
+                return;
+            }
+            var sortBy = binding.Path.Path;
             var dir = ListSortDirection.Ascending;
             if (SortDict.ContainsKey(sortBy))
             {

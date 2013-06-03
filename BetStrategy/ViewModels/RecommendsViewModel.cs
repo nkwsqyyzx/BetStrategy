@@ -52,6 +52,11 @@ namespace BetStrategy.ViewModels
         #endregion
 
         private Person Person;
+
+	/// <summary>
+	/// 加载某个人的记录
+	/// </summary>
+	/// <param name="name"></param>
         public void Load(string name)
         {
             Title = name;
@@ -68,6 +73,11 @@ namespace BetStrategy.ViewModels
                 new Action(() => { RefreshRecommends(); }).RunOnUI();
             };
             YieldRoiProvider.Instance.GetPersonRecommends(name, refresh, refreshFinish);
+        }
+
+        public void Load(int count) 
+        {
+
         }
 
         private void RefreshRecommends()

@@ -46,7 +46,10 @@ namespace BetStrategy.ViewModels
         {
             if (WinGameShow == null)
             {
-                WinGameShow = new RecommendsWindow();
+                var vm = new RecommendsViewModel();
+                WinGameShow = new PersonRecommendsWindow();
+                WinGameShow.DataContext = vm;
+                WinGameShow.Loaded += (o, e) => vm.Load(500);
                 WinGameShow.Closed += (o, e) => WinGameShow = null;
             }
             WinGameShow.Show();

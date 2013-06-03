@@ -52,7 +52,7 @@ namespace RecommendsDownloader
 #endif
         }
 
-        public static void DownloadRecommends(int maxPage,Action finish) 
+        public static void DownloadRecommends(int maxPage,Action<List<Recommend>> onRecommends,Action finish) 
         {
             int current = 1;
 
@@ -76,6 +76,10 @@ namespace RecommendsDownloader
                     HtmlParser.ParseRecommends(html, (rs) =>
                     {
                         System.Console.Out.WriteLine("Page " + current + " Finished!");
+                        if (onRecommends != null)
+                        {
+                            onRecommends(rs);
+                        }
                         Save(rs);
                         Thread.Sleep(5283);
                         current += 1;
@@ -84,7 +88,7 @@ namespace RecommendsDownloader
                 }
                 else
                 {
-                    System.Console.Out.WriteLine(string.Format("ERROR WHEN GETTING {0} PROFILE.ERROR",  error));
+                    System.Console.Out.WriteLine(string.Format("ERROR WHEN GETTING {0} PROFILE.ERROR", error));
                 }
             };
 

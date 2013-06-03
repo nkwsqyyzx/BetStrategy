@@ -7,26 +7,26 @@ using System.Windows.Data;
 namespace BetStrategy.Windows
 {
     /// <summary>
-    /// Interaction logic for TopPersonRecommendsWindow.xaml
+    /// Interaction logic for PersonRecommendsWindow.xaml
     /// </summary>
-    public partial class TopPersonRecommendsWindow : BaseWindow
+    public partial class PersonRecommendsWindow : BaseWindow
     {
         private GridViewColumnHeader _lastHeaderClicked;
         private ListSortDirection _lastDirection;
-        private TopPersonRecommendsViewModel ViewModel
+        private PersonRecommendsViewModel ViewModel
         {
             get
             {
-                return _viewModel as TopPersonRecommendsViewModel;
+                return _viewModel as PersonRecommendsViewModel;
             }
         }
 
-        public TopPersonRecommendsWindow()
+        public PersonRecommendsWindow()
         {
             InitializeComponent();
-            this.DataContext = TopPersonRecommendsViewModel.Instance;
+            this.DataContext = new PersonRecommendsViewModel();
             this.Closing += TopPersonRecommendsWindow_Closing;
-            this.Activated += (o, e) => ViewModel.StartUpdate();
+            //this.Activated += (o, e) => ViewModel.StartUpdate();
         }
 
         private void TopPersonRecommendsWindow_Closing(object sender, CancelEventArgs e)

@@ -110,7 +110,7 @@
     <Compile Include="ViewModels\TestData.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="ViewModels\TopPersonProvider.cs" />
-    <Compile Include="ViewModels\TopPersonRecommendsViewModel.cs" />
+    <Compile Include="ViewModels\PersonRecommendsViewModel.cs" />
     <Compile Include="ViewModels\YieldRoiProvider.cs" />
     <Compile Include="ViewModels\YieldRoiViewModel.cs" />
     <Compile Include="Windows\BaseWindow.cs" />
@@ -127,8 +127,8 @@
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\TopPersonRecommendsWindow.xaml.cs">
-      <DependentUpon>TopPersonRecommendsWindow.xaml</DependentUpon>
+    <Compile Include="Windows\PersonRecommendsWindow.xaml.cs">
+      <DependentUpon>PersonRecommendsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\YieldRoiWindow.xaml.cs">
       <DependentUpon>YieldRoiWindow.xaml</DependentUpon>
@@ -145,7 +145,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\TopPersonRecommendsWindow.xaml">
+    <Page Include="Windows\PersonRecommendsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
