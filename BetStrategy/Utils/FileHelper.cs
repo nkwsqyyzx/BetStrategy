@@ -96,5 +96,25 @@ namespace BetStrategy.Utils
                 finish();
             }
         }
+
+        public static void GetAllRecommends(Action<Recommend> onRecommend, Action finish = null)
+        {
+            var cache = Path.Combine(Environment.CurrentDirectory, CACHE_DIR);
+            var persons = Directory.EnumerateDirectories(cache);
+            foreach (var per in persons)
+            {
+                var dir = GetPersonRecommendsDir(per);
+                var files = Directory.EnumerateFiles(dir);
+                foreach (var file in files)
+                {
+                    var rec = Serializer.Deserialize<Recommend>(Path.Combine(GetPersonCacheDir(per), file));
+                    onRecommend(rec);
+                }
+            }
+            if (finish != null)
+            {
+                finish();
+            }
+        }
     }
 }
