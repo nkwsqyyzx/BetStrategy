@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
+using WSQ.CSharp.Extensions;
 using WSQ.CSharp.Serialization;
 
 namespace BetStrategy.Utils
@@ -12,66 +12,37 @@ namespace BetStrategy.Utils
     /// </summary>
     public class FileHelper
     {
-        private static string CACHE_DIR = "cache";
         private static IFileSerializer Serializer = SerializationManager.Instance.GetInstance();
-
-        private static string Escape(string name)
-        {
-            var chs = Path.GetInvalidPathChars();
-
-            if (name.IndexOfAny(chs) < 0)
-            {
-                return name;
-            }
-            else
-            {
-                var result = name;
-                foreach (var ch in chs)
-                {
-                    result = result.Replace(ch, '_');
-                }
-                return result;
-            }
-        }
-
-        public static string GetPersonCacheDir(string name)
-        {
-            return Path.Combine(Environment.CurrentDirectory, CACHE_DIR, Escape(name));
-        }
-
-        private static string GetPersonRecommendsDir(string name)
-        {
-            return Path.Combine(GetPersonCacheDir(name), "Recommends");
-        }
-
-        private static string GetRecommendPath(Recommend rec)
-        {
-            return Path.Combine(GetPersonRecommendsDir(rec.Person), Regex.Replace(rec.Time2, "[- :]", "_") + ".txt");
-        }
 
         public static void SaveRecommend(Recommend rec)
         {
-            Serializer.Serialize(GetRecommendPath(rec), rec);
+            Serializer.Serialize(PathHelper.RecommendPath(rec), rec);
+        }
+
+        /// <summary>
+        /// 从本地删除推荐.慎用!
+        /// </summary>
+        /// <param name="rec"></param>
+        public static void DeleteRecommend(Recommend rec)
+        {
+            var path = PathHelper.RecommendPath(rec);
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
         }
 
         public static void SaveRecommends(IEnumerable<Recommend> recs)
         {
-            foreach (var rec in recs)
-            {
-                SaveRecommend(rec);
-            }
+            recs.Enumerate((i) => SaveRecommend(i));
         }
 
         public static void GetAllPerson(Action<string> onPerson, Action finish = null)
         {
-            var dir = CACHE_DIR;
-            if (Directory.Exists(dir))
+            var persons = PathHelper.AllPersons();
+            foreach (var p in persons)
             {
-                var subdirs = Directory.EnumerateDirectories(dir);
-                foreach (var sdir in subdirs)
-                {
-                    onPerson(Path.GetFileName(sdir));
-                }
+                onPerson(p);
             }
             if (finish != null)
             {
@@ -79,17 +50,19 @@ namespace BetStrategy.Utils
             }
         }
 
-        public static void GetAllRecommends(string name, Action<Recommend> onRecommend, Action finish = null)
+        /// <summary>
+        /// 获取用户所有已结算的推荐
+        /// </summary>
+        /// <param name="name">用户名</param>
+        /// <param name="onRecommend"></param>
+        /// <param name="finish"></param>
+        public static void GetRecommends(string name, Action<Recommend> onRecommend, Action finish = null)
         {
-            var dir = GetPersonRecommendsDir(name);
-            if (Directory.Exists(dir))
+            var recommends = PathHelper.Recommends(name);
+            foreach (var rpath in recommends)
             {
-                var files = Directory.EnumerateFiles(dir);
-                foreach (var file in files)
-                {
-                    var rec = Serializer.Deserialize<Recommend>(Path.Combine(GetPersonCacheDir(name), file));
-                    onRecommend(rec);
-                }
+                var rec = Serializer.Deserialize<Recommend>(rpath);
+                onRecommend(rec);
             }
             if (finish != null)
             {
@@ -97,19 +70,18 @@ namespace BetStrategy.Utils
             }
         }
 
-        public static void GetAllRecommends(Action<Recommend> onRecommend, Action finish = null)
+        /// <summary>
+        /// 所有未结算的推荐
+        /// </summary>
+        /// <param name="onRecommend"></param>
+        /// <param name="finish"></param>
+        public static void GetAllWaitingRecommends(Action<Recommend> onRecommend, Action finish = null)
         {
-            var cache = Path.Combine(Environment.CurrentDirectory, CACHE_DIR);
-            var persons = Directory.EnumerateDirectories(cache);
-            foreach (var per in persons)
+            var paths = PathHelper.WaitingRecommends();
+            foreach (var p in paths)
             {
-                var dir = GetPersonRecommendsDir(per);
-                var files = Directory.EnumerateFiles(dir);
-                foreach (var file in files)
-                {
-                    var rec = Serializer.Deserialize<Recommend>(Path.Combine(GetPersonCacheDir(per), file));
-                    onRecommend(rec);
-                }
+                var rec = Serializer.Deserialize<Recommend>(p);
+                onRecommend(rec);
             }
             if (finish != null)
             {

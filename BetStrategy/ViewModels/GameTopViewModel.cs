@@ -35,11 +35,7 @@ namespace BetStrategy.ViewModels
         {
             get
             {
-                if (_cmdRefresh == null)
-                {
-                    _cmdRefresh = new RelayCommand(() => DownloadTopPerson());
-                }
-                return _cmdRefresh;
+                return _cmdRefresh.RelayCommand(() => DownloadTopPerson());
             }
         }
 
@@ -66,10 +62,7 @@ namespace BetStrategy.ViewModels
                 (new Action(() =>
                 {
                     TopPerson.Clear();
-                    foreach (var p in persons)
-                    {
-                        TopPerson.Add(p);
-                    }
+                    persons.ForEach((i) => TopPerson.Add(i));
                 })).RunOnUI();
             });
         }
@@ -77,32 +70,25 @@ namespace BetStrategy.ViewModels
         public void Sort(string sortBy, ListSortDirection direction)
         {
             List<Person> ps = new List<Person>();
-            foreach (var p in TopPerson)
-            {
-                ps.Add(p);
-            }
+            ps.AddRange(TopPerson);
 
             ps.Sort(ps[0].ComparerFromProperty(sortBy, direction == ListSortDirection.Descending));
 
             TopPerson.Clear();
-            foreach (var p in ps)
-            {
-                TopPerson.Add(p);
-            }
+            ps.ForEach((i) => TopPerson.Add(i));
         }
 
         private void SaveBestPerson()
         {
             List<Person> best = new List<Person>();
-            foreach (var p in TopPerson)
-            {
-                if (p.Profit >= (float)(Constants.Instance.COUNT_MIN_PROFIT))
-                {
-                    best.Add(p);
-                }
-            }
+            TopPerson.Enumerate(IsBest, (i) => best.Add(i));
             IFileSerializer serializer = SerializationManager.Instance.GetInstance();
             serializer.Serialize(Constants.Instance.FILEPATH_GAME_TOP_BEST, best);
+        }
+
+        private static bool IsBest(Person p) 
+        {
+            return p.Profit >= (float)(Constants.Instance.COUNT_MIN_PROFIT);
         }
     }
 }

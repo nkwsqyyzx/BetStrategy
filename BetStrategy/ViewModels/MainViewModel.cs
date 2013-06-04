@@ -1,19 +1,10 @@
-﻿using HtmlAgilityPack;
-using System.Collections.ObjectModel;
-using WSQ.CSharp.Net;
-using BetStrategy.Models;
-using System;
-using System.Collections.Generic;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
-using System.Windows;
+﻿using BetStrategy.Common.Configurations;
 using BetStrategy.Windows;
+using System;
+using System.Windows;
+using System.Windows.Input;
 using System.Windows.Threading;
-using BetStrategy.Common.Configurations;
-using System.ComponentModel;
-using System.Linq;
-using WSQ.CSharp.Helper;
-using System.Text;
+using WSQ.CSharp.Extensions;
 
 namespace BetStrategy.ViewModels
 {
@@ -28,14 +19,7 @@ namespace BetStrategy.ViewModels
         {
             get
             {
-                if (_cmdGameShow == null)
-                {
-                    _cmdGameShow = new RelayCommand(() =>
-                    {
-                        GameShow();
-                    });
-                }
-                return _cmdGameShow;
+                return _cmdGameShow.RelayCommand(() => GameShow());
             }
         }
 
@@ -46,12 +30,13 @@ namespace BetStrategy.ViewModels
         {
             if (WinGameShow == null)
             {
-                var vm = new RecommendsViewModel();
+                var vm = new TheViewModel();
                 WinGameShow = new PersonRecommendsWindow();
                 WinGameShow.DataContext = vm;
                 WinGameShow.Loaded += (o, e) => vm.Load(500);
                 WinGameShow.Closed += (o, e) => WinGameShow = null;
             }
+            WinGameShow.Activate();
             WinGameShow.Show();
         }
 
@@ -60,14 +45,7 @@ namespace BetStrategy.ViewModels
         {
             get
             {
-                if (_cmdGameTop == null)
-                {
-                    _cmdGameTop = new RelayCommand(() =>
-                    {
-                        GameTop();
-                    });
-                }
-                return _cmdGameTop;
+                return _cmdGameTop.RelayCommand(() => GameTop());
             }
         }
 
@@ -81,6 +59,7 @@ namespace BetStrategy.ViewModels
                 WinGameTop = new YieldRoiWindow();
                 WinGameTop.Closed += (o, e) => WinGameTop = null;
             }
+            WinGameTop.Activate();
             WinGameTop.Show();
         }
 
@@ -89,14 +68,7 @@ namespace BetStrategy.ViewModels
         {
             get
             {
-                if (_cmdBest == null)
-                {
-                    _cmdBest = new RelayCommand(() =>
-                    {
-                        BestRecommends();
-                    });
-                }
-                return _cmdBest;
+                return _cmdBest.RelayCommand(() => BestRecommends());
             }
         }
 
@@ -110,6 +82,7 @@ namespace BetStrategy.ViewModels
                 WinGameBest = new RecommendsWindow();
                 WinGameBest.Closed += (o, e) => WinGameBest = null;
             }
+            WinGameBest.Activate();
             WinGameBest.Show();
         }
 
@@ -118,14 +91,7 @@ namespace BetStrategy.ViewModels
         {
             get
             {
-                if (_cmdUnkown == null)
-                {
-                    _cmdUnkown = new RelayCommand(() =>
-                    {
-                        UnknownRecommends();
-                    });
-                }
-                return _cmdUnkown;
+                return _cmdUnkown.RelayCommand(() => UnknownRecommends());
             }
         }
 
@@ -188,4 +154,3 @@ namespace BetStrategy.ViewModels
         }
     }
 }
-

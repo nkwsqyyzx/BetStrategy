@@ -97,6 +97,7 @@
     <Compile Include="Models\Recommend.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Utils\FileHelper.cs" />
+    <Compile Include="Utils\PathHelper.cs" />
     <Compile Include="Utils\ViewHelper.cs" />
     <Compile Include="Utils\YieldRoiHelper.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -106,12 +107,14 @@
     <Compile Include="ViewModels\PreferResultToStringConverter.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NotifyModel.cs" />
+    <Compile Include="ViewModels\TheViewModel.cs" />
     <Compile Include="ViewModels\YieldRoiPerson.cs" />
     <Compile Include="ViewModels\TestData.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="ViewModels\TopPersonProvider.cs" />
     <Compile Include="ViewModels\PersonRecommendsViewModel.cs" />
     <Compile Include="ViewModels\YieldRoiProvider.cs" />
+    <Compile Include="ViewModels\YieldRoiRecommend.cs" />
     <Compile Include="ViewModels\YieldRoiViewModel.cs" />
     <Compile Include="Windows\BaseWindow.cs" />
     <Compile Include="App.xaml.cs">

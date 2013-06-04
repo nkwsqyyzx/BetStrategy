@@ -1,13 +1,12 @@
-﻿using System;
+﻿using BetStrategy.Models;
+using BetStrategy.Utils;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using WSQ.CSharp.Helper;
-using WSQ.CSharp.Extensions;
-using BetStrategy.Utils;
-using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
-using BetStrategy.Models;
+using WSQ.CSharp.Extensions;
+using WSQ.CSharp.Helper;
 
 namespace BetStrategy.ViewModels
 {
@@ -38,6 +37,20 @@ namespace BetStrategy.ViewModels
             }
         }
 
+        private int _current = 1;
+        public int Current 
+        {
+            get 
+            {
+                return _current;
+            }
+            set
+            {
+                _current = value;
+                // Filter(_current);
+            }
+        }
+
         private void Filter(int min)
         {
             TopYieldRoiPerson.Clear();
@@ -55,11 +68,7 @@ namespace BetStrategy.ViewModels
         {
             get
             {
-                if (_viewPerson == null)
-                {
-                    _viewPerson = new RelayCommand<Person>((p) => ViewHelper.ViewPerson(p.Name));
-                }
-                return _viewPerson;
+                return _viewPerson.RelayCommand<Person>((p) => ViewHelper.ViewPerson(p.Name));
             }
         }
 
@@ -68,11 +77,7 @@ namespace BetStrategy.ViewModels
         {
             get
             {
-                if (_cmdRefresh == null)
-                {
-                    _cmdRefresh = new RelayCommand(() => RefreshList());
-                }
-                return _cmdRefresh;
+                return _cmdRefresh.RelayCommand(() => RefreshList());
             }
         }
 

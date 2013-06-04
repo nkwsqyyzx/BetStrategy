@@ -37,7 +37,7 @@
                 <TextBlock Text="Yield:"/>
                 <TextBox Background="#cdcdcd" Margin="5,0,0,0" Text="-1.0" Width="80"/>
             </StackPanel>
-            <ComboBox Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" ToolTip="最少推荐" SelectedItem="{Binding Min, Mode=TwoWay}">
+            <ComboBox Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" ToolTip="最少推荐" SelectedItem="{Binding Min, Mode=TwoWay}">
                 <System:Int32>10</System:Int32>
                 <System:Int32>20</System:Int32>
                 <System:Int32>30</System:Int32>
@@ -47,7 +47,37 @@
                 <System:Int32>70</System:Int32>
                 <System:Int32>80</System:Int32>
                 <System:Int32>90</System:Int32>
-                <System:Int32>100</System:Int32>
+                <System:Int32>110</System:Int32>
+                <System:Int32>120</System:Int32>
+                <System:Int32>130</System:Int32>
+                <System:Int32>140</System:Int32>
+                <System:Int32>150</System:Int32>
+                <System:Int32>175</System:Int32>
+                <System:Int32>200</System:Int32>
+                <System:Int32>250</System:Int32>
+                <System:Int32>300</System:Int32>
+                <System:Int32>400</System:Int32>
+                <System:Int32>600</System:Int32>
+                <System:Int32>1000</System:Int32>
+            </ComboBox>
+            <ComboBox Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" ToolTip="最少推荐" SelectedItem="{Binding Current, Mode=TwoWay}">
+                <System:Int32>1</System:Int32>
+                <System:Int32>2</System:Int32>
+                <System:Int32>3</System:Int32>
+                <System:Int32>4</System:Int32>
+                <System:Int32>5</System:Int32>
+                <System:Int32>6</System:Int32>
+                <System:Int32>7</System:Int32>
+                <System:Int32>8</System:Int32>
+                <System:Int32>9</System:Int32>
+                <System:Int32>11</System:Int32>
+                <System:Int32>12</System:Int32>
+                <System:Int32>13</System:Int32>
+                <System:Int32>14</System:Int32>
+                <System:Int32>15</System:Int32>
+                <System:Int32>17</System:Int32>
+                <System:Int32>20</System:Int32>
+                <System:Int32>25</System:Int32>
             </ComboBox>
         </Grid>
 

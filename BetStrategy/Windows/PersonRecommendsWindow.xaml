@@ -57,26 +57,37 @@
                      VerticalAlignment="Stretch">
                 <ListView.View>
                     <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="点击排序">
-                        <GridViewColumn Width="80" Header="开赛时间" DisplayMemberBinding="{Binding Path=Time1}" />
-                        <GridViewColumn Width="130" Header="主场球队" DisplayMemberBinding="{Binding Path=Host}" />
-                        <GridViewColumn Width="80" Header="盘口" DisplayMemberBinding="{Binding Path=OddStake}" />
-                        <GridViewColumn Width="130" Header="客场球队" DisplayMemberBinding="{Binding Path=Guest}" />
-                        <GridViewColumn Width="130" Header="推荐" DisplayMemberBinding="{Binding Path=Prefer}" />
-                        <GridViewColumn Width="50" Header="水位" DisplayMemberBinding="{Binding Path=Odds}" />
-                        <GridViewColumn Width="50" Header="比分" DisplayMemberBinding="{Binding Path=Result}" />
-                        <GridViewColumn Width="60" Header="比赛结果" DisplayMemberBinding="{Binding Path=PreferResult,Converter={StaticResource CON}}" />
-                        <GridViewColumn Width="80" Header="发布时间" DisplayMemberBinding="{Binding Path=Time2}" />
-                        <GridViewColumn Width="160" Header="发布用户" >
+                        <GridViewColumn Width="80" Header="开赛时间" DisplayMemberBinding="{Binding Path=Recommend.Time1}" />
+                        <GridViewColumn Width="130" Header="主场球队" DisplayMemberBinding="{Binding Path=Recommend.Host}" />
+                        <GridViewColumn Width="80" Header="盘口" DisplayMemberBinding="{Binding Path=Recommend.OddStake}" />
+                        <GridViewColumn Width="130" Header="客场球队" DisplayMemberBinding="{Binding Path=Recommend.Guest}" />
+                        <GridViewColumn Width="130" Header="推荐" DisplayMemberBinding="{Binding Path=Recommend.Prefer}" />
+                        <GridViewColumn Width="50" Header="水位" DisplayMemberBinding="{Binding Path=Recommend.Odds}" />
+                        <GridViewColumn Width="50" Header="比分" DisplayMemberBinding="{Binding Path=Recommend.Result}" />
+                        <GridViewColumn Width="60" Header="比赛结果" DisplayMemberBinding="{Binding Path=Recommend.PreferResult,Converter={StaticResource CON}}" />
+                        <GridViewColumn Width="80" Header="发布时间" DisplayMemberBinding="{Binding Path=Recommend.Time2}" />
+                        <GridViewColumn Width="130" Header="发布用户" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Background="#cecece" Width="140" HorizontalAlignment="Center"
+                                    <Button Background="#cecece" Width="130" HorizontalAlignment="Center"
                                             HorizontalContentAlignment="Center"
-                                            Content="{Binding Path=Person}"
+                                            Content="{Binding Path=Recommend.Person}"
                                             CommandParameter="{Binding}"
                                             Command="{Binding Path=DataContext.CommandViewPerson, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        <GridViewColumn Width="100" Header="TotalYield" DisplayMemberBinding="{Binding Path=Person.TotalYield}" />
+                        <GridViewColumn Width="100" Header="CurrentYield" DisplayMemberBinding="{Binding Path=Person.CurrentYield}" />
+                        <GridViewColumn Width="90" Header="TotalROI" DisplayMemberBinding="{Binding Path=Person.TotalROI}" />
+                        <GridViewColumn Width="80" Header="CurrentROI" DisplayMemberBinding="{Binding Path=Person.CurrentROI}" />
+                        <GridViewColumn Width="60" Header="净胜" DisplayMemberBinding="{Binding Path=Person.Profit}" />
+                        <GridViewColumn Width="60" Header="总发布" DisplayMemberBinding="{Binding Path=Person.Total}" />
+                        <GridViewColumn Width="50" Header="全赢" DisplayMemberBinding="{Binding Path=Person.Win}" />
+                        <GridViewColumn Width="50" Header="赢半" DisplayMemberBinding="{Binding Path=Person.WinHalf}" />
+                        <GridViewColumn Width="50" Header="全输" DisplayMemberBinding="{Binding Path=Person.Lose}" />
+                        <GridViewColumn Width="50" Header="输半" DisplayMemberBinding="{Binding Path=Person.LoseHalf}" />
+                        <GridViewColumn Width="50" Header="走水" DisplayMemberBinding="{Binding Path=Person.Draw}" />
                     </GridView>
                 </ListView.View>
             </ListView>

@@ -64,7 +64,7 @@ namespace ProjectUnitTest
         [TestMethod]
         public void TestGetRecommends()
         {
-            FileHelper.GetAllRecommends("格力电器", (rec) =>
+            FileHelper.GetRecommends("格力电器", (rec) =>
             {
                 System.Diagnostics.Debug.WriteLine(rec.Host + " " + rec.OddStake + " " + rec.Guest + ":" + rec.Result);
             });

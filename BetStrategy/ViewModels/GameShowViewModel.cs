@@ -45,14 +45,7 @@ namespace BetStrategy.ViewModels
         {
             get
             {
-                if (_cmdRefresh == null)
-                {
-                    _cmdRefresh = new RelayCommand(() =>
-                    {
-                        DownloadRecommends();
-                    });
-                }
-                return _cmdRefresh;
+                return _cmdRefresh.RelayCommand(() => DownloadRecommends());
             }
         }
 
@@ -61,14 +54,7 @@ namespace BetStrategy.ViewModels
         {
             get
             {
-                if (_cmdViewBest == null)
-                {
-                    _cmdViewBest = new RelayCommand(() =>
-                    {
-                        ViewBest();
-                    });
-                }
-                return _cmdViewBest;
+                return _cmdViewBest.RelayCommand(() => ViewBest());
             }
         }
 
@@ -140,11 +126,11 @@ namespace BetStrategy.ViewModels
                 rms.Sort(new Comparison<Recommend>(delegate(Recommend x, Recommend y)
                     {
                         int result = 0;
-			/* fixme
-                        if (x.Person.Profit > y.Person.Profit)
-                            result = 1;
-                        if (x.Person.Profit < y.Person.Profit)
-                            result = -1;*/
+                        /* fixme
+                                    if (x.Person.Profit > y.Person.Profit)
+                                        result = 1;
+                                    if (x.Person.Profit < y.Person.Profit)
+                                        result = -1;*/
                         return (direction == ListSortDirection.Descending ? -1 : 1) * result;
                     }));
             }

@@ -31,9 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.WPF4">
+      <HintPath>..\..\BetStrategy.Dependencies\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\BetStrategy.Dependencies\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -50,6 +54,8 @@
     <Compile Include="Configuration\EnumKeyForConfiguration.cs" />
     <Compile Include="Configuration\IConfig.cs" />
     <Compile Include="Configuration\SerializableDictionary.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\CommandExtension.cs" />
     <Compile Include="Helper\DispatcherHelper.cs" />
     <Compile Include="Log\Implement\DebugLogSaver.cs" />
     <Compile Include="Log\Implement\FileLogSaver.cs" />

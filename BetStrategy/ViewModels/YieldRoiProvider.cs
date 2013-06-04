@@ -47,12 +47,12 @@ namespace BetStrategy.ViewModels
         private YieldRoiProvider() { }
         public void GetPersonRecommends(string name, Action<Recommend> onRecommend, Action finish = null)
         {
-            FileHelper.GetAllRecommends(name, onRecommend, finish);
+            FileHelper.GetRecommends(name, onRecommend, finish);
         }
 
         private string GetCachedYieldRoiPerson(string name)
         {
-            return Path.Combine(FileHelper.GetPersonCacheDir(name), "YieldRoi.txt");
+            return PathHelper.PersonYield(name);
         }
 
         public YieldRoiPerson GetPerson(string name)

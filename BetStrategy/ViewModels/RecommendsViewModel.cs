@@ -70,14 +70,9 @@ namespace BetStrategy.ViewModels
 
             Action refreshFinish = () =>
             {
-                new Action(() => { RefreshRecommends(); }).RunOnUI();
+                new Action(() => RefreshRecommends()).RunOnUI();
             };
             YieldRoiProvider.Instance.GetPersonRecommends(name, refresh, refreshFinish);
-        }
-
-        public void Load(int count) 
-        {
-
         }
 
         private void RefreshRecommends()

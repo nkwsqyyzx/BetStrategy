@@ -94,35 +94,21 @@ namespace BetStrategy.ViewModels
         #endregion
 
         #region COMMANDS
-        private ICommand _cmdRefresh;
+        private ICommand _cmdRefresh = null;
         public ICommand CommandRefresh
         {
             get
             {
-                if (_cmdRefresh == null)
-                {
-                    _cmdRefresh = new RelayCommand(() =>
-                    {
-                        RefreshRecommends();
-                    });
-                }
-                return _cmdRefresh;
+                return _cmdRefresh.RelayCommand(() => RefreshRecommends());
             }
         }
 
-        private ICommand _cmdViewYield;
+        private ICommand _cmdViewYield = null;
         public ICommand CommandViewYield
         {
             get
             {
-                if (_cmdViewYield == null)
-                {
-                    _cmdViewYield = new RelayCommand(() =>
-                    {
-                        ShowYieldWindow();
-                    });
-                }
-                return _cmdViewYield;
+                return _cmdViewYield.RelayCommand(() => ShowYieldWindow());
             }
         }
 
@@ -143,11 +129,7 @@ namespace BetStrategy.ViewModels
         {
             get
             {
-                if (_viewPerson == null)
-                {
-                    _viewPerson = new RelayCommand<Recommend>((rec) => ViewHelper.ViewPerson(rec.Person));
-                }
-                return _viewPerson;
+                return _viewPerson.RelayCommand<Recommend>((rec) => ViewHelper.ViewPerson(rec.Person));
             }
         }
         #endregion
@@ -157,20 +139,11 @@ namespace BetStrategy.ViewModels
             _recommends.Clear();
             if (SelectedProfitPerson != null || _isPreferMostChecked)
             {
-                foreach (var item in AllRecommends)
-                {
-                    if (IsTopPerson(item.Person))
-                    {
-                        _recommends.Add(item);
-                    }
-                }
+                AllRecommends.Enumerate((i) => IsTopPerson(i.Person), (j) => _recommends.Add(j));
             }
             else
             {
-                foreach (var item in AllRecommends)
-                {
-                    _recommends.Add(item);
-                }
+                AllRecommends.ForEach((i) => _recommends.Add(i));
             }
         }
 
@@ -180,10 +153,7 @@ namespace BetStrategy.ViewModels
         {
             NotifyBalloonTip(rs);
             AllRecommends.Clear();
-            foreach (var item in rs)
-            {
-                AllRecommends.Add(item);
-            }
+            AllRecommends.AddRange(rs);
             ReloadList();
             App.Icon.Text = DateTime.Now.ToString("HH:mm:ss") + ":高手推荐了" + AllRecommends.Count((i) => IsTopPerson(i.Person)) + "条,一共有" + _recommends.Count + "条推荐,点击查看";
             if (EnableEmailNotify)
@@ -332,9 +302,9 @@ namespace BetStrategy.ViewModels
             RefreshRecommends();
         }
 
-        private void RefreshFinish() 
+        private void RefreshFinish()
         {
-            AllRecommends.Sort(AllRecommends[0].ComparerFromProperty("Time2",true));
+            AllRecommends.Sort(AllRecommends[0].ComparerFromProperty("Time2", true));
             var list = new List<Recommend>();
             var top200 = AllRecommends.Take(200);
             foreach (var i in top200)
@@ -346,10 +316,10 @@ namespace BetStrategy.ViewModels
             new Action(() => ReloadList()).RunOnUI();
         }
 
-        private void RefreshRecommends() 
+        private void RefreshRecommends()
         {
             AllRecommends.Clear();
-            FileHelper.GetAllRecommends((rec) => AllRecommends.Add(rec), RefreshFinish);
+            FileHelper.GetAllWaitingRecommends((rec) => AllRecommends.Add(rec), RefreshFinish);
         }
 
         public void Sort(string sortBy, ListSortDirection direction)
@@ -377,6 +347,10 @@ namespace BetStrategy.ViewModels
         private string PersonString(Person p)
         {
             return string.Format("净胜{0}场:{1}推{2}胜{3}半胜{4}走{5}半负{6}负", p.Profit, p.Total, p.Win, p.WinHalf, p.Draw, p.LoseHalf, p.Lose);
+        }
+
+        public void Load(int count)
+        {
         }
     }
 }
