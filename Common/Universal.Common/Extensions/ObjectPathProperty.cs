@@ -40,5 +40,19 @@ namespace WSQ.CSharp.Extensions
             }
             return result;
         }
+
+        public static T Property<T>(this object o, string PropertyPath)
+        {
+            T result = default(T);
+            try
+            {
+                result = (T)o.Property(PropertyPath);
+            }
+            catch (Exception ex)
+            {
+                System.Console.Out.WriteLine("Property<T> raise exception:" + ex.Message);
+            }
+            return result;
+        }
     }
 }
