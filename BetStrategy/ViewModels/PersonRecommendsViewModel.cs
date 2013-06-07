@@ -304,6 +304,8 @@ namespace BetStrategy.ViewModels
 
         private void RefreshFinish()
         {
+            if (AllRecommends.Count == 0)
+                return;
             AllRecommends.Sort(AllRecommends[0].ComparerFromProperty("Time2", true));
             var list = new List<Recommend>();
             var top200 = AllRecommends.Take(200);

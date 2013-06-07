@@ -102,7 +102,6 @@
     <Compile Include="Utils\YieldRoiHelper.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\GameShowViewModel.cs" />
-    <Compile Include="ViewModels\GameTopViewModel.cs" />
     <Compile Include="ViewModels\RecommendsViewModel.cs" />
     <Compile Include="ViewModels\PreferResultToStringConverter.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -124,9 +123,6 @@
     <Compile Include="Windows\RecommendsWindow.xaml.cs">
       <DependentUpon>RecommendsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\GameTopWindow.xaml.cs">
-      <DependentUpon>GameTopWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -137,10 +133,6 @@
       <DependentUpon>YieldRoiWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Windows\RecommendsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\GameTopWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
