@@ -1,12 +1,6 @@
-﻿using BetStrategy.Common.Configurations;
-using BetStrategy.Models;
+﻿using BetStrategy.Models;
 using BetStrategy.Utils;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading;
-using WSQ.CSharp.Net;
 using WSQ.CSharp.Serialization;
 
 namespace BetStrategy.ViewModels

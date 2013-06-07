@@ -89,6 +89,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utils\Downloader.cs" />
     <Compile Include="Utils\HtmlParser.cs" />
     <Compile Include="Models\Enumerations.cs" />
     <Compile Include="Models\OddStake.cs" />
@@ -101,12 +102,10 @@
     <Compile Include="Utils\ViewHelper.cs" />
     <Compile Include="Utils\YieldRoiHelper.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\GameShowViewModel.cs" />
     <Compile Include="ViewModels\RecommendsViewModel.cs" />
     <Compile Include="ViewModels\PreferResultToStringConverter.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NotifyModel.cs" />
-    <Compile Include="ViewModels\TheViewModel.cs" />
     <Compile Include="ViewModels\YieldRoiPerson.cs" />
     <Compile Include="ViewModels\TestData.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />

@@ -1,4 +1,5 @@
-﻿using BetStrategy.ViewModels;
+﻿using BetStrategy.Utils;
+using BetStrategy.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

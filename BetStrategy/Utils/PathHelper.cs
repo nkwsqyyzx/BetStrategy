@@ -1,7 +1,9 @@
 ﻿using BetStrategy.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 
 namespace BetStrategy.Utils
 {
@@ -87,6 +89,16 @@ namespace BetStrategy.Utils
         public static string RecommendPath(Recommend rec)
         {
             var name = System.Text.RegularExpressions.Regex.Replace(rec.Time2, "[- :]", "_") + ".txt";
+            var mdhm = name.Split("_ -:".ToCharArray());
+            var month = int.Parse(mdhm[0]);
+            if (month > DateTime.Now.Month)
+            {
+                name = string.Format("{0}_{1}", DateTime.Now.Year - 1, name);
+            }
+            else
+            {
+                name = string.Format("{0}_{1}", DateTime.Now.Year, name);
+            }
             return Path.Combine(GetRecommendDir(rec), name);
         }
 
@@ -151,6 +163,38 @@ namespace BetStrategy.Utils
                     yield return Path.Combine(Environment.CurrentDirectory, file);
                 }
             }
+        }
+
+        public static IEnumerable<string> AllRecommends()
+        {
+            var persons = AllPersons();
+            IEnumerable<string> all = new Collection<string>();
+            foreach (var p in persons)
+            {
+                var waitingDir = PersonWaitingRecommendsDir(p);
+                if (Directory.Exists(waitingDir))
+                {
+                    var files = Directory.EnumerateFiles(waitingDir);
+                    all = all.Concat(files);
+                }
+            }
+
+            foreach (var p in persons)
+            {
+                var finishedDir = PersonFinishedRecommendsDir(p);
+                if (Directory.Exists(finishedDir))
+                {
+                    var files = Directory.EnumerateFiles(finishedDir);
+                    all = all.Concat(files);
+                }
+            }
+            return all;
+        }
+
+        public static IEnumerable<string> LatestRecommends(int count)
+        {
+            var all = AllRecommends();
+            return all.OrderByDescending((i) => Path.GetFileName(i)).Take(count);
         }
     }
 }

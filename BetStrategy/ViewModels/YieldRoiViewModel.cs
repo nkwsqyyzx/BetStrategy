@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 using WSQ.CSharp.Extensions;
 using WSQ.CSharp.Helper;
@@ -38,9 +39,9 @@ namespace BetStrategy.ViewModels
         }
 
         private int _current = 1;
-        public int Current 
+        public int Current
         {
-            get 
+            get
             {
                 return _current;
             }
@@ -120,11 +121,13 @@ namespace BetStrategy.ViewModels
             {
                 rms.Add(rec);
             }
-            Comparison<YieldRoiPerson> com = rms[0].ComparerFromProperty(sortBy, direction == ListSortDirection.Descending);
-            rms.Sort(com);
+
+            var sorted = direction == ListSortDirection.Ascending ?
+                rms.OrderBy((i) => i.Property(sortBy)) :
+                rms.OrderByDescending((i) => i.Property(sortBy));
 
             _topYieldRoiPerson.Clear();
-            foreach (var item in rms)
+            foreach (var item in sorted)
             {
                 _topYieldRoiPerson.Add(item);
             }

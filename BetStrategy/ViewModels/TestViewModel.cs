@@ -47,6 +47,7 @@ namespace BetStrategy.ViewModels
             InitRecommends("jack");
             InitTopPerson();
             InitTopYieldRoiPerson();
+            InitYieldRecommends();
         }
 
         private void InitRecommends()
@@ -182,10 +183,10 @@ namespace BetStrategy.ViewModels
         private void InitTopYieldRoiPerson()
         {
             _topYieldRoiPerson = new ObservableCollection<YieldRoiPerson>();
-            _topYieldRoiPerson.Add(new YieldRoiPerson() { Name= "10分钟到账", TotalYield= 0.422222227f, CurrentYield= 0.422222227f, TotalROI= 3.8f, CurrentROI= 3.8f, Profit= 5.0f, Total= 9, Win= 5, WinHalf= 2, Lose= 1, LoseHalf= 0, Draw= 0 });
-            _topYieldRoiPerson.Add(new YieldRoiPerson() { Name= "无聊玩玩", TotalYield= -0.422222227f, CurrentYield= 0.422222227f, TotalROI= 3.8f, CurrentROI= 3.8f, Profit= 5.0f, Total= 9, Win= 5, WinHalf= 2, Lose= 1, LoseHalf= 0, Draw= 0 });
-            _topYieldRoiPerson.Add(new YieldRoiPerson() { Name= "多伦多猛龙", TotalYield= 0.422222227f, CurrentYield= -0.422222227f, TotalROI= 3.8f, CurrentROI= 3.8f, Profit= 5.0f, Total= 9, Win= 5, WinHalf= 2, Lose= 1, LoseHalf= 0, Draw= 0 });
-            _topYieldRoiPerson.Add(new YieldRoiPerson() { Name= "纽约火焰", TotalYield= 0.422222227f, CurrentYield= 0.422222227f, TotalROI= 3.8f, CurrentROI= 3.8f, Profit= 5.0f, Total= 9, Win= 5, WinHalf= 2, Lose= 1, LoseHalf= 0, Draw= 0 });
+            _topYieldRoiPerson.Add(new YieldRoiPerson() { Name = "10分钟到账", TotalYield = 0.422222227f, CurrentYield = 0.422222227f, TotalROI = 3.8f, CurrentROI = 3.8f, Profit = 5.0f, Total = 9, Win = 5, WinHalf = 2, Lose = 1, LoseHalf = 0, Draw = 0 });
+            _topYieldRoiPerson.Add(new YieldRoiPerson() { Name = "无聊玩玩", TotalYield = -0.422222227f, CurrentYield = 0.422222227f, TotalROI = 3.8f, CurrentROI = 3.8f, Profit = 5.0f, Total = 9, Win = 5, WinHalf = 2, Lose = 1, LoseHalf = 0, Draw = 0 });
+            _topYieldRoiPerson.Add(new YieldRoiPerson() { Name = "多伦多猛龙", TotalYield = 0.422222227f, CurrentYield = -0.422222227f, TotalROI = 3.8f, CurrentROI = 3.8f, Profit = 5.0f, Total = 9, Win = 5, WinHalf = 2, Lose = 1, LoseHalf = 0, Draw = 0 });
+            _topYieldRoiPerson.Add(new YieldRoiPerson() { Name = "纽约火焰", TotalYield = 0.422222227f, CurrentYield = 0.422222227f, TotalROI = 3.8f, CurrentROI = 3.8f, Profit = 5.0f, Total = 9, Win = 5, WinHalf = 2, Lose = 1, LoseHalf = 0, Draw = 0 });
         }
 
         private void InitRecommends(string name)
@@ -197,6 +198,22 @@ namespace BetStrategy.ViewModels
             _recommends.Add(new Recommend() { Time1 = "04-30 23:50", Host = "艾恩", OddStake = "平/半", Guest = "艾斯迪格拿", Prefer = "艾斯迪格拿", Odds = 0.860f, Result = "-", PreferResult = (PreferResult)converter.ConvertBack("输盘", typeof(PreferResult), null, null), Time2 = "04-30 23:01", Person = "不学无术" });
             _recommends.Add(new Recommend() { Time1 = "05-01 02:45", Host = "車斯曼", OddStake = "半球", Guest = "赫默爾亨普斯特德城", Prefer = "赫默爾亨普斯特德城", Odds = 0.800f, Result = "-", PreferResult = (PreferResult)converter.ConvertBack("输半", typeof(PreferResult), null, null), Time2 = "04-30 22:57", Person = "sos73" });
             _recommends.Add(new Recommend() { Time1 = "05-01 07:15", Host = "堤格雷", OddStake = "平/半", Guest = "奧林匹亞", Prefer = "奧林匹亞", Odds = 1.020f, Result = "-", PreferResult = (PreferResult)converter.ConvertBack("走水", typeof(PreferResult), null, null), Time2 = "04-30 22:56", Person = "茶居" });
+        }
+
+
+        private ObservableCollection<YieldRoiRecommend> _t = new ObservableCollection<YieldRoiRecommend>();
+        public ObservableCollection<YieldRoiRecommend> TestRecommends
+        {
+            get { return _t; }
+        }
+
+        private void InitYieldRecommends()
+        {
+            _t.Add(new YieldRoiRecommend(new Recommend() { Time1 = "04-30 18:30", Host = "貴州人和", OddStake = "半球", Guest = "水原三星", Prefer = "水原三星", Odds = 0.940f, Result = "2-2", PreferResult = (PreferResult)converter.ConvertBack("赢盘", typeof(PreferResult), null, null), Time2 = "04-30 15:59", Person = "庄家倒霉了" }));
+            _t.Add(new YieldRoiRecommend(new Recommend() { Time1 = "04-30 18:30", Host = "貴州人和", OddStake = "半球", Guest = "水原三星", Prefer = "水原三星", Odds = 0.940f, Result = "2-2", PreferResult = (PreferResult)converter.ConvertBack("赢盘", typeof(PreferResult), null, null), Time2 = "04-30 15:59", Person = "庄家倒霉了" }));
+            _t.Add(new YieldRoiRecommend(new Recommend() { Time1 = "04-30 18:30", Host = "貴州人和", OddStake = "半球", Guest = "水原三星", Prefer = "水原三星", Odds = 0.940f, Result = "2-2", PreferResult = (PreferResult)converter.ConvertBack("赢盘", typeof(PreferResult), null, null), Time2 = "04-30 15:59", Person = "庄家倒霉了" }));
+            _t.Add(new YieldRoiRecommend(new Recommend() { Time1 = "04-30 18:30", Host = "貴州人和", OddStake = "半球", Guest = "水原三星", Prefer = "水原三星", Odds = 0.940f, Result = "2-2", PreferResult = (PreferResult)converter.ConvertBack("赢盘", typeof(PreferResult), null, null), Time2 = "04-30 15:59", Person = "庄家倒霉了" }));
+            _t.Add(new YieldRoiRecommend(new Recommend() { Time1 = "04-30 18:30", Host = "貴州人和", OddStake = "半球", Guest = "水原三星", Prefer = "水原三星", Odds = 0.940f, Result = "2-2", PreferResult = (PreferResult)converter.ConvertBack("赢盘", typeof(PreferResult), null, null), Time2 = "04-30 15:59", Person = "庄家倒霉了" }));
         }
     }
 }

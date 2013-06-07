@@ -1,4 +1,5 @@
 ﻿using BetStrategy.Common.Configurations;
+using BetStrategy.Utils;
 using BetStrategy.Windows;
 using System;
 using System.Windows;
@@ -13,6 +14,7 @@ namespace BetStrategy.ViewModels
         private Window WinGameShow;
         private Window WinGameTop;
         private Window WinGameBest;
+        private Window WinGameUnknown;
 
         private ICommand _cmdGameShow;
         public ICommand CommandGameShow
@@ -30,7 +32,7 @@ namespace BetStrategy.ViewModels
         {
             if (WinGameShow == null)
             {
-                var vm = new TheViewModel();
+                var vm = new PersonRecommendsViewModel();
                 WinGameShow = new PersonRecommendsWindow();
                 WinGameShow.DataContext = vm;
                 WinGameShow.Loaded += (o, e) => vm.Load(500);
@@ -100,10 +102,19 @@ namespace BetStrategy.ViewModels
         /// </summary>
         private void UnknownRecommends()
         {
-
+            if (WinGameUnknown == null)
+            {
+                var vm = new PersonRecommendsViewModel();
+                WinGameUnknown = new PersonRecommendsWindow();
+                WinGameUnknown.DataContext = vm;
+                WinGameUnknown.Loaded += (o, e) => vm.LoadUnFinished();
+                WinGameUnknown.Closed += (o, e) => WinGameUnknown = null;
+            }
+            WinGameUnknown.Activate();
+            WinGameUnknown.Show();
         }
 
-        private bool _check;
+        private bool _check = true;
         public bool CheckBoxIsChecked
         {
             get
@@ -118,19 +129,13 @@ namespace BetStrategy.ViewModels
             }
         }
 
-        private static MainViewModel _instance;
-        public static MainViewModel Instance
+        public MainViewModel()
         {
-            get
-            {
-                return _instance;
-            }
         }
 
         private DispatcherTimer _timer;
-        public MainViewModel()
+        public void Init()
         {
-            _instance = this;
             _timer = new DispatcherTimer();
             _timer.Interval = new TimeSpan(0, Constants.Instance.INT_MINUTES_UPDATE_RECOMMEND, 30);
             _timer.Tick += timer_Tick;
@@ -138,6 +143,7 @@ namespace BetStrategy.ViewModels
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            Downloader.DownloadRecommends(1, null, null);
         }
 
         private void Start(bool flag)

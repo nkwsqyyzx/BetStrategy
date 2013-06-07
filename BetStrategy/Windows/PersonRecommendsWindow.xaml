@@ -7,7 +7,7 @@
                 xmlns:converters="clr-namespace:BetStrategy.ViewModels"
                 Title="牛人最新推荐"
                 WindowStartupLocation="CenterScreen"
-                ShowInTaskbar ="False" Visibility="Visible" Height="600" Width="1200">
+                Height="600" Width="1200">
 
     <!--<Window.DataContext>
         <vm:TestViewModel/>
@@ -49,7 +49,7 @@
             <ListView ItemsSource="{Binding Recommends}"
 		     ScrollViewer.VerticalScrollBarVisibility="Visible"
                      ScrollViewer.HorizontalScrollBarVisibility="Visible" 
-                     ItemContainerStyle="{StaticResource App_RecommendItemStyle}"
+                     ItemContainerStyle="{StaticResource App_YieldRecommendItemStyle}"
                      DockPanel.Dock="Top"
                      GridViewColumnHeader.Click="MenuItem_Click"
                      HorizontalAlignment="Center"

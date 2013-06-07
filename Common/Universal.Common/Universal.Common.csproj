@@ -69,7 +69,6 @@
     <Compile Include="Net\PostTextHttpTask.cs" />
     <Compile Include="Net\TaskPool.cs" />
     <Compile Include="Net\TextHttpTask.cs" />
-    <Compile Include="Extensions\TypePropertyReflection.cs" />
     <Compile Include="Helper\EmailHelper.cs" />
     <Compile Include="Serialization\FileSerializer.cs" />
     <Compile Include="Serialization\IFileSerializer.cs" />

@@ -24,8 +24,8 @@ namespace BetStrategy.Windows
         public PersonRecommendsWindow()
         {
             InitializeComponent();
-            this.DataContext = new PersonRecommendsViewModel();
-            this.Closing += TopPersonRecommendsWindow_Closing;
+            //this.DataContext = new PersonRecommendsViewModel();
+            //this.Closing += TopPersonRecommendsWindow_Closing;
             //this.Activated += (o, e) => ViewModel.StartUpdate();
         }
 

@@ -10,7 +10,7 @@
                 Width="300">
 
     <Window.DataContext>
-        <vm:MainViewModel />
+        <vm:MainViewModel/>
     </Window.DataContext>
 
     <Grid>
@@ -18,7 +18,7 @@
         <Button Command="{Binding CommandBestPrefer}" Content="牛逼最新推荐" HorizontalAlignment="Left" Margin="21,147,0,0" VerticalAlignment="Top" Width="125" Height="39"/>
         <Button Command="{Binding CommandUnkownRecommends}" Content="未知结果比赛" HorizontalAlignment="Left" Margin="21,197,0,0" VerticalAlignment="Top" Width="125" Height="39"/>
         <StackPanel Margin="21,41,4,180" Orientation="Horizontal">
-            <Button Command="{Binding CommandGameShow}" Content="擂台参赛纪录" HorizontalAlignment="Left" VerticalAlignment="Top" Width="124" Height="36" Margin="0,-1,0,0"/>
+            <Button Command="{Binding CommandGameShow}" Content="最新推荐" HorizontalAlignment="Left" VerticalAlignment="Top" Width="124" Height="36" Margin="0,-1,0,0"/>
             <CheckBox HorizontalContentAlignment="Center" 
                       Name="CheckBox"
                       VerticalContentAlignment="Center" 
