@@ -102,6 +102,7 @@
     <Compile Include="Utils\ViewHelper.cs" />
     <Compile Include="Utils\YieldRoiHelper.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\RecommendModifyViewModel.cs" />
     <Compile Include="ViewModels\RecommendsViewModel.cs" />
     <Compile Include="ViewModels\PreferResultToStringConverter.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -119,6 +120,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Windows\RecommendModifyWindow.xaml.cs">
+      <DependentUpon>RecommendModifyWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\RecommendsWindow.xaml.cs">
       <DependentUpon>RecommendsWindow.xaml</DependentUpon>
     </Compile>
@@ -131,6 +135,10 @@
     <Compile Include="Windows\YieldRoiWindow.xaml.cs">
       <DependentUpon>YieldRoiWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Windows\RecommendModifyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\RecommendsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

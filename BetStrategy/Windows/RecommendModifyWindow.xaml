@@ -1,0 +1,58 @@
+﻿<src:BaseWindow x:Class="BetStrategy.Windows.RecommendModifyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:BetStrategy.ViewModels"
+        xmlns:src="clr-namespace:BetStrategy.Windows"
+        xmlns:VM="clr-namespace:BetStrategy.Models"
+        Title="编辑推荐结果"
+        Height="300"
+        Width="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+            <Button Grid.Row="0" Content="保存修改" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Click="Button_Click"/>
+        <DockPanel Grid.Row="1">
+            <ListView ItemsSource="{Binding Recommends}"
+		     ScrollViewer.VerticalScrollBarVisibility="Visible"
+                     ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                     DockPanel.Dock="Top"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Stretch">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="点击排序">
+                        <GridViewColumn Width="80" Header="开赛时间" DisplayMemberBinding="{Binding Path=Time1}" />
+                        <GridViewColumn Width="130" Header="主场球队" DisplayMemberBinding="{Binding Path=Host}" />
+                        <GridViewColumn Width="80" Header="盘口" DisplayMemberBinding="{Binding Path=OddStake}" />
+                        <GridViewColumn Width="130" Header="客场球队" DisplayMemberBinding="{Binding Path=Guest}" />
+                        <GridViewColumn Width="130" Header="推荐" DisplayMemberBinding="{Binding Path=Prefer}" />
+                        <GridViewColumn Width="50" Header="水位" DisplayMemberBinding="{Binding Path=Odds}" />
+                        <GridViewColumn Width="50" Header="比分">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Width="50"  Text="{Binding Path=Result,Mode=TwoWay}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="80" Header="比赛结果">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox Width="80" SelectedItem="{Binding Path=PreferResult,Mode=TwoWay}">
+                                        <VM:PreferResult>Waiting</VM:PreferResult>
+                                        <VM:PreferResult>Lose</VM:PreferResult>
+                                        <VM:PreferResult>LoseHalf</VM:PreferResult>
+                                        <VM:PreferResult>Useless</VM:PreferResult>
+                                        <VM:PreferResult>WinHalf</VM:PreferResult>
+                                        <VM:PreferResult>Win</VM:PreferResult>
+                                    </ComboBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+    </Grid>
+</src:BaseWindow>

@@ -345,5 +345,12 @@ namespace BetStrategy.ViewModels
             FileHelper.GetAllWaitingRecommends(OnRecommend, RefreshFinish);
         }
         #endregion
+
+        public void Modify(YieldRoiRecommend recommend)
+        {
+            RecommendModifyWindow window = new RecommendModifyWindow();
+            window.DataContext = this;
+            window.Show();
+        }
     }
 }

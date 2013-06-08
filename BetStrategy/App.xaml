@@ -8,31 +8,6 @@
                          Placement="MousePoint">
             <MenuItem Header="Close" Click="Menu_Close"/>
         </ContextMenu>
-        <Style x:Key="App_YieldRecommendItemStyle" TargetType="{x:Type ListViewItem}">
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="Height" Value="26" />
-            <Setter Property="Background" Value="#ccffffff" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Recommend.PreferResult}" Value="WinHalf">
-                    <Setter Property="Foreground" Value="#f01234" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Recommend.PreferResult}" Value="Win">
-                    <Setter Property="Foreground" Value="#f01234" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Recommend.PreferResult}" Value="Useless">
-                    <Setter Property="Foreground" Value="#ff787878" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Recommend.PreferResult}" Value="Waiting">
-                    <Setter Property="Foreground" Value="#ff333333" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Recommend.PreferResult}" Value="LoseHalf">
-                    <Setter Property="Foreground" Value="Green" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Recommend.PreferResult}" Value="Lose">
-                    <Setter Property="Foreground" Value="Green" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
         <Style x:Key="App_RecommendItemStyle" TargetType="{x:Type ListViewItem}">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="Height" Value="26" />

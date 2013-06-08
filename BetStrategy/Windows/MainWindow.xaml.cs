@@ -1,4 +1,5 @@
 ﻿using BetStrategy.ViewModels;
+using System.ComponentModel;
 
 namespace BetStrategy.Windows
 {
@@ -19,6 +20,13 @@ namespace BetStrategy.Windows
         {
             InitializeComponent();
             this.Loaded += (s, e) => ViewModel.Init();
+            this.Closing += MainWindow_Closing;
+        }
+
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            this.Hide();
+            e.Cancel = true;
         }
     }
 }

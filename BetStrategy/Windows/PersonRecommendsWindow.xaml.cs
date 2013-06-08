@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace BetStrategy.Windows
 {
@@ -24,9 +25,6 @@ namespace BetStrategy.Windows
         public PersonRecommendsWindow()
         {
             InitializeComponent();
-            //this.DataContext = new PersonRecommendsViewModel();
-            //this.Closing += TopPersonRecommendsWindow_Closing;
-            //this.Activated += (o, e) => ViewModel.StartUpdate();
         }
 
         private void TopPersonRecommendsWindow_Closing(object sender, CancelEventArgs e)
@@ -35,6 +33,15 @@ namespace BetStrategy.Windows
             this.Hide();
         }
 
+        private void listViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ListViewItem item = sender as ListViewItem;
+            YieldRoiRecommend recommend = item.Content as YieldRoiRecommend;
+            if (recommend != null)
+            {
+                ViewModel.Modify(recommend);
+            }
+        }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {

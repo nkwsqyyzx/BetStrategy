@@ -27,17 +27,20 @@ namespace BetStrategy
         private void Icon_BalloonTipClicked(object sender, System.EventArgs e)
         {
             this.MainWindow.Activate();
+            this.MainWindow.Show();
         }
 
         private void Icon_DoubleClick(object sender, System.EventArgs e)
         {
             this.MainWindow.Activate();
+            this.MainWindow.Show();
         }
 
         private void Icon_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
+                this.MainWindow.Activate();
                 this.MainWindow.Show();
             }
             else
