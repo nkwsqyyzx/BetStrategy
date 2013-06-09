@@ -13,20 +13,38 @@
         <vm:MainViewModel/>
     </Window.DataContext>
 
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="125"/>
+            <Setter Property="Height" Value="39"/>
+            <Setter Property="Margin" Value="15,0,0,0"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <Button Command="{Binding CommandGameTop}" Content="牛逼推荐排行榜" HorizontalAlignment="Left" Margin="21,94,0,0" VerticalAlignment="Top" Width="125" Height="35"/>
-        <Button Command="{Binding CommandBestPrefer}" Content="牛逼最新推荐" HorizontalAlignment="Left" Margin="21,147,0,0" VerticalAlignment="Top" Width="125" Height="39"/>
-        <Button Command="{Binding CommandUnkownRecommends}" Content="未知结果比赛" HorizontalAlignment="Left" Margin="21,197,0,0" VerticalAlignment="Top" Width="125" Height="39"/>
-        <StackPanel Margin="21,41,4,180" Orientation="Horizontal">
-            <Button Command="{Binding CommandGameShow}" Content="最新推荐" HorizontalAlignment="Left" VerticalAlignment="Top" Width="124" Height="36" Margin="0,-1,0,0"/>
-            <CheckBox HorizontalContentAlignment="Center" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" VerticalAlignment="Center"  Orientation="Horizontal">
+            <Button Style="{StaticResource ButtonStyle}"  Command="{Binding CommandGameShow}" Content="最新200条推荐"/>
+            <CheckBox HorizontalContentAlignment="Center"
+                      VerticalAlignment="Center"
                       Name="CheckBox"
-                      VerticalContentAlignment="Center" 
-                      Margin="20,-1,0,13"
+                      VerticalContentAlignment="Center"
+                      Margin="20,0,0,0"
                       Content="开启抓取"
-                      Height="36"
+                      Height="39"
 		      IsChecked="{Binding Path=CheckBoxIsChecked,Mode=TwoWay}"
                       Width="94"/>
         </StackPanel>
+        <Button Style="{StaticResource ButtonStyle}" Grid.Row="1" Command="{Binding CommandGameTop}" Content="牛人排行榜"/>
+        <Button Style="{StaticResource ButtonStyle}" Grid.Row="2" Command="{Binding CommandBestPrefer}" Content="牛逼最新推荐"/>
+        <Button Style="{StaticResource ButtonStyle}" Grid.Row="3" Command="{Binding CommandUnkownRecommends}" Content="未知结果推荐"/>
     </Grid>
 </src:BaseWindow>

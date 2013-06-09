@@ -35,7 +35,7 @@ namespace BetStrategy.ViewModels
                 var vm = new PersonRecommendsViewModel();
                 WinGameShow = new PersonRecommendsWindow();
                 WinGameShow.DataContext = vm;
-                WinGameShow.Loaded += (o, e) => vm.Load(500);
+                WinGameShow.Loaded += (o, e) => vm.Load(200);
                 WinGameShow.Closed += (o, e) => WinGameShow = null;
             }
             WinGameShow.Activate();
@@ -144,7 +144,7 @@ namespace BetStrategy.ViewModels
 
         private void timer_Tick(object sender, EventArgs e)
         {
-#if !TEST
+#if TEST
             Downloader.DownloadRecommends(1, null, null);
 #endif
         }

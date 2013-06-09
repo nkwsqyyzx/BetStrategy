@@ -4,20 +4,25 @@
         xmlns:converters="clr-namespace:BetStrategy.ViewModels"
         xmlns:src="clr-namespace:BetStrategy.Windows"
         xmlns:VM="clr-namespace:BetStrategy.Models"
+	xmlns:System="clr-namespace:System;assembly=mscorlib"
         Title="编辑推荐结果"
         Height="300"
         Width="800">
 
+    <Window.Resources>
+        <converters:PreferResultToStringConverter x:Key="CON" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-            <Button Grid.Row="0" Content="保存修改" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Click="Button_Click"/>
+        <Button Grid.Row="0" Content="保存修改" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Click="Button_Click"/>
         <DockPanel Grid.Row="1">
             <ListView ItemsSource="{Binding Recommends}"
 		     ScrollViewer.VerticalScrollBarVisibility="Visible"
                      ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                     ItemContainerStyle="{StaticResource App_RecommendItemStyle}"
                      DockPanel.Dock="Top"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Stretch">
@@ -29,23 +34,23 @@
                         <GridViewColumn Width="130" Header="客场球队" DisplayMemberBinding="{Binding Path=Guest}" />
                         <GridViewColumn Width="130" Header="推荐" DisplayMemberBinding="{Binding Path=Prefer}" />
                         <GridViewColumn Width="50" Header="水位" DisplayMemberBinding="{Binding Path=Odds}" />
-                        <GridViewColumn Width="50" Header="比分">
+                        <GridViewColumn Width="80" Header="比分">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox Width="50"  Text="{Binding Path=Result,Mode=TwoWay}" />
+                                    <TextBox Width="60" TextAlignment="Center" Text="{Binding Path=Result,Mode=TwoWay}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Width="80" Header="比赛结果">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <ComboBox Width="80" SelectedItem="{Binding Path=PreferResult,Mode=TwoWay}">
-                                        <VM:PreferResult>Waiting</VM:PreferResult>
-                                        <VM:PreferResult>Lose</VM:PreferResult>
-                                        <VM:PreferResult>LoseHalf</VM:PreferResult>
-                                        <VM:PreferResult>Useless</VM:PreferResult>
-                                        <VM:PreferResult>WinHalf</VM:PreferResult>
-                                        <VM:PreferResult>Win</VM:PreferResult>
+                                    <ComboBox Width="60" HorizontalContentAlignment="Center" SelectedItem="{Binding Path=PreferResult,Converter={StaticResource CON},Mode=TwoWay}">
+                                        <System:String>等待</System:String>
+                                        <System:String>输盘</System:String>
+                                        <System:String>输半</System:String>
+                                        <System:String>走水</System:String>
+                                        <System:String>赢半</System:String>
+                                        <System:String>赢盘</System:String>
                                     </ComboBox>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

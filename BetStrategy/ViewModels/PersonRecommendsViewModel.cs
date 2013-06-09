@@ -36,6 +36,21 @@ namespace BetStrategy.ViewModels
             }
         }
 
+        private bool _isViewFinished = true;
+        public bool CheckBoxViewFinishedIsChecked 
+        {
+            get
+            {
+                return _isViewFinished;
+            }
+            set 
+            {
+                _isViewFinished = value;
+                NotifyPropertyChange(() => CheckBoxViewFinishedIsChecked);
+                ReloadList();
+            }
+        }
+
         private Person _person = null;
         public Person SelectedProfitPerson
         {
@@ -49,6 +64,18 @@ namespace BetStrategy.ViewModels
                 }
                 _person = value;
 
+                ReloadList();
+            }
+        }
+
+        private Single _selectedProfit = -10;
+        public Single SelectedProfit 
+        {
+            get { return _selectedProfit; }
+            set
+            {
+                _selectedProfit = value;
+                Constants.Instance.COUNT_MIN_PROFIT = value;
                 ReloadList();
             }
         }
@@ -132,14 +159,17 @@ namespace BetStrategy.ViewModels
         private void ReloadList()
         {
             _recommends.Clear();
-            if (SelectedProfitPerson != null || _isPreferMostChecked)
+            AllRecommends.Enumerate((i) => IsValidRecommend(i), (j) => _recommends.Add(j));
+        }
+
+        private bool IsValidRecommend(YieldRoiRecommend rec)
+        {
+            bool result = !_isViewFinished ? rec.Recommend.PreferResult == PreferResult.Waiting : true;
+            //if (SelectedProfitPerson != null || _isPreferMostChecked)
             {
-                AllRecommends.Enumerate((i) => IsTopPerson(i.Recommend.Person), (j) => _recommends.Add(j));
+                result = result && IsTopPerson(rec.Recommend.Person);
             }
-            else
-            {
-                AllRecommends.ForEach((i) => _recommends.Add(i));
-            }
+            return result;
         }
 
         private List<Person> TopPerson = new List<Person>();
@@ -349,7 +379,8 @@ namespace BetStrategy.ViewModels
         public void Modify(YieldRoiRecommend recommend)
         {
             RecommendModifyWindow window = new RecommendModifyWindow();
-            window.DataContext = this;
+            window.DataContext = new RecommendModifyViewModel(recommend.Recommend);
+            window.Activate();
             window.Show();
         }
     }

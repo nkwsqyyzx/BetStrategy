@@ -5,6 +5,7 @@
                 xmlns:vm="clr-namespace:BetStrategy.ViewModels"
                 xmlns:resx="clr-namespace:BetStrategy.Properties"
                 xmlns:converters="clr-namespace:BetStrategy.ViewModels"
+                xmlns:System="clr-namespace:System;assembly=mscorlib"
                 Title="牛人最新推荐"
                 WindowStartupLocation="CenterScreen"
                 Height="600" Width="1200">
@@ -61,12 +62,57 @@
                 </Grid.ColumnDefinitions>
                 <Button Command="{Binding CommandRefresh}" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Content="刷新"/>
                 <CheckBox Content="自定义关注列表" IsChecked="{Binding Path=CheckBoxPreferMostIsChecked,Mode=TwoWay}"  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <CheckBox Content="显示完场比赛" IsChecked="{Binding Path=CheckBoxViewFinishedIsChecked,Mode=TwoWay}"  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <CheckBox Content="启用邮件通知" IsChecked="{Binding Path=EnableEmailNotify,Mode=TwoWay}"  Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <ComboBox Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"
+                <ComboBox Grid.Column="4"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          Width="120"
                           ToolTip="下拉设置高手最少赢的场次"
-                          ItemsSource="{Binding TopPersonWinsList}"
-                          DisplayMemberPath="Profit"
-                          SelectedItem="{Binding Path=SelectedProfitPerson, Mode=TwoWay}"/>
+                          SelectedItem="{Binding Path=SelectedProfit, Mode=TwoWay}">
+                    <System:Single>-10</System:Single>
+                    <System:Single>0.5</System:Single>
+                    <System:Single>1</System:Single>
+                    <System:Single>1.5</System:Single>
+                    <System:Single>2</System:Single>
+                    <System:Single>2.5</System:Single>
+                    <System:Single>3</System:Single>
+                    <System:Single>3.5</System:Single>
+                    <System:Single>4</System:Single>
+                    <System:Single>4.5</System:Single>
+                    <System:Single>5</System:Single>
+                    <System:Single>5.5</System:Single>
+                    <System:Single>6</System:Single>
+                    <System:Single>6.5</System:Single>
+                    <System:Single>7</System:Single>
+                    <System:Single>7.5</System:Single>
+                    <System:Single>8</System:Single>
+                    <System:Single>8.5</System:Single>
+                    <System:Single>9</System:Single>
+                    <System:Single>9.5</System:Single>
+                    <System:Single>10</System:Single>
+                    <System:Single>10.5</System:Single>
+                    <System:Single>11</System:Single>
+                    <System:Single>11.5</System:Single>
+                    <System:Single>12</System:Single>
+                    <System:Single>12.5</System:Single>
+                    <System:Single>13</System:Single>
+                    <System:Single>13.5</System:Single>
+                    <System:Single>14</System:Single>
+                    <System:Single>14.5</System:Single>
+                    <System:Single>15</System:Single>
+                    <System:Single>15.5</System:Single>
+                    <System:Single>16</System:Single>
+                    <System:Single>16.5</System:Single>
+                    <System:Single>17</System:Single>
+                    <System:Single>17.5</System:Single>
+                    <System:Single>18</System:Single>
+                    <System:Single>18.5</System:Single>
+                    <System:Single>19</System:Single>
+                    <System:Single>19.5</System:Single>
+                    <System:Single>20</System:Single>
+                    <System:Single>20.5</System:Single>
+                </ComboBox>
                 <Button Command="{Binding CommandViewYield}" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Content="查看推荐人Yield"/>
             </Grid>
         </StackPanel>
@@ -74,7 +120,7 @@
         <DockPanel Grid.Row="1">
             <ListView ItemsSource="{Binding Recommends}"
 		     ScrollViewer.VerticalScrollBarVisibility="Visible"
-                     ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                     ScrollViewer.HorizontalScrollBarVisibility="Visible"
                      ItemContainerStyle="{StaticResource App_YieldRecommendItemStyle}"
                      DockPanel.Dock="Top"
                      GridViewColumnHeader.Click="MenuItem_Click"
@@ -88,14 +134,14 @@
                         <GridViewColumn Width="80" Header="盘口" DisplayMemberBinding="{Binding Path=Recommend.OddStake}" />
                         <GridViewColumn Width="130" Header="客场球队" DisplayMemberBinding="{Binding Path=Recommend.Guest}" />
                         <GridViewColumn Width="130" Header="推荐" DisplayMemberBinding="{Binding Path=Recommend.Prefer}" />
-                        <GridViewColumn Width="50" Header="水位" DisplayMemberBinding="{Binding Path=Recommend.Odds}" />
+                        <GridViewColumn Width="45" Header="水位" DisplayMemberBinding="{Binding Path=Recommend.Odds}" />
                         <GridViewColumn Width="50" Header="比分" DisplayMemberBinding="{Binding Path=Recommend.Result}" />
                         <GridViewColumn Width="60" Header="比赛结果" DisplayMemberBinding="{Binding Path=Recommend.PreferResult,Converter={StaticResource CON}}" />
                         <GridViewColumn Width="80" Header="发布时间" DisplayMemberBinding="{Binding Path=Recommend.Time2}" />
-                        <GridViewColumn Width="130" Header="发布用户" >
+                        <GridViewColumn Width="135" Header="发布用户" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Background="#cecece" Width="130" HorizontalAlignment="Center"
+                                    <Button Background="#cecece" Width="120" HorizontalAlignment="Center"
                                             HorizontalContentAlignment="Center"
                                             Content="{Binding Path=Recommend.Person}"
                                             CommandParameter="{Binding}"

@@ -5,29 +5,30 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using BetStrategy.Utils;
 
 namespace BetStrategy.ViewModels
 {
     public class RecommendModifyViewModel : BaseViewModel
     {
-
         private ObservableCollection<Recommend> _recommends = new ObservableCollection<Recommend>();
-        public ObservableCollection<Recommend> Recommends 
+        public ObservableCollection<Recommend> Recommends
         {
-            get 
+            get
             {
                 return _recommends;
             }
         }
 
-        public RecommendModifyViewModel(Recommend rec) 
+        public RecommendModifyViewModel(Recommend rec)
         {
             Recommends.Add(rec);
         }
 
         public void Save()
         {
-            MessageBox.Show("功能目前尚未实现!尚无法保存");
+            //TODO. 如果开赛时间一样,主队客队一样,盘口和推荐都一样,一并保存
+            FileHelper.SaveRecommends(_recommends);
         }
     }
 }
