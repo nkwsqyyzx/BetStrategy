@@ -174,6 +174,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="BetStrategy_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -189,6 +190,10 @@
     <ProjectReference Include="..\Common\Universal.Common\Universal.Common.csproj">
       <Project>{a4f36939-3fed-4744-838e-9602b4f8c7e9}</Project>
       <Name>Universal.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataBase\DataBase.csproj">
+      <Project>{d734c006-aba3-4c13-b566-ce44b06629e9}</Project>
+      <Name>DataBase</Name>
     </ProjectReference>
     <ProjectReference Include="..\HtmlAgilityPack\HtmlAgilityPack.csproj">
       <Project>{193bb801-054f-4729-9d5d-fce1e32594bf}</Project>

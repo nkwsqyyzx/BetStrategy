@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BetStrategy.Properties {
+namespace DataBase.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,13 +25,13 @@ namespace BetStrategy.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("sdsd")]
-        public string Setting1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("data source=G:\\working\\BetStrategy\\DataBase\\db.db3")]
+        public string DB {
             get {
-                return ((string)(this["Setting1"]));
+                return ((string)(this["DB"]));
             }
             set {
-                this["Setting1"] = value;
+                this["DB"] = value;
             }
         }
     }

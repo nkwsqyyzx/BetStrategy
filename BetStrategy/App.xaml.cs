@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using NotifyIcon = System.Windows.Forms.NotifyIcon;
+using DataBase;
 
 namespace BetStrategy
 {
@@ -14,6 +15,8 @@ namespace BetStrategy
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            DB db = new DB();
+            db.Test();
             App.Icon = new NotifyIcon();
 	    Icon.MouseUp +=Icon_MouseUp;
 	    Icon.DoubleClick += Icon_DoubleClick;
