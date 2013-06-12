@@ -18,9 +18,9 @@ namespace CommonTest
             List<Recommend> res = new List<Recommend>();
             Action finish = () =>
             {
-                FileHelper.SaveRecommends(res);
+                LocalManager.Instance.SaveRecommends(res);
             };
-            FileHelper.GetRecommends("godball", (r) => res.Add(r), finish);
+            LocalManager.Instance.GetRecommends("godball", (r) => res.Add(r), finish);
             Thread.Sleep(1000000);
         }
 
@@ -52,17 +52,11 @@ namespace CommonTest
             var persons = PathHelper.AllPersons();
             Action<Recommend> work = (rec) =>
             {
-                if (rec.PreferResult == PreferResult.Waiting)
-                {
-                    rec.PreferResult = PreferResult.Useless;
-                    FileHelper.DeleteRecommend(rec);
-                    rec.PreferResult = PreferResult.Waiting;
-                    FileHelper.SaveRecommend(rec);
-                }
+                LocalManager.Instance.SaveRecommend(rec);
             };
             foreach (var p in persons)
             {
-                FileHelper.GetRecommends(p, work, () => System.Diagnostics.Debug.WriteLine("Finished"));
+                LocalManager.Instance.GetRecommends(p, work, () => System.Diagnostics.Debug.WriteLine("Finished"));
             }
             Thread.Sleep(30 * 60 * 1000);
         }

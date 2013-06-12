@@ -109,7 +109,7 @@ namespace BetStrategy.ViewModels
                 {
                     new Action(() => Filter(Min)).RunOnUI();
                 });
-                FileHelper.GetAllPerson((dir) => action(dir), finish);
+                LocalManager.Instance.GetAllPerson((dir) => action(dir), finish);
             };
             bw.RunWorkerAsync();
         }

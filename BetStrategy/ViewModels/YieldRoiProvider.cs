@@ -41,7 +41,7 @@ namespace BetStrategy.ViewModels
         private YieldRoiProvider() { }
         public void GetPersonRecommends(string name, Action<Recommend> onRecommend, Action finish = null)
         {
-            FileHelper.GetRecommends(name, onRecommend, finish);
+            LocalManager.Instance.GetRecommends(name, onRecommend, finish);
         }
 
         private string GetCachedYieldRoiPerson(string name)

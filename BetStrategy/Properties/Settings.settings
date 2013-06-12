@@ -2,8 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BetStrategy.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Setting1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">sdsd</Value>
+    <Setting Name="dbConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">data source=G:\working\BetStrategy\BetStrategy\database</Value>
     </Setting>
   </Settings>
 </SettingsFile>

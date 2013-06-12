@@ -28,7 +28,7 @@ namespace BetStrategy.ViewModels
         public void Save()
         {
             //TODO. 如果开赛时间一样,主队客队一样,盘口和推荐都一样,一并保存
-            FileHelper.SaveRecommends(_recommends);
+            LocalManager.Instance.SaveRecommends(_recommends);
         }
     }
 }

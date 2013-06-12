@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Threading;
+using BetStrategy.Models;
 using WSQ.CSharp.Extensions;
 
 namespace CommonTest
@@ -50,6 +51,9 @@ namespace CommonTest
             var y = b1.Property("A");
             var z = b1.Property("A.szA");
             var m = b1.Property("A.iA");
+
+            Recommend r = new Recommend();
+           var properties= r.GetType().GetProperties(System.Reflection.BindingFlags.GetField|System.Reflection.BindingFlags.SetField);
         }
     }
 }

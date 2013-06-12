@@ -100,7 +100,7 @@ namespace BetStrategy.Utils
 
         private static void Save(List<Recommend> recommends)
         {
-            FileHelper.SaveRecommends(recommends);
+            LocalManager.Instance.SaveRecommends(recommends);
         }
     }
 }

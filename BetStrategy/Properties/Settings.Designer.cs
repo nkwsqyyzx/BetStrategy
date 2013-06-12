@@ -25,13 +25,13 @@ namespace BetStrategy.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("sdsd")]
-        public string Setting1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("data source=G:\\working\\BetStrategy\\BetStrategy\\database")]
+        public string dbConnectionString {
             get {
-                return ((string)(this["Setting1"]));
+                return ((string)(this["dbConnectionString"]));
             }
             set {
-                this["Setting1"] = value;
+                this["dbConnectionString"] = value;
             }
         }
     }

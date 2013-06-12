@@ -27,9 +27,14 @@ namespace RecommendsDownloader
                     Finish();
                 }
             }
+            Download(count);
+            Thread.Sleep(1000 * 1000 * 1000);
+        }
+
+        private static void Download(int count)
+        {
             System.Console.Out.WriteLine("begin to download " + count + " pages");
             Downloader.DownloadRecommends(count, null, Finish);
-            Thread.Sleep(1000 * 1000 * 1000);
         }
 
         private static void Finish()

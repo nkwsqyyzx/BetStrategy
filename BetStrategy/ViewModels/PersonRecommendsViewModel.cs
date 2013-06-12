@@ -366,13 +366,13 @@ namespace BetStrategy.ViewModels
         private void RefreshRecommends(int count)
         {
             AllRecommends.Clear();
-            FileHelper.GetLatestRecommends(count, OnRecommend, RefreshFinish);
+            LocalManager.Instance.GetLatestRecommends(count, OnRecommend, RefreshFinish);
         }
 
         private void RefreshUnfinishedRecommends()
         {
             AllRecommends.Clear();
-            FileHelper.GetAllWaitingRecommends(OnRecommend, RefreshFinish);
+            LocalManager.Instance.GetAllWaitingRecommends(OnRecommend, RefreshFinish);
         }
         #endregion
 

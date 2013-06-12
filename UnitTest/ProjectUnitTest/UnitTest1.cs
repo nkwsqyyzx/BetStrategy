@@ -57,14 +57,14 @@ namespace ProjectUnitTest
         {
             HtmlParser.ParseRecommends(TestData.GAME_USER_HTML, (rs) =>
             {
-                FileHelper.SaveRecommends(rs);
+                LocalManager.Instance.SaveRecommends(rs);
             });
         }
 
         [TestMethod]
         public void TestGetRecommends()
         {
-            FileHelper.GetRecommends("格力电器", (rec) =>
+            LocalManager.Instance.GetRecommends("格力电器", (rec) =>
             {
                 System.Diagnostics.Debug.WriteLine(rec.Host + " " + rec.OddStake + " " + rec.Guest + ":" + rec.Result);
             });
