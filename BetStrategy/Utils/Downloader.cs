@@ -3,6 +3,7 @@ using BetStrategy.Models;
 using BetStrategy.Utils;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -68,7 +69,8 @@ namespace BetStrategy.Utils
                     }
                     return;
                 }
-                var url = Constants.Instance.URL_BASE + Constants.Instance.URL_GAME_SHOW + "?&page=" + i.ToString();
+                var url = Constants.Instance.URL_BASE + Constants.Instance.URL_GAME_SHOW + "?page=" + i.ToString();
+                System.Console.Out.WriteLine(url);
                 NetworkUtils.DownloadString(url, (ok, html, error) => callback(ok, html, error));
             };
 
@@ -98,9 +100,22 @@ namespace BetStrategy.Utils
             download(1);
         }
 
+        private static void SaveToFile(List<Recommend> recommends)
+        {
+            using (FileStream fs = new FileStream("SQL.txt", FileMode.Append))
+            using (StreamWriter writer = new StreamWriter(fs))
+            {
+                foreach (var r in recommends)
+                {
+                    writer.WriteLine(DBHelper.InsertCommand(r));
+                }
+            }
+        }
+
         private static void Save(List<Recommend> recommends)
         {
-            LocalManager.Instance.SaveRecommends(recommends);
+            //LocalManager.Instance.SaveRecommends(recommends);
+            SaveToFile(recommends);
         }
     }
 }

@@ -3,9 +3,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BetStrategy.Utils;
 using BetStrategy.Models;
 using System.Threading;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using BetStrategy.ViewModels;
+using WSQ.CSharp.Extensions;
 
 namespace CommonTest
 {
@@ -87,6 +89,28 @@ namespace CommonTest
         [TestMethod]
         public void EmptyTest()
         {
+        }
+
+        [TestMethod]
+        public void TestOutPutSql()
+        {
+            var rec = new Recommend()
+            {
+                Current = "第43期",
+                League = "无联赛",
+                Time1 = "05-01 02:45",
+                Host = "車斯曼",
+                OddStake = "半球",
+                Guest = "赫默爾亨普斯特德城",
+                Prefer = "赫默爾亨普斯特德城",
+                Odds = 0.800f,
+                Result = "-",
+                PreferResult = PreferResult.Waiting,
+                Time2 = "04-30 22:57",
+                Person = "sos73"
+            };
+
+            string sz = DBHelper.UpdateCommand(rec);
         }
     }
 }

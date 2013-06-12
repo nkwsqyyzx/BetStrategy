@@ -12,6 +12,28 @@ namespace BetStrategy
     {
         public static NotifyIcon Icon;
 
+        public void TestOutPutSql()
+        {
+            var rec = new BetStrategy.Models.Recommend()
+            {
+                Current = "第44期",
+                League = "无联赛",
+                Time1 = "05-01 02:45",
+                Host = "車斯曼",
+                OddStake = "半球",
+                Guest = "赫默爾亨普斯特德城",
+                Prefer = "赫默爾亨普斯特德城",
+                Odds = 0.800f,
+                Result = "-",
+                PreferResult = BetStrategy.Models.PreferResult.Waiting,
+                Time2 = "04-30 22:57",
+                Person = "sos73"
+            };
+
+            BetStrategy.Utils.ILocal local = BetStrategy.Utils.DB.Instance;
+            local.SaveRecommend(rec);
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             App.Icon = new NotifyIcon();
