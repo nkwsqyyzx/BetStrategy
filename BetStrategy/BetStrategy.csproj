@@ -184,7 +184,9 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="BetStrategy_TemporaryKey.pfx" />
-    <None Include="database" />
+    <Content Include="database">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

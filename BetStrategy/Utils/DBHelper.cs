@@ -24,8 +24,8 @@ namespace BetStrategy.Utils
             }
 
             // handle Time1 & Time2
-            var t1 = TimeFromString(rec.Time1);
-            var t2 = TimeFromString(rec.Time2);
+            var t1 = DateTimeToSqlTime(TimeFromString(rec.Time1));
+            var t2 = DateTimeToSqlTime(TimeFromString(rec.Time2));
 
             var sz = "insert into Recommends(" + prms + "'Time1','Time2','Odds','PreferResult') values(" + vals + "'" + t1 + "','" + t2 + "'," + rec.Odds + "," + (int)rec.PreferResult + ");";
             return sz;
@@ -33,17 +33,22 @@ namespace BetStrategy.Utils
 
         public static string UpdateCommand(Recommend rec)
         {
-            return "update Recommends set Result='" + rec.Result + "',PreferResult=" + (int)rec.PreferResult + " where Current='" + rec.Current + "' and Host='" + rec.Host + "' and Guest='" + rec.Guest + "' and Person='" + rec.Person + "' and Time2='" + TimeFromString(rec.Time2) + "';";
+            return "update Recommends set Result='" + rec.Result + "',PreferResult=" + (int)rec.PreferResult + " where Current='" + rec.Current + "' and Host='" + rec.Host + "' and Guest='" + rec.Guest + "' and Person='" + rec.Person + "' and Time2='" + DateTimeToSqlTime(TimeFromString(rec.Time2)) + "';";
         }
 
         public static string SelectCommand(Recommend rec)
         {
-            return "select * from Recommends where Current='" + rec.Current + "' and Host='" + rec.Host + "' and Guest='" + rec.Guest + "' and Person='" + rec.Person + "' and Time2='" + TimeFromString(rec.Time2) + "';";
+            return "select * from Recommends where Current='" + rec.Current + "' and Host='" + rec.Host + "' and Guest='" + rec.Guest + "' and Person='" + rec.Person + "' and Time2='" + DateTimeToSqlTime(TimeFromString(rec.Time2)) + "';";
         }
 
         public static string SelectByPerson(string person)
         {
             return "select * from Recommends where Person='" + person + "';";
+        }
+
+        private static string DateTimeToSqlTime(DateTime time)
+        {
+            return time.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         private static DateTime TimeFromString(string time)

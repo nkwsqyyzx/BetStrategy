@@ -25,7 +25,7 @@ namespace BetStrategy.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("data source=G:\\working\\BetStrategy\\BetStrategy\\database")]
+        [global::System.Configuration.DefaultSettingValueAttribute("data source=.\\database")]
         public string dbConnectionString {
             get {
                 return ((string)(this["dbConnectionString"]));

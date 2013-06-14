@@ -140,13 +140,12 @@ namespace BetStrategy.ViewModels
             _timer.Interval = new TimeSpan(0, Constants.Instance.INT_MINUTES_UPDATE_RECOMMEND, 30);
             _timer.Tick += timer_Tick;
             _timer.Start();
+            timer_Tick(null, null);
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-#if TEST
             Downloader.DownloadRecommends(1, null, null);
-#endif
         }
 
         private void Start(bool flag)
@@ -158,7 +157,6 @@ namespace BetStrategy.ViewModels
             else
             {
                 _timer.Start();
-                timer_Tick(null, null);
             }
         }
     }

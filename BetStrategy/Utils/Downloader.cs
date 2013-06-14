@@ -85,7 +85,10 @@ namespace BetStrategy.Utils
                         {
                             onRecommends(rs);
                         }
-                        Save(rs);
+                        else
+                        {
+                            Save(rs);
+                        }
                         Thread.Sleep(5283);
                         current += 1;
                         download(current);
@@ -100,22 +103,9 @@ namespace BetStrategy.Utils
             download(1);
         }
 
-        private static void SaveToFile(List<Recommend> recommends)
-        {
-            using (FileStream fs = new FileStream("SQL.txt", FileMode.Append))
-            using (StreamWriter writer = new StreamWriter(fs))
-            {
-                foreach (var r in recommends)
-                {
-                    writer.WriteLine(DBHelper.InsertCommand(r));
-                }
-            }
-        }
-
         private static void Save(List<Recommend> recommends)
         {
-            //LocalManager.Instance.SaveRecommends(recommends);
-            SaveToFile(recommends);
+            LocalManager.Instance.SaveRecommends(recommends);
         }
     }
 }

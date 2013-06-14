@@ -1,4 +1,5 @@
-﻿using BetStrategy.Utils;
+﻿using BetStrategy.Models;
+using BetStrategy.Utils;
 using BetStrategy.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,20 @@ namespace RecommendsDownloader
         private static void Download(int count)
         {
             System.Console.Out.WriteLine("begin to download " + count + " pages");
-            Downloader.DownloadRecommends(count, null, Finish);
+            Downloader.DownloadRecommends(count, SaveToFile, Finish);
+        }
+
+        private static void SaveToFile(List<Recommend> recommends)
+        {
+            using (System.IO.FileStream fs = new System.IO.FileStream("SQL.sql", System.IO.FileMode.Append))
+            using (System.IO.StreamWriter writer = new System.IO.StreamWriter(fs))
+            {
+                writer.WriteLine("-- this is downloaded at:" + DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss"));
+                foreach (var r in recommends)
+                {
+                    writer.WriteLine(DBHelper.InsertCommand(r));
+                }
+            }
         }
 
         private static void Finish()
