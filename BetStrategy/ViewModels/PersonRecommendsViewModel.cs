@@ -37,13 +37,13 @@ namespace BetStrategy.ViewModels
         }
 
         private bool _isViewFinished = true;
-        public bool CheckBoxViewFinishedIsChecked 
+        public bool CheckBoxViewFinishedIsChecked
         {
             get
             {
                 return _isViewFinished;
             }
-            set 
+            set
             {
                 _isViewFinished = value;
                 NotifyPropertyChange(() => CheckBoxViewFinishedIsChecked);
@@ -69,7 +69,7 @@ namespace BetStrategy.ViewModels
         }
 
         private Single _selectedProfit = -10;
-        public Single SelectedProfit 
+        public Single SelectedProfit
         {
             get { return _selectedProfit; }
             set

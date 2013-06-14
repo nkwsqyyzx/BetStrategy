@@ -3,7 +3,7 @@ namespace BetStrategy.Utils
 {
     public class LocalManager
     {
-        private static ILocal _instance = FileHelper.Instance;
+        private static ILocal _instance = DB.Instance;
         public static ILocal Instance
         {
             get

@@ -25,17 +25,17 @@ namespace CommonTest
         [TestMethod]
         public void TestMethod1()
         {
-	    /*
-            var m = (new B()).ComparerFromProperty("A.szA");
-            List<B> bs = new List<B>();
-            B b1 = new B() { A = new A() { szA = "szA1", iA = 10 }, szB = "szB1" };
-            B b2 = new B() { A = new A() { szA = "szA2" }, szB = "szB2" };
-            bs.Add(b1);
-            bs.Add(b2);
+            /*
+                var m = (new B()).ComparerFromProperty("A.szA");
+                List<B> bs = new List<B>();
+                B b1 = new B() { A = new A() { szA = "szA1", iA = 10 }, szB = "szB1" };
+                B b2 = new B() { A = new A() { szA = "szA2" }, szB = "szB2" };
+                bs.Add(b1);
+                bs.Add(b2);
 
-            bs.Sort(m);
+                bs.Sort(m);
 
-            Thread.Sleep(100000);*/
+                Thread.Sleep(100000);*/
         }
 
         [TestMethod]
@@ -53,7 +53,12 @@ namespace CommonTest
             var m = b1.Property("A.iA");
 
             Recommend r = new Recommend();
-           var properties= r.GetType().GetProperties(System.Reflection.BindingFlags.GetField|System.Reflection.BindingFlags.SetField);
+            var properties = r.GetType().Properties<string>();
+            foreach (var p in properties)
+            {
+                System.Diagnostics.Debug.WriteLine(p);
+            }
+            b1.SetProperty("A.iA", 999);
         }
     }
 }

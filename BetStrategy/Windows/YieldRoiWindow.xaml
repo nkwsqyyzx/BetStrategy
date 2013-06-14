@@ -12,7 +12,7 @@
         Width="1100">
 
     <src:BaseWindow.DataContext>
-        <converters:TestViewModel/>
+        <converters:YieldRoiViewModel/>
     </src:BaseWindow.DataContext>
 
     <Window.Resources>
@@ -71,6 +71,7 @@
                 <System:Int32>1000</System:Int32>
             </ComboBox>
             <ComboBox Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" ToolTip="最少推荐" SelectedItem="{Binding Current, Mode=TwoWay}">
+                <System:Int32>0</System:Int32>
                 <System:Int32>1</System:Int32>
                 <System:Int32>2</System:Int32>
                 <System:Int32>3</System:Int32>

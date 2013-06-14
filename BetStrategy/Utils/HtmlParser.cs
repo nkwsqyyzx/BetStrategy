@@ -135,7 +135,7 @@ namespace BetStrategy.Utils
                     if (results.Count == Constants.Instance.COUNT_GAME_SHOW_RESULT_COLUMNS)
                     {
                         var rec = RecommendFromStrings(results);
-                        if (rec.Odds > 0)
+                        if (IsValidRecommend(rec))
                         {
                             allRecommends.Add(rec);
                         }
@@ -144,6 +144,11 @@ namespace BetStrategy.Utils
                 finished(allRecommends);
             });
             bw.RunWorkerAsync();
+        }
+
+        private static bool IsValidRecommend(Recommend rec)
+        {
+            return rec.Odds > 0 && !string.IsNullOrEmpty(rec.Host) && !string.IsNullOrEmpty(rec.Guest) && !string.IsNullOrEmpty(rec.OddStake);
         }
 
         public static void ParseTopPerson(string html, Action<List<Person>> finished)

@@ -1,8 +1,6 @@
 ﻿using BetStrategy.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Data;
 using WSQ.CSharp.Extensions;
 
 namespace BetStrategy.Utils
@@ -37,9 +35,15 @@ namespace BetStrategy.Utils
         {
             return "update Recommends set Result='" + rec.Result + "',PreferResult=" + (int)rec.PreferResult + " where Current='" + rec.Current + "' and Host='" + rec.Host + "' and Guest='" + rec.Guest + "' and Person='" + rec.Person + "' and Time2='" + TimeFromString(rec.Time2) + "';";
         }
+
         public static string SelectCommand(Recommend rec)
         {
             return "select * from Recommends where Current='" + rec.Current + "' and Host='" + rec.Host + "' and Guest='" + rec.Guest + "' and Person='" + rec.Person + "' and Time2='" + TimeFromString(rec.Time2) + "';";
+        }
+
+        public static string SelectByPerson(string person)
+        {
+            return "select * from Recommends where Person='" + person + "';";
         }
 
         private static DateTime TimeFromString(string time)
@@ -59,6 +63,41 @@ namespace BetStrategy.Utils
             }
             t1 = new DateTime(year, int.Parse(mdhm[0]), int.Parse(mdhm[1]), int.Parse(mdhm[2]), int.Parse(mdhm[3]), 0);
             return t1;
+        }
+
+        public static Recommend RecommendFromReader(IDataRecord reader)
+        {
+            Recommend rec = new Recommend();
+            // 处理string类型
+            var ps = typeof(Recommend).Properties<string>();
+            try
+            {
+                foreach (var p in ps)
+                {
+                    if (p.StartsWith("Time"))
+                    {
+                        continue;
+                    }
+                    rec.SetProperty(p, (reader[p] as string).Clone());
+                }
+            }
+            catch (System.Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("ex:" + ex.StackTrace);
+            }
+
+            // 处理时间类型
+            DateTime t1 = (DateTime)reader["Time1"];
+            DateTime t2 = (DateTime)reader["Time2"];
+
+            rec.Time1 = t1.ToString("MM-dd HH:mm");
+            rec.Time2 = t2.ToString("MM-dd HH:mm");
+
+            rec.PreferResult = (PreferResult)reader["PreferResult"];
+
+            rec.Odds = (float)((double)reader["Odds"]);
+
+            return rec;
         }
     }
 }
