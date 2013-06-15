@@ -60,10 +60,10 @@
                     <ColumnDefinition Width="150" />
                 </Grid.ColumnDefinitions>
                 <Button Command="{Binding CommandRefresh}" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Content="刷新"/>
-                <CheckBox Content="自定义关注列表" IsChecked="{Binding Path=CheckBoxPreferMostIsChecked,Mode=TwoWay}"  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <CheckBox Content="显示完场比赛" IsChecked="{Binding Path=CheckBoxViewFinishedIsChecked,Mode=TwoWay}"  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <CheckBox Content="启用邮件通知" IsChecked="{Binding Path=EnableEmailNotify,Mode=TwoWay}"  Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <ComboBox Grid.Column="4"
+                <CheckBox Visibility="{Binding Path=EnableControl}" Content="自定义关注列表" IsChecked="{Binding Path=CheckBoxPreferMostIsChecked,Mode=TwoWay}"  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <CheckBox Visibility="{Binding Path=EnableControl}" Content="显示完场比赛" IsChecked="{Binding Path=CheckBoxViewFinishedIsChecked,Mode=TwoWay}"  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <CheckBox Visibility="{Binding Path=EnableControl}" Content="启用邮件通知" IsChecked="{Binding Path=EnableEmailNotify,Mode=TwoWay}"  Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <ComboBox Visibility="{Binding Path=EnableControl}" Grid.Column="4"
                           HorizontalAlignment="Left"
                           VerticalAlignment="Top"
                           Width="120"

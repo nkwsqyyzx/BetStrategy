@@ -76,6 +76,13 @@ namespace BetStrategy.ViewModels
                 NotifyPropertyChange(() => EnableEmailNotify);
             }
         }
+
+        private Visibility _enable = Visibility.Visible;
+        public Visibility EnableControl
+        {
+            get { return _enable; }
+            set { _enable = value; NotifyPropertyChange(() => EnableControl); }
+        }
         #endregion
 
         #region BINDABLE COLLECTIONS
@@ -130,10 +137,11 @@ namespace BetStrategy.ViewModels
         }
         #endregion
 
+        private Predicate<YieldRoiRecommend> Predicate = null;
         private void ReloadList()
         {
             _recommends.Clear();
-            AllRecommends.Enumerate((i) => IsValidRecommend(i), (j) => _recommends.Add(j));
+            AllRecommends.Enumerate(Predicate == null ? (i) => IsValidRecommend(i) : Predicate, (j) => _recommends.Add(j));
         }
 
         private bool IsValidRecommend(YieldRoiRecommend rec)
@@ -194,7 +202,7 @@ namespace BetStrategy.ViewModels
                     }
                 })).RunOnUI();
             });
-         }
+        }
 
         private Action lastRefreshCommand = null;
         private void RefreshRecommends()
@@ -243,6 +251,12 @@ namespace BetStrategy.ViewModels
             lastRefreshCommand = new Action(() => RefreshUnfinishedRecommends());
         }
 
+        public void LoadBest()
+        {
+            RefreshTheBest();
+            lastRefreshCommand = new Action(() => RefreshTheBest());
+        }
+
         public void LoadUnknown()
         {
             RefreshUnknownRecommends();
@@ -273,6 +287,13 @@ namespace BetStrategy.ViewModels
 
         private void RefreshUnknownRecommends()
         {
+            AllRecommends.Clear();
+            LocalManager.Instance.GetAllWaitingRecommends(OnRecommend, RefreshFinish);
+        }
+
+        private void RefreshTheBest()
+        {
+            Predicate = (i) => i.Person.Total >= 120 && i.Person.TotalYield >= 0.07;
             AllRecommends.Clear();
             LocalManager.Instance.GetAllWaitingRecommends(OnRecommend, RefreshFinish);
         }

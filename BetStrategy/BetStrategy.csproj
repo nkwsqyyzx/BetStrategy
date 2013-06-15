@@ -115,6 +115,7 @@
     <Compile Include="ViewModels\PreferResultToStringConverter.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NotifyModel.cs" />
+    <Compile Include="ViewModels\ViewBestRecommendsViewModel.cs" />
     <Compile Include="ViewModels\YieldRoiPerson.cs" />
     <Compile Include="ViewModels\TestData.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />

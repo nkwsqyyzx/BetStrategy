@@ -12,6 +12,7 @@ namespace BetStrategy.ViewModels
     {
         private Window WinGameShow;
         private Window WinGameTop;
+        private Window WinViewBest;
         private Window WinGameLatest200;
         private Window WinGameUnknown;
 
@@ -63,6 +64,31 @@ namespace BetStrategy.ViewModels
             }
             WinGameTop.Activate();
             WinGameTop.Show();
+        }
+
+        private ICommand _cmdViewBest = null;
+        public ICommand CommandViewBest
+        {
+            get
+            {
+                return _cmdViewBest.RelayCommand(() => ViewBest());
+            }
+        }
+
+        private void ViewBest()
+        {
+            if (WinViewBest == null)
+            {
+                var vm = new PersonRecommendsViewModel();
+                vm.EnableControl = Visibility.Collapsed;
+                WinViewBest = new PersonRecommendsWindow();
+                WinViewBest.DataContext = vm;
+                WinViewBest.Title = "最牛逼人的推荐";
+                WinViewBest.Loaded += (o, e) => vm.LoadBest();
+                WinViewBest.Closed += (o, e) => WinViewBest = null;
+            }
+            WinViewBest.Activate();
+            WinViewBest.Show();
         }
 
         private ICommand _cmdLatest200 = null;

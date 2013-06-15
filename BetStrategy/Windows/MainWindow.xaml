@@ -6,7 +6,7 @@
                 xmlns:resx="clr-namespace:BetStrategy.Properties"
                 Title="AppName"
                 WindowStartupLocation="CenterScreen"
-                Height="300"
+                Height="340"
                 Width="300">
 
     <Window.DataContext>
@@ -44,7 +44,8 @@
                       Width="94"/>
         </StackPanel>
         <Button Style="{StaticResource ButtonStyle}" Grid.Row="1" Command="{Binding CommandGameTop}" Content="牛人排行榜"/>
-        <Button Style="{StaticResource ButtonStyle}" Grid.Row="2" Command="{Binding CommandLatest200}" Content="最新200场推荐"/>
-        <Button Style="{StaticResource ButtonStyle}" Grid.Row="3" Command="{Binding CommandUnkownRecommends}" Content="未知结果推荐"/>
+        <Button Style="{StaticResource ButtonStyle}" Grid.Row="2" Command="{Binding CommandViewBest}" Content="牛人最新推荐"/>
+        <Button Style="{StaticResource ButtonStyle}" Grid.Row="3" Command="{Binding CommandLatest200}" Content="最新200场推荐"/>
+        <Button Style="{StaticResource ButtonStyle}" Grid.Row="4" Command="{Binding CommandUnkownRecommends}" Content="未知结果推荐"/>
     </Grid>
 </src:BaseWindow>
