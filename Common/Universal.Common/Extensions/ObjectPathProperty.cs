@@ -82,6 +82,26 @@ namespace WSQ.CSharp.Extensions
             }
         }
 
+	/// <summary>
+	/// all properties.
+	/// </summary>
+	/// <param name="type"></param>
+	/// <returns></returns>
+        public static IEnumerable<string> Properties(this Type type)
+        {
+            var ps = type.GetProperties();
+            foreach (var p in ps)
+            {
+                yield return p.Name;
+            }
+        }
+
+	/// <summary>
+	/// set property name.
+	/// </summary>
+	/// <param name="o"></param>
+	/// <param name="PropertyPath"></param>
+	/// <param name="value"></param>
         public static void SetProperty(this object o, string PropertyPath,object value)
         {
             if (string.IsNullOrEmpty(PropertyPath))

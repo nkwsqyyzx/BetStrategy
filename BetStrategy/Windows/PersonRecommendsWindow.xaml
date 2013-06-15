@@ -6,7 +6,6 @@
                 xmlns:resx="clr-namespace:BetStrategy.Properties"
                 xmlns:converters="clr-namespace:BetStrategy.ViewModels"
                 xmlns:System="clr-namespace:System;assembly=mscorlib"
-                Title="牛人最新推荐"
                 WindowStartupLocation="CenterScreen"
                 Height="600" Width="1200">
 

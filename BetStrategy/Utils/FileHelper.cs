@@ -132,5 +132,17 @@ namespace BetStrategy.Utils
                 finish();
             }
         }
+
+
+        public void GetUnFinishedRecommends(Action<Recommend> onRecommend, Action finish = null)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void GetPersons(Action<Person> onPerson, Action finish = null)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,6 +6,7 @@
         xmlns:VM="clr-namespace:BetStrategy.Models"
 	xmlns:System="clr-namespace:System;assembly=mscorlib"
         Title="编辑推荐结果"
+	Topmost="True"
         Height="300"
         Width="800">
 
@@ -17,7 +18,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Content="保存修改" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Click="Button_Click"/>
+        <Button Grid.Row="0" Content="保存并关闭" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Click="Button_Click"/>
         <DockPanel Grid.Row="1">
             <ListView ItemsSource="{Binding Recommends}"
 		     ScrollViewer.VerticalScrollBarVisibility="Visible"

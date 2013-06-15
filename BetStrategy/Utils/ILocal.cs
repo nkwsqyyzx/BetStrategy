@@ -25,6 +25,13 @@ namespace BetStrategy.Utils
         /// <param name="finish"></param>
         void GetAllPerson(Action<string> onPerson, Action finish = null);
 
+	/// <summary>
+	/// 获取所有推荐人的基本信息
+	/// </summary>
+	/// <param name="onPerson"></param>
+	/// <param name="finish"></param>
+        void GetPersons(Action<Person> onPerson, Action finish = null);
+
         /// <summary>
         /// 获取所有推荐
         /// </summary>
@@ -34,7 +41,7 @@ namespace BetStrategy.Utils
         void GetRecommends(string name, Action<Recommend> onRecommend, Action finish = null);
 
         /// <summary>
-        /// 获取等待中的推荐
+        /// 获取等待中的推荐(结果未知)
         /// </summary>
         /// <param name="onRecommend"></param>
         /// <param name="finish"></param>
@@ -47,5 +54,12 @@ namespace BetStrategy.Utils
         /// <param name="onRecommend"></param>
         /// <param name="finish"></param>
         void GetLatestRecommends(int count, Action<Recommend> onRecommend, Action finish = null);
+
+	/// <summary>
+	/// 获取未完场的推荐
+	/// </summary>
+	/// <param name="onRecommend"></param>
+	/// <param name="finish"></param>
+        void GetUnFinishedRecommends(Action<Recommend> onRecommend, Action finish = null);
     }
 }

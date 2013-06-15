@@ -32,7 +32,7 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" VerticalAlignment="Center"  Orientation="Horizontal">
-            <Button Style="{StaticResource ButtonStyle}"  Command="{Binding CommandGameShow}" Content="最新200条推荐"/>
+            <Button Style="{StaticResource ButtonStyle}"  Command="{Binding CommandGameShow}" Content="未完场推荐"/>
             <CheckBox HorizontalContentAlignment="Center"
                       VerticalAlignment="Center"
                       Name="CheckBox"
@@ -44,7 +44,7 @@
                       Width="94"/>
         </StackPanel>
         <Button Style="{StaticResource ButtonStyle}" Grid.Row="1" Command="{Binding CommandGameTop}" Content="牛人排行榜"/>
-        <Button Style="{StaticResource ButtonStyle}" Grid.Row="2" Command="{Binding CommandBestPrefer}" Content="牛逼最新推荐"/>
+        <Button Style="{StaticResource ButtonStyle}" Grid.Row="2" Command="{Binding CommandLatest200}" Content="最新200场推荐"/>
         <Button Style="{StaticResource ButtonStyle}" Grid.Row="3" Command="{Binding CommandUnkownRecommends}" Content="未知结果推荐"/>
     </Grid>
 </src:BaseWindow>

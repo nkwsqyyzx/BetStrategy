@@ -51,23 +51,6 @@ namespace BetStrategy.ViewModels
             }
         }
 
-        private Person _person = null;
-        public Person SelectedProfitPerson
-        {
-            get { return _person; }
-            set
-            {
-                var p = value as Person;
-                if (p != null && p.Profit > 0)
-                {
-                    Constants.Instance.COUNT_MIN_PROFIT = p.Profit;
-                }
-                _person = value;
-
-                ReloadList();
-            }
-        }
-
         private Single _selectedProfit = -10;
         public Single SelectedProfit
         {
@@ -102,15 +85,6 @@ namespace BetStrategy.ViewModels
             get
             {
                 return _recommends;
-            }
-        }
-
-        private ObservableCollection<Person> _topWinsList = new ObservableCollection<Person>();
-        public ObservableCollection<Person> TopPersonWinsList
-        {
-            get
-            {
-                return _topWinsList;
             }
         }
         #endregion
@@ -165,84 +139,14 @@ namespace BetStrategy.ViewModels
         private bool IsValidRecommend(YieldRoiRecommend rec)
         {
             bool result = !_isViewFinished ? rec.Recommend.PreferResult == PreferResult.Waiting : true;
-            //if (SelectedProfitPerson != null || _isPreferMostChecked)
-            {
-                result = result && IsTopPerson(rec.Recommend.Person);
-            }
+            result = result && IsTopPerson(rec.Recommend.Person);
             return result;
         }
-
-        private List<Person> TopPerson = new List<Person>();
-
-        //private void AddRecommends(List<Recommend> rs)
-        //{
-        //    NotifyBalloonTip(rs);
-        //    AllRecommends.Clear();
-        //    AllRecommends.AddRange(rs);
-        //    ReloadList();
-        //    App.Icon.Text = DateTime.Now.ToString("HH:mm:ss") + ":高手推荐了" + AllRecommends.Count((i) => IsTopPerson(i.Person)) + "条,一共有" + _recommends.Count + "条推荐,点击查看";
-        //    if (EnableEmailNotify)
-        //    {
-        //        NotifyViaEmail();
-        //    }
-        //}
-
-        //private void NotifyBalloonTip(List<Recommend> rs)
-        //{
-        //    var newRecommends = (from item in rs where IsTopNewRecommend(item) select item).Except(from item in AllRecommends select item);
-        //    string recs = RecommendsToString(newRecommends);
-        //    if (!string.IsNullOrEmpty(recs))
-        //    {
-        //        App.Icon.ShowBalloonTip(5 * 60 * 1000, "高手有" + newRecommends.Count() + "条新推荐", recs, System.Windows.Forms.ToolTipIcon.Info);
-        //    }
-        //}
 
         private bool IsTopNewRecommend(Recommend item)
         {
             return IsTopPerson(item.Person) && item.PreferResult == PreferResult.Waiting;
         }
-
-        //private string RecommendsToString(IEnumerable<Recommend> list)
-        //{
-        //    StringBuilder sb = new StringBuilder();
-        //    foreach (var item in list)
-        //    {
-        //        sb.AppendLine(RecommendToString(item));
-        //    }
-        //    return sb.ToString();
-        //}
-
-        //private string RecommendToString(Recommend item)
-        //{
-        //    string body = item.Person + " 推荐了: "
-        //            + item.Host + " "
-        //            + item.OddStake + " "
-        //            + item.Odds.ToString() + " "
-        //            + item.Guest + " 推荐:" + item.Prefer;
-        //    return body;
-        //}
-
-        //private void NotifyViaEmail()
-        //{
-        //    string subject = "高手们推荐啦:" + DateTime.Now.ToLongDateString();
-        //    string recs = RecommendsToString(AllRecommends.Where((i) => IsTopPerson(i.Person)));
-        //    if (!string.IsNullOrEmpty(recs))
-        //    {
-        //        try
-        //        {
-        //            EmailHelper.SendEmailViaGmail(EmailConfig.Instance.Username, EmailConfig.Instance.ToAddress, EmailConfig.Instance.Username, EmailConfig.Instance.Password, subject, recs);
-        //        }
-        //        catch (System.Exception ex)
-        //        {
-        //            App.Icon.Text = "你的邮件配置好像是出问题了.要不就是你的网络发不出去邮件.尝试修改配置后重启吧.\n" + ex.Message;
-        //            EnableEmailNotify = false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        App.Icon.Text = "你选择的高手们还没有推荐哦.是不是你要求太苛刻了?";
-        //    }
-        //}
 
         private bool IsTopPerson(string name)
         {
@@ -253,7 +157,7 @@ namespace BetStrategy.ViewModels
             else
             {
                 var personInTopPerson = TopPerson.FindLast((i) => i.Name == name);
-                return personInTopPerson != null && personInTopPerson.Profit >= Constants.Instance.COUNT_MIN_PROFIT;
+                return personInTopPerson != null && personInTopPerson.Profit >= SelectedProfit;
             }
         }
 
@@ -267,7 +171,8 @@ namespace BetStrategy.ViewModels
             GetTopPerson();
         }
 
-        private static DateTime LastTimeUpdatePerson;
+        private DateTime LastTimeUpdatePerson;
+        private List<Person> TopPerson = new List<Person>();
         private void GetTopPerson()
         {
             TopPersonProvider.Instance.GetTopPerson((last, persons) =>
@@ -278,24 +183,9 @@ namespace BetStrategy.ViewModels
                 (new Action(() =>
                 {
                     TopPerson.Clear();
-                    List<Person> bestPerson = new List<Person>();
                     foreach (var p in persons)
                     {
                         TopPerson.Add(p);
-                        if (!bestPerson.Any((t) => t.Profit == p.Profit) && p.Profit > 0)
-                        {
-                            bestPerson.Add(p);
-                        }
-                    }
-
-                    bestPerson.Sort(new Comparison<Person>((Person p, Person q) =>
-                    {
-                        return q.Profit.CompareTo(p.Profit);
-                    }));
-
-                    foreach (var item in bestPerson)
-                    {
-                        _topWinsList.Add(item);
                     }
 
                     if (TopPerson.Count > 0)
@@ -304,7 +194,7 @@ namespace BetStrategy.ViewModels
                     }
                 })).RunOnUI();
             });
-        }
+         }
 
         private Action lastRefreshCommand = null;
         private void RefreshRecommends()
@@ -353,6 +243,12 @@ namespace BetStrategy.ViewModels
             lastRefreshCommand = new Action(() => RefreshUnfinishedRecommends());
         }
 
+        public void LoadUnknown()
+        {
+            RefreshUnknownRecommends();
+            lastRefreshCommand = new Action(() => RefreshUnknownRecommends());
+        }
+
         private void OnRecommend(Recommend rec)
         {
             AllRecommends.Add(new YieldRoiRecommend(rec));
@@ -370,6 +266,12 @@ namespace BetStrategy.ViewModels
         }
 
         private void RefreshUnfinishedRecommends()
+        {
+            AllRecommends.Clear();
+            LocalManager.Instance.GetUnFinishedRecommends(OnRecommend, RefreshFinish);
+        }
+
+        private void RefreshUnknownRecommends()
         {
             AllRecommends.Clear();
             LocalManager.Instance.GetAllWaitingRecommends(OnRecommend, RefreshFinish);

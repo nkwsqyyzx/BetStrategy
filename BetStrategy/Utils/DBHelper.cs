@@ -83,7 +83,7 @@ namespace BetStrategy.Utils
                     {
                         continue;
                     }
-                    rec.SetProperty(p, (reader[p] as string).Clone());
+                    rec.SetProperty(p, reader[p] as string);
                 }
             }
             catch (System.Exception ex)
@@ -103,6 +103,22 @@ namespace BetStrategy.Utils
             rec.Odds = (float)((double)reader["Odds"]);
 
             return rec;
+        }
+
+        public static Person PersonFromReader(IDataRecord reader)
+        {
+            Person p = new Person();
+
+            p.Draw = int.Parse(reader["Draw"].ToString());
+            p.Lose = int.Parse(reader["Lose"].ToString());
+            p.LoseHalf = int.Parse(reader["LoseHalf"].ToString());
+            p.Name = reader["Name"].ToString();
+            p.Profit = float.Parse(reader["Profit"].ToString());
+            p.Total = int.Parse(reader["Total"].ToString());
+            p.Win = int.Parse(reader["Win"].ToString());
+            p.WinHalf = int.Parse(reader["WinHalf"].ToString());
+
+            return p;
         }
     }
 }
