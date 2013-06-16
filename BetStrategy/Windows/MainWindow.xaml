@@ -4,7 +4,7 @@
                 xmlns:src="clr-namespace:BetStrategy.Windows"
                 xmlns:vm="clr-namespace:BetStrategy.ViewModels"
                 xmlns:resx="clr-namespace:BetStrategy.Properties"
-                Title="AppName"
+                Title="论坛推荐查看器"
                 WindowStartupLocation="CenterScreen"
                 Height="340"
                 Width="300">

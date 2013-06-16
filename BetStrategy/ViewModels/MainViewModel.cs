@@ -168,7 +168,7 @@ namespace BetStrategy.ViewModels
             _timer.Interval = new TimeSpan(0, Constants.Instance.INT_MINUTES_UPDATE_RECOMMEND, 30);
             _timer.Tick += timer_Tick;
             _timer.Start();
-            timer_Tick(null, null);
+            BetStrategy.Utils.Downloader.DownloadRecommends(2, null, null);
         }
 
         private void timer_Tick(object sender, EventArgs e)
