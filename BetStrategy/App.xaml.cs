@@ -16,7 +16,7 @@ namespace BetStrategy
         public App()
             : base()
         {
-            ResolveSQLite3264.HandleUnresovledAssemblies();
+            ResolveSQLite3264.CopySQLiteDll();
         }
 
         protected override void OnStartup(StartupEventArgs e)
