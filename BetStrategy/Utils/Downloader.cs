@@ -55,6 +55,7 @@ namespace BetStrategy.Utils
 
         public static void DownloadRecommends(int maxPage, Action<List<Recommend>> onRecommends, Action finish)
         {
+            return;
             int current = 1;
 
             Action<bool, string, string> callback = null;

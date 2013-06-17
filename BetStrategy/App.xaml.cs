@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using NotifyIcon = System.Windows.Forms.NotifyIcon;
+using BetStrategy.Utils;
 
 namespace BetStrategy
 {
@@ -11,6 +12,12 @@ namespace BetStrategy
     public partial class App : System.Windows.Application
     {
         public static NotifyIcon Icon;
+
+        public App()
+            : base()
+        {
+            ResolveSQLite3264.HandleUnresovledAssemblies();
+        }
 
         protected override void OnStartup(StartupEventArgs e)
         {
