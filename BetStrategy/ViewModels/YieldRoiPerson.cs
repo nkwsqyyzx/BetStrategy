@@ -96,6 +96,7 @@ namespace BetStrategy.ViewModels
             var list = (from item in _recommends where item.Current == _recommends[0].Current select item);
             CurrentYield = YieldRoiHelper.CalculateYield(list);
             CurrentROI = YieldRoiHelper.CalculateRoi(list);
+            Current = list.Count();
         }
 
 
@@ -143,6 +144,23 @@ namespace BetStrategy.ViewModels
             {
                 _currentROI = value;
                 NotifyPropertyChange(() => CurrentROI);
+            }
+        }
+
+        private int _current;
+	/// <summary>
+	/// 当前期推荐
+	/// </summary>
+        public int Current 
+        {
+            get 
+            {
+                return _current;
+            }
+            set 
+            {
+                _current = value;
+                NotifyPropertyChange(() => Current);
             }
         }
 

@@ -12,12 +12,6 @@ namespace BetStrategy.Windows
         public RecommendModifyWindow()
         {
             InitializeComponent();
-	    this.Closing += RecommendModifyWindow_Closing;
-        }
-
-        private void RecommendModifyWindow_Closing(object sender, CancelEventArgs e)
-        {
-            ViewModel.Save();
         }
 
         private RecommendModifyViewModel ViewModel
@@ -31,6 +25,7 @@ namespace BetStrategy.Windows
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.Save();
+            this.Close();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using BetStrategy.Common.Configurations;
-using BetStrategy.Utils;
 using BetStrategy.Windows;
 using System;
 using System.Windows;
@@ -13,10 +12,11 @@ namespace BetStrategy.ViewModels
     {
         private Window WinGameShow;
         private Window WinGameTop;
-        private Window WinGameBest;
+        private Window WinViewBest;
+        private Window WinGameLatest200;
         private Window WinGameUnknown;
 
-        private ICommand _cmdGameShow;
+        private ICommand _cmdGameShow = null;
         public ICommand CommandGameShow
         {
             get
@@ -35,14 +35,15 @@ namespace BetStrategy.ViewModels
                 var vm = new PersonRecommendsViewModel();
                 WinGameShow = new PersonRecommendsWindow();
                 WinGameShow.DataContext = vm;
-                WinGameShow.Loaded += (o, e) => vm.Load(200);
+                WinGameShow.Title = "未完场推荐";
+                WinGameShow.Loaded += (o, e) => vm.LoadUnFinished();
                 WinGameShow.Closed += (o, e) => WinGameShow = null;
             }
             WinGameShow.Activate();
             WinGameShow.Show();
         }
 
-        private ICommand _cmdGameTop;
+        private ICommand _cmdGameTop = null;
         public ICommand CommandGameTop
         {
             get
@@ -65,30 +66,56 @@ namespace BetStrategy.ViewModels
             WinGameTop.Show();
         }
 
-        private ICommand _cmdBest;
-        public ICommand CommandBestPrefer
+        private ICommand _cmdViewBest = null;
+        public ICommand CommandViewBest
         {
             get
             {
-                return _cmdBest.RelayCommand(() => BestRecommends());
+                return _cmdViewBest.RelayCommand(() => ViewBest());
             }
         }
 
-        /// <summary>
-        /// 牛人的最新推荐
-        /// </summary>
-        private void BestRecommends()
+        private void ViewBest()
         {
-            if (WinGameBest == null)
+            if (WinViewBest == null)
             {
-                WinGameBest = new RecommendsWindow();
-                WinGameBest.Closed += (o, e) => WinGameBest = null;
+                var vm = new PersonRecommendsViewModel();
+                vm.EnableControl = Visibility.Collapsed;
+                WinViewBest = new PersonRecommendsWindow();
+                WinViewBest.DataContext = vm;
+                WinViewBest.Title = "最牛逼人的推荐";
+                WinViewBest.Loaded += (o, e) => vm.LoadBest();
+                WinViewBest.Closed += (o, e) => WinViewBest = null;
             }
-            WinGameBest.Activate();
-            WinGameBest.Show();
+            WinViewBest.Activate();
+            WinViewBest.Show();
         }
 
-        private ICommand _cmdUnkown;
+        private ICommand _cmdLatest200 = null;
+        public ICommand CommandLatest200
+        {
+            get
+            {
+                return _cmdLatest200.RelayCommand(() => GameLatest200());
+            }
+        }
+
+        private void GameLatest200()
+        {
+            if (WinGameLatest200 == null)
+            {
+                var vm = new PersonRecommendsViewModel();
+                WinGameLatest200 = new PersonRecommendsWindow();
+                WinGameLatest200.DataContext = vm;
+                WinGameLatest200.Title = "最近200场推荐";
+                WinGameLatest200.Loaded += (o, e) => vm.Load(200);
+                WinGameLatest200.Closed += (o, e) => WinGameLatest200 = null;
+            }
+            WinGameLatest200.Activate();
+            WinGameLatest200.Show();
+        }
+
+        private ICommand _cmdUnkown = null;
         public ICommand CommandUnkownRecommends
         {
             get
@@ -107,7 +134,8 @@ namespace BetStrategy.ViewModels
                 var vm = new PersonRecommendsViewModel();
                 WinGameUnknown = new PersonRecommendsWindow();
                 WinGameUnknown.DataContext = vm;
-                WinGameUnknown.Loaded += (o, e) => vm.LoadUnFinished();
+                WinGameUnknown.Title = "未知推荐结果的推荐";
+                WinGameUnknown.Loaded += (o, e) => vm.LoadUnknown();
                 WinGameUnknown.Closed += (o, e) => WinGameUnknown = null;
             }
             WinGameUnknown.Activate();
@@ -140,13 +168,12 @@ namespace BetStrategy.ViewModels
             _timer.Interval = new TimeSpan(0, Constants.Instance.INT_MINUTES_UPDATE_RECOMMEND, 30);
             _timer.Tick += timer_Tick;
             _timer.Start();
+            BetStrategy.Utils.Downloader.DownloadRecommends(2, null, null);
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-#if TEST
-            Downloader.DownloadRecommends(1, null, null);
-#endif
+            BetStrategy.Utils.Downloader.DownloadRecommends(1, null, null);
         }
 
         private void Start(bool flag)
@@ -158,7 +185,6 @@ namespace BetStrategy.ViewModels
             else
             {
                 _timer.Start();
-                timer_Tick(null, null);
             }
         }
     }

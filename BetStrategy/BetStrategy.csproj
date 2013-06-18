@@ -41,7 +41,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -60,6 +60,17 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\SysTray.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight.WPF4">
@@ -107,6 +118,7 @@
     <Compile Include="Utils\ILocal.cs" />
     <Compile Include="Utils\LocalManager.cs" />
     <Compile Include="Utils\PathHelper.cs" />
+    <Compile Include="Utils\ResolveSQLite3264.cs" />
     <Compile Include="Utils\ViewHelper.cs" />
     <Compile Include="Utils\YieldRoiHelper.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -115,6 +127,7 @@
     <Compile Include="ViewModels\PreferResultToStringConverter.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NotifyModel.cs" />
+    <Compile Include="ViewModels\ViewBestRecommendsViewModel.cs" />
     <Compile Include="ViewModels\YieldRoiPerson.cs" />
     <Compile Include="ViewModels\TestData.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
@@ -184,7 +197,9 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="BetStrategy_TemporaryKey.pfx" />
-    <None Include="database" />
+    <Content Include="database">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

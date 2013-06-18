@@ -14,7 +14,7 @@ namespace BetStrategy.ViewModels
     public class YieldRoiViewModel : BaseViewModel
     {
         #region BINDABLE_PROPERTIES
-        private List<YieldRoiPerson> Persons = new List<YieldRoiPerson>();
+        private List<YieldRoiPerson> AllPersons = new List<YieldRoiPerson>();
         private ObservableCollection<YieldRoiPerson> _topYieldRoiPerson = new ObservableCollection<YieldRoiPerson>();
         public ObservableCollection<YieldRoiPerson> TopYieldRoiPerson
         {
@@ -34,7 +34,7 @@ namespace BetStrategy.ViewModels
             set
             {
                 _min = value;
-                Filter(_min);
+                Filter(_min, Current);
             }
         }
 
@@ -48,16 +48,16 @@ namespace BetStrategy.ViewModels
             set
             {
                 _current = value;
-                // Filter(_current);
+                Filter(Min, _current);
             }
         }
 
-        private void Filter(int min)
+        private void Filter(int min, int current)
         {
             TopYieldRoiPerson.Clear();
-            foreach (var p in Persons)
+            foreach (var p in AllPersons)
             {
-                if (p.Total >= min)
+                if (p.Total >= min && p.Current >= current)
                 {
                     TopYieldRoiPerson.Add(p);
                 }
@@ -84,7 +84,7 @@ namespace BetStrategy.ViewModels
 
         private void RefreshList()
         {
-            foreach (var p in Persons)
+            foreach (var p in AllPersons)
             {
                 p.Refresh();
             }
@@ -103,11 +103,11 @@ namespace BetStrategy.ViewModels
             {
                 Action<string> action = (dir) =>
                 {
-                    Persons.Add(YieldRoiProvider.Instance.GetPerson(dir));
+                    AllPersons.Add(YieldRoiProvider.Instance.GetPerson(dir));
                 };
                 Action finish = (() =>
                 {
-                    new Action(() => Filter(Min)).RunOnUI();
+                    new Action(() => Filter(Min, Current)).RunOnUI();
                 });
                 LocalManager.Instance.GetAllPerson((dir) => action(dir), finish);
             };

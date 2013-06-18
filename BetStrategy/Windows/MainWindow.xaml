@@ -4,9 +4,9 @@
                 xmlns:src="clr-namespace:BetStrategy.Windows"
                 xmlns:vm="clr-namespace:BetStrategy.ViewModels"
                 xmlns:resx="clr-namespace:BetStrategy.Properties"
-                Title="AppName"
+                Title="论坛推荐查看器"
                 WindowStartupLocation="CenterScreen"
-                Height="300"
+                Height="340"
                 Width="300">
 
     <Window.DataContext>
@@ -32,7 +32,7 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" VerticalAlignment="Center"  Orientation="Horizontal">
-            <Button Style="{StaticResource ButtonStyle}"  Command="{Binding CommandGameShow}" Content="最新200条推荐"/>
+            <Button Style="{StaticResource ButtonStyle}"  Command="{Binding CommandGameShow}" Content="未完场推荐"/>
             <CheckBox HorizontalContentAlignment="Center"
                       VerticalAlignment="Center"
                       Name="CheckBox"
@@ -44,7 +44,8 @@
                       Width="94"/>
         </StackPanel>
         <Button Style="{StaticResource ButtonStyle}" Grid.Row="1" Command="{Binding CommandGameTop}" Content="牛人排行榜"/>
-        <Button Style="{StaticResource ButtonStyle}" Grid.Row="2" Command="{Binding CommandBestPrefer}" Content="牛逼最新推荐"/>
-        <Button Style="{StaticResource ButtonStyle}" Grid.Row="3" Command="{Binding CommandUnkownRecommends}" Content="未知结果推荐"/>
+        <Button Style="{StaticResource ButtonStyle}" Grid.Row="2" Command="{Binding CommandViewBest}" Content="牛人最新推荐"/>
+        <Button Style="{StaticResource ButtonStyle}" Grid.Row="3" Command="{Binding CommandLatest200}" Content="最新200场推荐"/>
+        <Button Style="{StaticResource ButtonStyle}" Grid.Row="4" Command="{Binding CommandUnkownRecommends}" Content="未知结果推荐"/>
     </Grid>
 </src:BaseWindow>

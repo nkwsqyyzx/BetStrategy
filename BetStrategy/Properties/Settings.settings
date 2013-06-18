@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="dbConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data source=G:\working\BetStrategy\BetStrategy\database</Value>
+      <Value Profile="(Default)">data source=.\database</Value>
     </Setting>
   </Settings>
 </SettingsFile>

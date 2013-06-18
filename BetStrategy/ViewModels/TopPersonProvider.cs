@@ -62,7 +62,7 @@ namespace BetStrategy.ViewModels
             }
         }
 
-        public TopPersonProvider()
+        private TopPersonProvider()
         {
             var saved = serializer.Deserialize<DataInternal>(FILE);
             if (saved == null)
@@ -114,27 +114,16 @@ namespace BetStrategy.ViewModels
             serializer.Serialize(FILE, data);
         }
 
+        private List<Person> person = new List<Person>();
         private void UpdateTopPerson(Action<List<Person>> finished)
         {
-            NetworkUtils.DownloadString(Constants.Instance.URL_BASE + Constants.Instance.URL_GAME_TOP, (ok, html, error) =>
-            {
-                if (ok)
-                {
-                    HtmlParser.ParseTopPerson(html, (rs) =>
-                    {
-                        Save(rs);
-                        finished(rs);
-                    });
-                }
-                else if (data != null && data.TopPersons != null && data.TopPersons.Count > 0)
-                {
-                    finished(data.TopPersons);
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine("ERROR WHEN DOWNLOADING TOP PERSON.");
-                }
-            });
+            person.Clear();
+            LocalManager.Instance.GetPersons(OnPerson, () => finished(person));
+        }
+
+        private void OnPerson(Person p)
+        {
+            person.Add(p);
         }
 
         public void GetTopPerson(Action<DateTime, List<Person>> finished)
