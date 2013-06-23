@@ -34,32 +34,12 @@ namespace BetStrategy.Utils
             }
         }
 
-        private bool RecommendExists(Recommend rec)
-        {
-            using (SQLiteCommand cmd = new SQLiteCommand(connection))
-            {
-                cmd.CommandText = DBHelper.SelectCommand(rec);
-                cmd.CommandType = CommandType.Text;
-                using (var reader = cmd.ExecuteReader())
-                {
-                    return reader.HasRows;
-                }
-            }
-        }
-
         public void SaveRecommend(Recommend rec)
         {
             using (SQLiteCommand cmd = new SQLiteCommand(connection))
             {
                 cmd.CommandType = CommandType.Text;
-                if (RecommendExists(rec))
-                {
-                    cmd.CommandText = DBHelper.UpdateCommand(rec);
-                }
-                else
-                {
-                    cmd.CommandText = DBHelper.InsertCommand(rec);
-                }
+                cmd.CommandText = DBHelper.ReplaceCommand(rec);
                 cmd.ExecuteNonQuery();
             }
         }

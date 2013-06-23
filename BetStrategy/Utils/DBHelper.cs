@@ -7,7 +7,7 @@ namespace BetStrategy.Utils
 {
     public static class DBHelper
     {
-        public static string InsertCommand(Recommend rec)
+        public static string ReplaceCommand(Recommend rec)
         {
             var pros = typeof(Recommend).GetProperties();
             string prms = "";
@@ -27,13 +27,8 @@ namespace BetStrategy.Utils
             var t1 = DateTimeToSqlTime(TimeFromString(rec.Time1));
             var t2 = DateTimeToSqlTime(TimeFromString(rec.Time2));
 
-            var sz = "insert into Recommends(" + prms + "'Time1','Time2','Odds','PreferResult') values(" + vals + "'" + t1 + "','" + t2 + "'," + rec.Odds + "," + (int)rec.PreferResult + ");";
+            var sz = "replace into Recommends(" + prms + "'Time1','Time2','Odds','PreferResult') values(" + vals + "'" + t1 + "','" + t2 + "'," + rec.Odds + "," + (int)rec.PreferResult + ");";
             return sz;
-        }
-
-        public static string UpdateCommand(Recommend rec)
-        {
-            return "update Recommends set Result='" + rec.Result + "',PreferResult=" + (int)rec.PreferResult + " where Current='" + rec.Current + "' and Host='" + rec.Host + "' and Guest='" + rec.Guest + "' and Person='" + rec.Person + "' and Time2='" + DateTimeToSqlTime(TimeFromString(rec.Time2)) + "';";
         }
 
         public static string SelectCommand(Recommend rec)

@@ -110,7 +110,7 @@ namespace CommonTest
                 Person = "sos73"
             };
 
-            string sz = DBHelper.UpdateCommand(rec);
+            string sz = DBHelper.ReplaceCommand(rec);
         }
     }
 }

@@ -46,7 +46,8 @@ namespace BetStrategy.Utils
         /// <returns></returns>
         public static string PersonYield(string name)
         {
-            return Path.Combine(PersonCacheDir(name), "YieldRoi.txt");
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), CACHE_DIR, Escape(name));
+            return Path.Combine(path, "YieldRoi.txt");
         }
 
         /// <summary>

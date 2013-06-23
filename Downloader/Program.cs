@@ -46,7 +46,7 @@ namespace RecommendsDownloader
                 writer.WriteLine("-- this is downloaded at:" + DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss"));
                 foreach (var r in recommends)
                 {
-                    writer.WriteLine(DBHelper.InsertCommand(r));
+                    writer.WriteLine(DBHelper.ReplaceCommand(r));
                 }
             }
         }

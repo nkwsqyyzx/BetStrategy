@@ -168,7 +168,10 @@ namespace BetStrategy.ViewModels
             _timer.Interval = new TimeSpan(0, Constants.Instance.INT_MINUTES_UPDATE_RECOMMEND, 30);
             _timer.Tick += timer_Tick;
             _timer.Start();
-            BetStrategy.Utils.Downloader.DownloadRecommends(2, null, null);
+	    // 每天第一次运行时下载
+            int pages = BetStrategy.Properties.Settings.Default.pagesToDownload;
+            pages = pages <= 0 ? 2 : pages;
+            BetStrategy.Utils.Downloader.DownloadRecommends(pages, null, null);
         }
 
         private void timer_Tick(object sender, EventArgs e)

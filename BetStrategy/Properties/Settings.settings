@@ -5,5 +5,8 @@
     <Setting Name="dbConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">data source=.\database</Value>
     </Setting>
+    <Setting Name="pagesToDownload" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
