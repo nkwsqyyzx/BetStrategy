@@ -12,7 +12,7 @@ namespace BetStrategy.Utils
         public static void CopySQLiteDll()
         {
             string filename = "";
-            if (Environment.Is64BitOperatingSystem) // or for .NET4 use Environment.Is64BitProcess
+            if (Environment.Is64BitProcess) // or for .NET4 use Environment.Is64BitProcess
             {
                 filename = "System.Data.SQLite.x64.dll";
             }
