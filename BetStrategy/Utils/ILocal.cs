@@ -25,11 +25,11 @@ namespace BetStrategy.Utils
         /// <param name="finish"></param>
         void GetAllPerson(Action<string> onPerson, Action finish = null);
 
-	/// <summary>
-	/// 获取所有推荐人的基本信息
-	/// </summary>
-	/// <param name="onPerson"></param>
-	/// <param name="finish"></param>
+        /// <summary>
+        /// 获取所有推荐人的基本信息
+        /// </summary>
+        /// <param name="onPerson"></param>
+        /// <param name="finish"></param>
         void GetPersons(Action<Person> onPerson, Action finish = null);
 
         /// <summary>
@@ -55,11 +55,19 @@ namespace BetStrategy.Utils
         /// <param name="finish"></param>
         void GetLatestRecommends(int count, Action<Recommend> onRecommend, Action finish = null);
 
-	/// <summary>
-	/// 获取未完场的推荐
-	/// </summary>
-	/// <param name="onRecommend"></param>
-	/// <param name="finish"></param>
+        /// <summary>
+        /// 获取未完场的推荐
+        /// </summary>
+        /// <param name="onRecommend"></param>
+        /// <param name="finish"></param>
         void GetUnFinishedRecommends(Action<Recommend> onRecommend, Action finish = null);
+
+        /// <summary>
+        /// 通过sql语句查询推荐
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="OnRecommend"></param>
+        /// <param name="RefreshFinish"></param>
+        void GetRecommendsBySql(string sql, Action<Recommend> onRecommend, Action finish, Action<Exception> onSqlError);
     }
 }

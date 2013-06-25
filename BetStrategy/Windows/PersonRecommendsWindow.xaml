@@ -4,7 +4,7 @@
                 xmlns:src="clr-namespace:BetStrategy.Windows"
                 xmlns:vm="clr-namespace:BetStrategy.ViewModels"
                 xmlns:resx="clr-namespace:BetStrategy.Properties"
-                xmlns:converters="clr-namespace:BetStrategy.ViewModels"
+                xmlns:converters="clr-namespace:BetStrategy.Converters"
                 xmlns:System="clr-namespace:System;assembly=mscorlib"
                 WindowStartupLocation="CenterScreen"
                 Height="600" Width="1200">
@@ -15,6 +15,7 @@
 
     <Window.Resources>
         <converters:PreferResultToStringConverter x:Key="CON" />
+        <converters:BoolToVisibilityConverter x:Key="BOOLCON" />
         <Style x:Key="App_YieldRecommendItemStyle" TargetType="{x:Type ListViewItem}">
             <EventSetter Event="MouseDoubleClick" Handler="listViewItem_MouseDoubleClick" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -53,17 +54,19 @@
             <Grid HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
                 <Button Command="{Binding CommandRefresh}" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Content="刷新"/>
-                <CheckBox Visibility="{Binding Path=EnableControl}" Content="自定义关注列表" IsChecked="{Binding Path=CheckBoxPreferMostIsChecked,Mode=TwoWay}"  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <CheckBox Visibility="{Binding Path=EnableControl}" Content="显示完场比赛" IsChecked="{Binding Path=CheckBoxViewFinishedIsChecked,Mode=TwoWay}"  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <CheckBox Visibility="{Binding Path=EnableControl}" Content="启用邮件通知" IsChecked="{Binding Path=EnableEmailNotify,Mode=TwoWay}"  Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <ComboBox Visibility="{Binding Path=EnableControl}" Grid.Column="4"
+
+                <CheckBox Width="150" Visibility="{Binding Path=EnableControl,Converter={StaticResource BOOLCON}}" Content="自定义关注列表" IsChecked="{Binding Path=CheckBoxPreferMostIsChecked,Mode=TwoWay}"  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <CheckBox Width="150" Visibility="{Binding Path=EnableControl,Converter={StaticResource BOOLCON}}" Content="显示完场比赛" IsChecked="{Binding Path=CheckBoxViewFinishedIsChecked,Mode=TwoWay}"  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <CheckBox Width="150" Visibility="{Binding Path=EnableControl,Converter={StaticResource BOOLCON}}" Content="启用邮件通知" IsChecked="{Binding Path=EnableEmailNotify,Mode=TwoWay}"  Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <ComboBox Visibility="{Binding Path=EnableControl,Converter={StaticResource BOOLCON}}" Grid.Column="4"
                           HorizontalAlignment="Left"
                           VerticalAlignment="Top"
                           Width="120"
@@ -113,6 +116,10 @@
                     <System:Single>20.5</System:Single>
                 </ComboBox>
                 <Button Command="{Binding CommandViewYield}" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Content="查看推荐人Yield"/>
+
+                <TextBox Visibility="{Binding Path=EnableControl,Converter={StaticResource BOOLCON},ConverterParameter=false}"  Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding Path=SQLText,Mode=TwoWay}" Width="800" />
+
+                <CheckBox Width="100" Visibility="{Binding Path=UseSelfDefined,Converter={StaticResource BOOLCON}}" Content="编辑SQL" IsChecked="{Binding Path=EnableControl,Mode=TwoWay}"  Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             </Grid>
         </StackPanel>
 

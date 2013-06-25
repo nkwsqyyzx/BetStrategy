@@ -8,5 +8,8 @@
     <Setting Name="pagesToDownload" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
+    <Setting Name="dbSelectRecommends" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select R.* from Recommends R where R.[Person] in (select Person from (select Person,sum(CASE PreferResult WHEN 1 THEN -1 WHEN 2 THEN -0.5 WHEN 4 THEN 0.5*Odds WHEN 5 THEN Odds ELSE 0 END) as Yield from Recommends where Time2 &gt; datetime('NOW','localtime','-14 day') group by Person having Yield&gt;2.5 order by Yield desc)) and Time1 &gt; datetime('NOW','localtime','-48 hour') order by Time1 desc</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

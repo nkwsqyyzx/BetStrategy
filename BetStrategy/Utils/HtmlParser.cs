@@ -1,12 +1,9 @@
 ﻿using BetStrategy.Common.Configurations;
+using BetStrategy.Converters;
 using BetStrategy.Models;
-using BetStrategy.ViewModels;
 using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.ComponentModel;
 
 namespace BetStrategy.Utils

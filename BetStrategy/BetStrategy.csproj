@@ -103,6 +103,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Utils\DB.cs" />
     <Compile Include="Utils\DBHelper.cs" />
     <Compile Include="Utils\Downloader.cs" />
@@ -123,7 +124,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\RecommendModifyViewModel.cs" />
     <Compile Include="ViewModels\RecommendsViewModel.cs" />
-    <Compile Include="ViewModels\PreferResultToStringConverter.cs" />
+    <Compile Include="Converters\PreferResultToStringConverter.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NotifyModel.cs" />
     <Compile Include="ViewModels\ViewBestRecommendsViewModel.cs" />

@@ -1,7 +1,7 @@
 ﻿<src:BaseWindow x:Class="BetStrategy.Windows.RecommendModifyWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:converters="clr-namespace:BetStrategy.ViewModels"
+        xmlns:converters="clr-namespace:BetStrategy.Converters"
         xmlns:src="clr-namespace:BetStrategy.Windows"
         xmlns:VM="clr-namespace:BetStrategy.Models"
 	xmlns:System="clr-namespace:System;assembly=mscorlib"

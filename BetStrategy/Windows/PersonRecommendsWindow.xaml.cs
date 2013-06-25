@@ -27,12 +27,6 @@ namespace BetStrategy.Windows
             InitializeComponent();
         }
 
-        private void TopPersonRecommendsWindow_Closing(object sender, CancelEventArgs e)
-        {
-            e.Cancel = true;
-            this.Hide();
-        }
-
         private void listViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ListViewItem item = sender as ListViewItem;

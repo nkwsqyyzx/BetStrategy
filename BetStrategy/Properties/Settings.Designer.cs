@@ -46,5 +46,17 @@ namespace BetStrategy.Properties {
                 this["pagesToDownload"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"select R.* from Recommends R where R.[Person] in (select Person from (select Person,sum(CASE PreferResult WHEN 1 THEN -1 WHEN 2 THEN -0.5 WHEN 4 THEN 0.5*Odds WHEN 5 THEN Odds ELSE 0 END) as Yield from Recommends where Time2 > datetime('NOW','localtime','-14 day') group by Person having Yield>2.5 order by Yield desc)) and Time1 > datetime('NOW','localtime','-48 hour') order by Time1 desc")]
+        public string dbSelectRecommends {
+            get {
+                return ((string)(this["dbSelectRecommends"]));
+            }
+            set {
+                this["dbSelectRecommends"] = value;
+            }
+        }
     }
 }

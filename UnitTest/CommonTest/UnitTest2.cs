@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using BetStrategy.ViewModels;
 using WSQ.CSharp.Extensions;
+using BetStrategy.Converters;
 
 namespace CommonTest
 {

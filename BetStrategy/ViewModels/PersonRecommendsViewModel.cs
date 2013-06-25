@@ -1,4 +1,5 @@
 ﻿using BetStrategy.Common.Configurations;
+using BetStrategy.Converters;
 using BetStrategy.Models;
 using BetStrategy.Utils;
 using BetStrategy.Windows;
@@ -24,10 +25,7 @@ namespace BetStrategy.ViewModels
         private bool _isPreferMostChecked = true;
         public bool CheckBoxPreferMostIsChecked
         {
-            get
-            {
-                return _isPreferMostChecked;
-            }
+            get { return _isPreferMostChecked; }
             set
             {
                 _isPreferMostChecked = value;
@@ -36,13 +34,21 @@ namespace BetStrategy.ViewModels
             }
         }
 
+        private bool _useSelfDefined = false;
+        public bool UseSelfDefined
+        {
+            get { return _useSelfDefined; }
+            set
+            {
+                _useSelfDefined = value;
+                NotifyPropertyChange(() => UseSelfDefined);
+            }
+        }
+
         private bool _isViewFinished = true;
         public bool CheckBoxViewFinishedIsChecked
         {
-            get
-            {
-                return _isViewFinished;
-            }
+            get { return _isViewFinished; }
             set
             {
                 _isViewFinished = value;
@@ -66,10 +72,7 @@ namespace BetStrategy.ViewModels
         private bool _enableEmail = false;
         public bool EnableEmailNotify
         {
-            get
-            {
-                return _enableEmail;
-            }
+            get { return _enableEmail; }
             set
             {
                 _enableEmail = value;
@@ -77,11 +80,24 @@ namespace BetStrategy.ViewModels
             }
         }
 
-        private Visibility _enable = Visibility.Visible;
-        public Visibility EnableControl
+        private bool _enable = true;
+        public bool EnableControl
         {
             get { return _enable; }
-            set { _enable = value; NotifyPropertyChange(() => EnableControl); }
+            set
+            {
+                _enable = value;
+                NotifyPropertyChange(() => EnableControl);
+                CheckBoxViewFinishedIsChecked = true;
+                CheckBoxPreferMostIsChecked = false;
+            }
+        }
+
+        private string _sqlText = BetStrategy.Properties.Settings.Default.dbSelectRecommends;
+        public string SQLText
+        {
+            get { return _sqlText; }
+            set { _sqlText = value; NotifyPropertyChange(() => SQLText); }
         }
         #endregion
 
@@ -89,10 +105,7 @@ namespace BetStrategy.ViewModels
         private List<YieldRoiRecommend> AllRecommends = new List<YieldRoiRecommend>();
         public ObservableCollection<YieldRoiRecommend> Recommends
         {
-            get
-            {
-                return _recommends;
-            }
+            get { return _recommends; }
         }
         #endregion
 
@@ -100,19 +113,13 @@ namespace BetStrategy.ViewModels
         private ICommand _cmdRefresh = null;
         public ICommand CommandRefresh
         {
-            get
-            {
-                return _cmdRefresh.RelayCommand(() => RefreshRecommends());
-            }
+            get { return _cmdRefresh.RelayCommand(() => RefreshRecommends()); }
         }
 
         private ICommand _cmdViewYield = null;
         public ICommand CommandViewYield
         {
-            get
-            {
-                return _cmdViewYield.RelayCommand(() => ShowYieldWindow());
-            }
+            get { return _cmdViewYield.RelayCommand(() => ShowYieldWindow()); }
         }
 
         private Window YieldView;
@@ -130,10 +137,7 @@ namespace BetStrategy.ViewModels
         private ICommand _viewPerson = null;
         public ICommand CommandViewPerson
         {
-            get
-            {
-                return _viewPerson.RelayCommand<YieldRoiRecommend>((rec) => ViewHelper.ViewPerson(rec.Recommend.Person));
-            }
+            get { return _viewPerson.RelayCommand<YieldRoiRecommend>((rec) => ViewHelper.ViewPerson(rec.Recommend.Person)); }
         }
         #endregion
 
@@ -232,13 +236,7 @@ namespace BetStrategy.ViewModels
             }
         }
 
-        private string PersonString(Person p)
-        {
-            return string.Format("净胜{0}场:{1}推{2}胜{3}半胜{4}走{5}半负{6}负", p.Profit, p.Total, p.Win, p.WinHalf, p.Draw, p.LoseHalf, p.Lose);
-        }
-
         #region ......
-
         public void Load(int count)
         {
             RefreshRecommends(count);
@@ -261,6 +259,12 @@ namespace BetStrategy.ViewModels
         {
             RefreshUnknownRecommends();
             lastRefreshCommand = new Action(() => RefreshUnknownRecommends());
+        }
+
+        public void LoadSelfDefined()
+        {
+            RefreshSelfDefined();
+            lastRefreshCommand = new Action(() => RefreshSelfDefined());
         }
 
         private void OnRecommend(Recommend rec)
@@ -296,6 +300,16 @@ namespace BetStrategy.ViewModels
             Predicate = (i) => i.Person.Total >= 120 && i.Person.TotalYield >= 0.07;
             AllRecommends.Clear();
             LocalManager.Instance.GetAllWaitingRecommends(OnRecommend, RefreshFinish);
+        }
+
+        private void RefreshSelfDefined()
+        {
+            Action<Exception> onSqlError = (ex) =>
+            {
+                MessageBox.Show("SQL 语法错误:" + ex.Message);
+            };
+            AllRecommends.Clear();
+            LocalManager.Instance.GetRecommendsBySql(SQLText, OnRecommend, RefreshFinish,onSqlError);
         }
         #endregion
 

@@ -4,7 +4,7 @@
                 xmlns:src="clr-namespace:BetStrategy.Windows"
                 xmlns:vm="clr-namespace:BetStrategy.ViewModels"
                 xmlns:resx="clr-namespace:BetStrategy.Properties"
-                xmlns:converters="clr-namespace:BetStrategy.ViewModels"
+                xmlns:converters="clr-namespace:BetStrategy.Converters"
                 WindowStartupLocation="CenterScreen"
 		Title="{Binding Title}"
                 Height="600"

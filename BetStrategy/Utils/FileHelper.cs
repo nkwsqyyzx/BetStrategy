@@ -133,14 +133,17 @@ namespace BetStrategy.Utils
             }
         }
 
-
         public void GetUnFinishedRecommends(Action<Recommend> onRecommend, Action finish = null)
         {
             throw new NotImplementedException();
         }
 
-
         public void GetPersons(Action<Person> onPerson, Action finish = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetRecommendsBySql(string sql, Action<Recommend> onRecommend, Action finish, Action<Exception> onSqlError)
         {
             throw new NotImplementedException();
         }

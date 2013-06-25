@@ -145,5 +145,32 @@ from Recommends group by Person;";
                 finish();
             }
         }
+
+        public void GetRecommendsBySql(string sql, Action<Recommend> onRecommend, Action finish, Action<Exception> onSqlError)
+        {
+            using (IDbCommand cmd = new SQLiteCommand(connection))
+            {
+                cmd.CommandText = sql;
+                cmd.CommandType = CommandType.Text;
+                try
+                {
+                    using (IDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            onRecommend(DBHelper.RecommendFromReader(reader));
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    onSqlError(ex);
+                }
+            }
+            if (finish != null)
+            {
+                finish();
+            }
+        }
     }
 }

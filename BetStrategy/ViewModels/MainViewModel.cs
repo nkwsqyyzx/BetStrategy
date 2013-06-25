@@ -15,14 +15,12 @@ namespace BetStrategy.ViewModels
         private Window WinViewBest;
         private Window WinGameLatest200;
         private Window WinGameUnknown;
+        private Window WinGameSelfDefined;
 
         private ICommand _cmdGameShow = null;
         public ICommand CommandGameShow
         {
-            get
-            {
-                return _cmdGameShow.RelayCommand(() => GameShow());
-            }
+            get { return _cmdGameShow.RelayCommand(() => GameShow()); }
         }
 
         /// <summary>
@@ -46,10 +44,7 @@ namespace BetStrategy.ViewModels
         private ICommand _cmdGameTop = null;
         public ICommand CommandGameTop
         {
-            get
-            {
-                return _cmdGameTop.RelayCommand(() => GameTop());
-            }
+            get { return _cmdGameTop.RelayCommand(() => GameTop()); }
         }
 
         /// <summary>
@@ -69,10 +64,7 @@ namespace BetStrategy.ViewModels
         private ICommand _cmdViewBest = null;
         public ICommand CommandViewBest
         {
-            get
-            {
-                return _cmdViewBest.RelayCommand(() => ViewBest());
-            }
+            get { return _cmdViewBest.RelayCommand(() => ViewBest()); }
         }
 
         private void ViewBest()
@@ -80,7 +72,7 @@ namespace BetStrategy.ViewModels
             if (WinViewBest == null)
             {
                 var vm = new PersonRecommendsViewModel();
-                vm.EnableControl = Visibility.Collapsed;
+                vm.EnableControl = false;
                 WinViewBest = new PersonRecommendsWindow();
                 WinViewBest.DataContext = vm;
                 WinViewBest.Title = "最牛逼人的推荐";
@@ -94,10 +86,7 @@ namespace BetStrategy.ViewModels
         private ICommand _cmdLatest200 = null;
         public ICommand CommandLatest200
         {
-            get
-            {
-                return _cmdLatest200.RelayCommand(() => GameLatest200());
-            }
+            get { return _cmdLatest200.RelayCommand(() => GameLatest200()); }
         }
 
         private void GameLatest200()
@@ -118,10 +107,7 @@ namespace BetStrategy.ViewModels
         private ICommand _cmdUnkown = null;
         public ICommand CommandUnkownRecommends
         {
-            get
-            {
-                return _cmdUnkown.RelayCommand(() => UnknownRecommends());
-            }
+            get { return _cmdUnkown.RelayCommand(() => UnknownRecommends()); }
         }
 
         /// <summary>
@@ -140,6 +126,32 @@ namespace BetStrategy.ViewModels
             }
             WinGameUnknown.Activate();
             WinGameUnknown.Show();
+        }
+
+        private ICommand _cmdSelfDefined = null;
+        public ICommand CommandSelfDefined
+        {
+            get { return _cmdSelfDefined.RelayCommand(() => SelfDefinedRecommends()); }
+        }
+
+        /// <summary>
+        /// 查看自定义查询的比赛
+        /// </summary>
+        /// <returns></returns>
+        private void SelfDefinedRecommends()
+        {
+            if (WinGameSelfDefined == null)
+            {
+                var vm = new PersonRecommendsViewModel();
+                vm.UseSelfDefined = true;
+                WinGameSelfDefined = new PersonRecommendsWindow();
+                WinGameSelfDefined.DataContext = vm;
+                WinGameSelfDefined.Title = "未知推荐结果的推荐";
+                WinGameSelfDefined.Loaded += (o, e) => vm.LoadSelfDefined();
+                WinGameSelfDefined.Closed += (o, e) => WinGameUnknown = null;
+            }
+            WinGameSelfDefined.Activate();
+            WinGameSelfDefined.Show();
         }
 
         private bool _check = true;
@@ -168,7 +180,7 @@ namespace BetStrategy.ViewModels
             _timer.Interval = new TimeSpan(0, Constants.Instance.INT_MINUTES_UPDATE_RECOMMEND, 30);
             _timer.Tick += timer_Tick;
             _timer.Start();
-	    // 每天第一次运行时下载
+            // 每天第一次运行时下载
             int pages = BetStrategy.Properties.Settings.Default.pagesToDownload;
             pages = pages <= 0 ? 2 : pages;
             BetStrategy.Utils.Downloader.DownloadRecommends(pages, null, null);
