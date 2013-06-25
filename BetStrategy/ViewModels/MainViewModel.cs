@@ -148,7 +148,7 @@ namespace BetStrategy.ViewModels
                 WinGameSelfDefined.DataContext = vm;
                 WinGameSelfDefined.Title = "未知推荐结果的推荐";
                 WinGameSelfDefined.Loaded += (o, e) => vm.LoadSelfDefined();
-                WinGameSelfDefined.Closed += (o, e) => WinGameUnknown = null;
+                WinGameSelfDefined.Closed += (o, e) => WinGameSelfDefined = null;
             }
             WinGameSelfDefined.Activate();
             WinGameSelfDefined.Show();
