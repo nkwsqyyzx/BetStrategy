@@ -117,9 +117,9 @@
                 </ComboBox>
                 <Button Command="{Binding CommandViewYield}" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Content="查看推荐人Yield"/>
 
-                <TextBox Visibility="{Binding Path=EnableControl,Converter={StaticResource BOOLCON},ConverterParameter=false}"  Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding Path=SQLText,Mode=TwoWay}" Width="800" />
+                <TextBox Visibility="{Binding Path=ShowSQLText,Converter={StaticResource BOOLCON}}"  Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding Path=SQLText,Mode=TwoWay}" Width="800" />
 
-                <CheckBox Width="100" Visibility="{Binding Path=UseSelfDefined,Converter={StaticResource BOOLCON}}" Content="编辑SQL" IsChecked="{Binding Path=EnableControl,Mode=TwoWay}"  Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <CheckBox Width="100" Visibility="{Binding Path=UseSelfDefined,Converter={StaticResource BOOLCON}}" Content="编辑SQL" IsChecked="{Binding Path=ShowSQLText,Mode=TwoWay}"  Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             </Grid>
         </StackPanel>
 

@@ -6,8 +6,8 @@
                 xmlns:resx="clr-namespace:BetStrategy.Properties"
                 Title="论坛推荐查看器"
                 WindowStartupLocation="CenterScreen"
-                Height="310"
-                Width="320">
+                Height="320"
+                Width="315">
 
     <Window.DataContext>
         <vm:MainViewModel/>

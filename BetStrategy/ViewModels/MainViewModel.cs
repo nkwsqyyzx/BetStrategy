@@ -146,7 +146,7 @@ namespace BetStrategy.ViewModels
                 vm.UseSelfDefined = true;
                 WinGameSelfDefined = new PersonRecommendsWindow();
                 WinGameSelfDefined.DataContext = vm;
-                WinGameSelfDefined.Title = "未知推荐结果的推荐";
+                WinGameSelfDefined.Title = "自定义查询";
                 WinGameSelfDefined.Loaded += (o, e) => vm.LoadSelfDefined();
                 WinGameSelfDefined.Closed += (o, e) => WinGameSelfDefined = null;
             }
@@ -182,8 +182,10 @@ namespace BetStrategy.ViewModels
             _timer.Start();
             // 每天第一次运行时下载
             int pages = BetStrategy.Properties.Settings.Default.pagesToDownload;
-            pages = pages <= 0 ? 2 : pages;
-            BetStrategy.Utils.Downloader.DownloadRecommends(pages, null, null);
+            if (pages > 0)
+            {
+                BetStrategy.Utils.Downloader.DownloadRecommends(pages, null, null);
+	    }
         }
 
         private void timer_Tick(object sender, EventArgs e)

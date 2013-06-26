@@ -45,6 +45,13 @@ namespace BetStrategy.ViewModels
             }
         }
 
+        private bool _showSQLText = false;
+        public bool ShowSQLText
+        {
+            get { return _showSQLText; }
+            set { _showSQLText = value; NotifyPropertyChange(() => ShowSQLText); }
+        }
+
         private bool _isViewFinished = true;
         public bool CheckBoxViewFinishedIsChecked
         {
@@ -309,7 +316,7 @@ namespace BetStrategy.ViewModels
                 MessageBox.Show("SQL 语法错误:" + ex.Message);
             };
             AllRecommends.Clear();
-            LocalManager.Instance.GetRecommendsBySql(SQLText, OnRecommend, RefreshFinish,onSqlError);
+            LocalManager.Instance.GetRecommendsBySql(SQLText, OnRecommend, RefreshFinish, onSqlError);
         }
         #endregion
 
