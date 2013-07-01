@@ -143,6 +143,7 @@ namespace BetStrategy.ViewModels
             if (WinGameSelfDefined == null)
             {
                 var vm = new PersonRecommendsViewModel();
+                vm.SelectedProfit = 3.0f;
                 vm.UseSelfDefined = true;
                 WinGameSelfDefined = new PersonRecommendsWindow();
                 WinGameSelfDefined.DataContext = vm;

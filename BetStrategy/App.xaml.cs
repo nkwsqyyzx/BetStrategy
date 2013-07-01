@@ -1,8 +1,9 @@
-﻿using System.Drawing;
+﻿using BetStrategy.Utils;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using NotifyIcon = System.Windows.Forms.NotifyIcon;
-using BetStrategy.Utils;
 
 namespace BetStrategy
 {
@@ -17,6 +18,12 @@ namespace BetStrategy
             : base()
         {
             ResolveSQLite3264.CopySQLiteDll();
+            this.DispatcherUnhandledException += App_DispatcherUnhandledException;
+        }
+
+        private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(e.Exception.Message);
         }
 
         protected override void OnStartup(StartupEventArgs e)

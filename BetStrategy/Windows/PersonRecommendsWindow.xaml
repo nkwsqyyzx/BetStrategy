@@ -72,6 +72,7 @@
                           Width="120"
                           ToolTip="下拉设置高手最少赢的场次"
                           SelectedItem="{Binding Path=SelectedProfit, Mode=TwoWay}">
+                    <System:Single>-10000</System:Single>
                     <System:Single>-10</System:Single>
                     <System:Single>0.5</System:Single>
                     <System:Single>1</System:Single>

@@ -64,7 +64,7 @@ namespace BetStrategy.ViewModels
             }
         }
 
-        private Single _selectedProfit = -10;
+        private Single _selectedProfit = 0;
         public Single SelectedProfit
         {
             get { return _selectedProfit; }
