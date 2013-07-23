@@ -38,7 +38,7 @@ namespace BetStrategy.Common.Configurations
                 {
                     Username = "you@gmail.com",
                     Password = "yourgmailpassword",
-                    ToAddress = new List<string>() { "mailaddress1@yourfavorite.com", "mailaddress1@yourfavorite.com" }
+                    ToAddress = new List<string>() { "mailaddress1@yourfavorite.com", "mailaddress2@yourfavorite.com" }
                 });
             });
             _instance = config.Get<EmailConfig>(EmailKey.CONTENT);

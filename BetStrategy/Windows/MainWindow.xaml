@@ -32,19 +32,28 @@
         <StackPanel Grid.Row="0" VerticalAlignment="Center"  Orientation="Horizontal">
             <Button Style="{StaticResource ButtonStyle}" Margin="15,12,0,11"  Command="{Binding CommandGameShow}" Content="未完场推荐"/>
             <CheckBox HorizontalContentAlignment="Center"
-                      VerticalAlignment="Center"
-                      Name="CheckBox"
-                      VerticalContentAlignment="Center"
-                      Margin="20,0,0,0"
-                      Content="开启抓取"
-                      Height="39"
-		      IsChecked="{Binding Path=CheckBoxIsChecked,Mode=TwoWay}"
-                      Width="94"/>
+            	VerticalAlignment="Center"
+            	x:Name="CheckBox"
+            	VerticalContentAlignment="Center"
+            	Margin="20,0,0,0"
+            	Content="开启抓取"
+            	Height="38"
+            	IsChecked="{Binding CheckBoxIsChecked, Mode=TwoWay}"
+            	Width="94"/>
         </StackPanel>
         <Button Style="{StaticResource ButtonStyle}" Grid.Row="1" Command="{Binding CommandGameTop}" Content="牛人排行榜" Margin="15,12,0,11"/>
         <Button Style="{StaticResource ButtonStyle}" Grid.Row="2" Command="{Binding CommandViewBest}" Content="牛人最新推荐" Margin="15,12,0,11"/>
         <Button Style="{StaticResource ButtonStyle}" Grid.Row="1" Command="{Binding CommandLatest200}" Content="最新200场推荐" Margin="157,11,0,11"/>
         <Button Style="{StaticResource ButtonStyle}" Grid.Row="2" Command="{Binding CommandUnkownRecommends}" Content="未知结果推荐" Margin="157,12,0,10"/>
         <Button Style="{StaticResource ButtonStyle}" Grid.Row="3" Command="{Binding CommandSelfDefined}" Content="自定义查询" Margin="15,12,0,10"/>
+        <CheckBox HorizontalContentAlignment="Center"
+                  VerticalAlignment="Center"
+                  Grid.Row="3"
+                  VerticalContentAlignment="Center"
+                  Margin="157,17,56,15"
+                  Content="开启邮件通知"
+                  Height="39"
+                  IsChecked="{Binding Path=CheckBoxIsChecked,Mode=TwoWay}"
+                  Width="94"/>
     </Grid>
 </src:BaseWindow>
