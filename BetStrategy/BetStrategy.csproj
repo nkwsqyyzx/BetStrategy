@@ -116,8 +116,6 @@
     <Compile Include="ViewModels\RecommendModifyViewModel.cs" />
     <Compile Include="ViewModels\RecommendsViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\NotifyModel.cs" />
-    <Compile Include="ViewModels\ViewBestRecommendsViewModel.cs" />
     <Compile Include="ViewModels\YieldRoiPerson.cs" />
     <Compile Include="ViewModels\TestData.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
