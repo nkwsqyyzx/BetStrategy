@@ -1,12 +1,8 @@
-﻿using BetStrategy.Models;
-using BetStrategy.Utils;
-using BetStrategy.ViewModels;
+﻿using BetStrategy.Utils;
+using BetStrategy.Domain.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace RecommendsDownloader
 {

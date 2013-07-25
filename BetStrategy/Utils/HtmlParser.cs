@@ -1,6 +1,6 @@
 ﻿using BetStrategy.Common.Configurations;
 using BetStrategy.Converters;
-using BetStrategy.Models;
+using BetStrategy.Domain.Models;
 using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;

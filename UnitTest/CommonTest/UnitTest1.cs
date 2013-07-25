@@ -1,5 +1,5 @@
 ﻿using BetStrategy.Converters;
-using BetStrategy.Models;
+using BetStrategy.Domain.Models;
 using BetStrategy.Utils;
 using BetStrategy.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

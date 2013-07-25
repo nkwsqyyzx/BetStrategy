@@ -1,12 +1,9 @@
 ﻿using BetStrategy.Common.Configurations;
-using BetStrategy.Models;
+using BetStrategy.Domain.Models;
 using BetStrategy.Utils;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using WSQ.CSharp.Net;
 using WSQ.CSharp.Serialization;
 
 namespace BetStrategy.ViewModels

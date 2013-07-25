@@ -68,21 +68,21 @@
     <Compile Include="UnitTest3.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BetStrategy.Domain\BetStrategy.Domain.csproj">
+      <Project>{edc2d7ec-3329-41dd-91a4-2db2639dfdd8}</Project>
+      <Name>BetStrategy.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BetStrategy\BetStrategy.csproj">
       <Project>{9cf2ffae-0dd5-4706-9f83-8f93893fa619}</Project>
       <Name>BetStrategy</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\BetStrategy.Common\BetStrategy.Common.csproj">
+    <ProjectReference Include="..\..\BetStrategy.Common\BetStrategy.Common.csproj">
       <Project>{a84c8572-14ce-405a-b8f1-3b32ec3b2d60}</Project>
       <Name>BetStrategy.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\Universal.Common\Universal.Common.csproj">
+    <ProjectReference Include="..\..\Universal.Common\Universal.Common.csproj">
       <Project>{a4f36939-3fed-4744-838e-9602b4f8c7e9}</Project>
       <Name>Universal.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\HtmlAgilityPack\HtmlAgilityPack.csproj">
-      <Project>{193bb801-054f-4729-9d5d-fce1e32594bf}</Project>
-      <Name>HtmlAgilityPack %28HtmlAgilityPack\HtmlAgilityPack%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -1,4 +1,4 @@
-﻿using BetStrategy.Models;
+﻿using BetStrategy.Domain.Models;
 using System;
 using System.Data;
 using WSQ.CSharp.Extensions;

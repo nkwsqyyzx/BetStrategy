@@ -1,11 +1,9 @@
-﻿using BetStrategy.Models;
+﻿using BetStrategy.Domain.Models;
+using BetStrategy.Properties;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.SQLite;
-using BetStrategy.Properties;
 using System.Data;
+using System.Data.SQLite;
 using WSQ.CSharp.Extensions;
 
 namespace BetStrategy.Utils

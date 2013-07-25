@@ -1,14 +1,11 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using BetStrategy.Converters;
+using BetStrategy.Domain.Models;
 using BetStrategy.Utils;
-using BetStrategy.Models;
-using System.Threading;
-using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using BetStrategy.ViewModels;
-using WSQ.CSharp.Extensions;
-using BetStrategy.Converters;
+using System.Threading;
 
 namespace CommonTest
 {

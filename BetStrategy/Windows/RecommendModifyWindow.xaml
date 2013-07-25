@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converters="clr-namespace:BetStrategy.Converters"
         xmlns:src="clr-namespace:BetStrategy.Windows"
-        xmlns:VM="clr-namespace:BetStrategy.Models"
 	xmlns:System="clr-namespace:System;assembly=mscorlib"
         Title="编辑推荐结果"
 	Topmost="True"

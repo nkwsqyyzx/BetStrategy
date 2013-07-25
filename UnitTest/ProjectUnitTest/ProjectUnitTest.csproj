@@ -62,6 +62,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BetStrategy.Domain\BetStrategy.Domain.csproj">
+      <Project>{edc2d7ec-3329-41dd-91a4-2db2639dfdd8}</Project>
+      <Name>BetStrategy.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BetStrategy\BetStrategy.csproj">
       <Project>{9cf2ffae-0dd5-4706-9f83-8f93893fa619}</Project>
       <Name>BetStrategy</Name>

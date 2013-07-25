@@ -1,5 +1,5 @@
 ﻿using BetStrategy.Converters;
-using BetStrategy.Models;
+using BetStrategy.Domain.Models;
 using System.Collections.ObjectModel;
 
 namespace BetStrategy.ViewModels

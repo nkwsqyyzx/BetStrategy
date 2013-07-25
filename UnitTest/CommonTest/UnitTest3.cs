@@ -1,7 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using System.Threading;
-using BetStrategy.Models;
+﻿using BetStrategy.Domain.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WSQ.CSharp.Extensions;
 
 namespace CommonTest

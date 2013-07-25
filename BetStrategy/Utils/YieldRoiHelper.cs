@@ -1,8 +1,6 @@
-﻿using System;
+﻿using BetStrategy.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using BetStrategy.Models;
 
 namespace BetStrategy.Utils
 {

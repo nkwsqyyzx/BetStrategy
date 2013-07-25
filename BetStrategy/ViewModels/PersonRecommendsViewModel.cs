@@ -1,6 +1,6 @@
 ﻿using BetStrategy.Common.Configurations;
 using BetStrategy.Converters;
-using BetStrategy.Models;
+using BetStrategy.Domain.Models;
 using BetStrategy.Utils;
 using BetStrategy.Windows;
 using System;

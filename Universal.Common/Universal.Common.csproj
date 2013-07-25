@@ -66,10 +66,6 @@
     <Compile Include="Extensions\CommandExtension.cs" />
     <Compile Include="Extensions\ObjectPathProperty.cs" />
     <Compile Include="Helper\DispatcherHelper.cs" />
-    <Compile Include="Log\Implement\DebugLogSaver.cs" />
-    <Compile Include="Log\Implement\FileLogSaver.cs" />
-    <Compile Include="Log\Interface\ILogSaver.cs" />
-    <Compile Include="Log\LogManager.cs" />
     <Compile Include="Net\Delegate.cs" />
     <Compile Include="Net\GetTextHttpTask.cs" />
     <Compile Include="Net\HttpTask.cs" />

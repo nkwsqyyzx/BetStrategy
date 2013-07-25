@@ -1,11 +1,6 @@
-﻿using BetStrategy.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using BetStrategy.Domain.Models;
 using BetStrategy.Utils;
+using System.Collections.ObjectModel;
 
 namespace BetStrategy.ViewModels
 {

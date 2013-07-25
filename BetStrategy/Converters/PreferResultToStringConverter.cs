@@ -1,7 +1,6 @@
-﻿using BetStrategy.Models;
+﻿using BetStrategy.Domain.Models;
 using BetStrategy.Properties;
 using System;
-using System.Windows;
 using System.Windows.Data;
 
 namespace BetStrategy.Converters

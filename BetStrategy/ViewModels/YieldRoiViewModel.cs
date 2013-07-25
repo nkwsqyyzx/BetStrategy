@@ -1,4 +1,4 @@
-﻿using BetStrategy.Models;
+﻿using BetStrategy.Domain.Models;
 using BetStrategy.Utils;
 using System;
 using System.Collections.Generic;

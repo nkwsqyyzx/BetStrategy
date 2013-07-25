@@ -1,13 +1,11 @@
-﻿using BetStrategy.Models;
+﻿using BetStrategy.Domain.Models;
+using BetStrategy.Utils;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using WSQ.CSharp.Helper;
-using BetStrategy.Utils;
 
 namespace BetStrategy.ViewModels
 {
@@ -26,9 +24,9 @@ namespace BetStrategy.ViewModels
             bw.RunWorkerAsync();
         }
 
-	/// <summary>
-	/// 刷新Yield/ROI等数据
-	/// </summary>
+        /// <summary>
+        /// 刷新Yield/ROI等数据
+        /// </summary>
         public void Refresh()
         {
             LoadPerson(this.Name);
@@ -42,10 +40,10 @@ namespace BetStrategy.ViewModels
             {
                 Add(rec);
             };
-            pro.GetPersonRecommends(dir, callback,LoadFinish);
+            pro.GetPersonRecommends(dir, callback, LoadFinish);
         }
 
-        private void LoadFinish() 
+        private void LoadFinish()
         {
             new Action(() =>
             {
@@ -148,16 +146,16 @@ namespace BetStrategy.ViewModels
         }
 
         private int _current;
-	/// <summary>
-	/// 当前期推荐
-	/// </summary>
-        public int Current 
+        /// <summary>
+        /// 当前期推荐
+        /// </summary>
+        public int Current
         {
-            get 
+            get
             {
                 return _current;
             }
-            set 
+            set
             {
                 _current = value;
                 NotifyPropertyChange(() => Current);

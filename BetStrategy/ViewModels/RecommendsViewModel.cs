@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections.ObjectModel;
-using BetStrategy.Models;
-using System.ComponentModel;
-using WSQ.CSharp.Helper;
+﻿using BetStrategy.Domain.Models;
 using BetStrategy.Utils;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using WSQ.CSharp.Helper;
 
 namespace BetStrategy.ViewModels
 {
