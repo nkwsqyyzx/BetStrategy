@@ -41,28 +41,6 @@ namespace ProjectUnitTest
         }
 
         [TestMethod]
-        public void TesHtmlParser()
-        {
-            HtmlParser.ParseRecommends(TestData.GAME_USER_HTML, (rs) =>
-            {
-                foreach (var rec in rs)
-                {
-                    System.Diagnostics.Debug.WriteLine("Host:" + rec.Host + " League:" + rec.League);
-                }
-            });
-            Thread.Sleep(100000);
-        }
-
-        [TestMethod]
-        public void TestSaveRecommends()
-        {
-            HtmlParser.ParseRecommends(TestData.GAME_USER_HTML, (rs) =>
-            {
-                LocalManager.Instance.SaveRecommends(rs);
-            });
-        }
-
-        [TestMethod]
         public void TestGetRecommends()
         {
             LocalManager.Instance.GetRecommends("格力电器", (rec) =>

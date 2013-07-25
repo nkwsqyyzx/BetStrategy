@@ -1,5 +1,6 @@
 ﻿using BetStrategy.Converters;
 using BetStrategy.Domain.Models;
+using BetStrategy.Services.Utils;
 using BetStrategy.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -22,43 +23,6 @@ namespace CommonTest
             };
             LocalManager.Instance.GetRecommends("godball", (r) => res.Add(r), finish);
             Thread.Sleep(1000000);
-        }
-
-        [TestMethod]
-        public void TestEnumeratePersons()
-        {
-            var ps = PathHelper.AllPersons();
-            foreach (var p in ps)
-            {
-                System.Diagnostics.Debug.WriteLine(p);
-            }
-            Thread.Sleep(1000000);
-        }
-
-        [TestMethod]
-        public void TestNormal()
-        {
-            var files = PathHelper.Recommends("godball");
-            foreach (var file in files)
-            {
-                System.Diagnostics.Debug.WriteLine(file);
-            }
-            Thread.Sleep(10000);
-        }
-
-        [TestMethod]
-        public void TransferData()
-        {
-            var persons = PathHelper.AllPersons();
-            Action<Recommend> work = (rec) =>
-            {
-                LocalManager.Instance.SaveRecommend(rec);
-            };
-            foreach (var p in persons)
-            {
-                LocalManager.Instance.GetRecommends(p, work, () => System.Diagnostics.Debug.WriteLine("Finished"));
-            }
-            Thread.Sleep(30 * 60 * 1000);
         }
 
         [TestMethod]

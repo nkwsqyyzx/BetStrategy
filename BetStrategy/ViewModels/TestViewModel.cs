@@ -1,12 +1,13 @@
 ﻿using BetStrategy.Converters;
 using BetStrategy.Domain.Models;
+using BetStrategy.Services.Utils;
 using System.Collections.ObjectModel;
 
 namespace BetStrategy.ViewModels
 {
     public class TestViewModel : BaseViewModel
     {
-        private PreferResultToStringConverter converter = new PreferResultToStringConverter();
+        private BetStrategy.Converters.PreferResultToStringConverter converter = new BetStrategy.Converters.PreferResultToStringConverter();
 
         private ObservableCollection<Recommend> _recommends = null;
         public ObservableCollection<Recommend> Recommends

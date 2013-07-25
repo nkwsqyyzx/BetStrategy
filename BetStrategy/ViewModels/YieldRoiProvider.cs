@@ -1,4 +1,5 @@
 ﻿using BetStrategy.Domain.Models;
+using BetStrategy.Services.Utils;
 using BetStrategy.Utils;
 using System;
 using WSQ.CSharp.Serialization;

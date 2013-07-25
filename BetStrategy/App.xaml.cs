@@ -17,7 +17,7 @@ namespace BetStrategy
         public App()
             : base()
         {
-            ResolveSQLite3264.CopySQLiteDll();
+            ResolveSQLite3264.ResolveSQLiteDll();
             this.DispatcherUnhandledException += App_DispatcherUnhandledException;
         }
 

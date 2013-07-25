@@ -76,10 +76,6 @@
     <Reference Include="GalaSoft.MvvmLight.WPF4">
       <HintPath>..\BetStrategy.Dependencies\GalaSoft.MvvmLight.WPF4.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.4.7.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\BetStrategy.Dependencies\HtmlAgilityPack.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\BetStrategy.Dependencies\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -108,21 +104,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\PreferResultToStringConverter.cs" />
     <Compile Include="Utils\DB.cs" />
-    <Compile Include="Utils\DBHelper.cs" />
     <Compile Include="Utils\Downloader.cs" />
-    <Compile Include="Utils\HtmlParser.cs" />
-    <Compile Include="Utils\FileHelper.cs" />
     <Compile Include="Utils\ILocal.cs" />
     <Compile Include="Utils\LocalManager.cs" />
-    <Compile Include="Utils\PathHelper.cs" />
     <Compile Include="Utils\ResolveSQLite3264.cs" />
     <Compile Include="Utils\ViewHelper.cs" />
     <Compile Include="Utils\YieldRoiHelper.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\RecommendModifyViewModel.cs" />
     <Compile Include="ViewModels\RecommendsViewModel.cs" />
-    <Compile Include="Converters\PreferResultToStringConverter.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NotifyModel.cs" />
     <Compile Include="ViewModels\ViewBestRecommendsViewModel.cs" />
@@ -179,11 +171,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -195,10 +182,6 @@
     <Content Include="System.Data.SQLite.x86.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="BetStrategy_TemporaryKey.pfx" />
     <Content Include="database">
@@ -218,6 +201,10 @@
     <ProjectReference Include="..\BetStrategy.Common\BetStrategy.Common.csproj">
       <Project>{a84c8572-14ce-405a-b8f1-3b32ec3b2d60}</Project>
       <Name>BetStrategy.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BetStrategy.Services\BetStrategy.Services.csproj">
+      <Project>{99d3b1d0-c9b7-44b5-bb04-adf6c4bddab5}</Project>
+      <Name>BetStrategy.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\Universal.Common\Universal.Common.csproj">
       <Project>{a4f36939-3fed-4744-838e-9602b4f8c7e9}</Project>

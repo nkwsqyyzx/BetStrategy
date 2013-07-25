@@ -1,5 +1,6 @@
 ﻿using BetStrategy.Common.Configurations;
 using BetStrategy.Domain.Models;
+using BetStrategy.Services.Utils;
 using System;
 using System.Collections.Generic;
 using System.Threading;

@@ -3,7 +3,7 @@ using System;
 using System.Data;
 using WSQ.CSharp.Extensions;
 
-namespace BetStrategy.Utils
+namespace BetStrategy.Services.Utils
 {
     public static class DBHelper
     {
@@ -29,16 +29,6 @@ namespace BetStrategy.Utils
 
             var sz = "replace into Recommends(" + prms + "'Time1','Time2','Odds','PreferResult') values(" + vals + "'" + t1 + "','" + t2 + "'," + rec.Odds + "," + (int)rec.PreferResult + ");";
             return sz;
-        }
-
-        public static string SelectCommand(Recommend rec)
-        {
-            return "select * from Recommends where Current='" + rec.Current + "' and Host='" + rec.Host + "' and Guest='" + rec.Guest + "' and Person='" + rec.Person + "' and Time2='" + DateTimeToSqlTime(TimeFromString(rec.Time2)) + "';";
-        }
-
-        public static string SelectByPerson(string person)
-        {
-            return "select * from Recommends where Person='" + person + "';";
         }
 
         private static string DateTimeToSqlTime(DateTime time)

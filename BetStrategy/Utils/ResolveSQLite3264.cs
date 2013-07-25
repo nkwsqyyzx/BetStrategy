@@ -9,7 +9,7 @@ namespace BetStrategy.Utils
 {
     public class ResolveSQLite3264
     {
-        public static void CopySQLiteDll()
+        public static void ResolveSQLiteDll()
         {
             string filename = "";
             if (Environment.Is64BitProcess) // or for .NET4 use Environment.Is64BitProcess

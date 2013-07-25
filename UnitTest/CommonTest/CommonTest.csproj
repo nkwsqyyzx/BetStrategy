@@ -72,6 +72,10 @@
       <Project>{edc2d7ec-3329-41dd-91a4-2db2639dfdd8}</Project>
       <Name>BetStrategy.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\BetStrategy.Services\BetStrategy.Services.csproj">
+      <Project>{99d3b1d0-c9b7-44b5-bb04-adf6c4bddab5}</Project>
+      <Name>BetStrategy.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BetStrategy\BetStrategy.csproj">
       <Project>{9cf2ffae-0dd5-4706-9f83-8f93893fa619}</Project>
       <Name>BetStrategy</Name>
