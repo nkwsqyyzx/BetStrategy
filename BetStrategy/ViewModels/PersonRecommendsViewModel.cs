@@ -1,6 +1,7 @@
 ﻿using BetStrategy.Common.Configurations;
 using BetStrategy.Converters;
 using BetStrategy.Domain.Models;
+using BetStrategy.Services.Factories;
 using BetStrategy.Services.Utils;
 using BetStrategy.Utils;
 using BetStrategy.Windows;
@@ -291,36 +292,41 @@ namespace BetStrategy.ViewModels
         private void RefreshRecommends(int count)
         {
             AllRecommends.Clear();
-            LocalManager.Instance.GetLatestRecommends(count, OnRecommend, RefreshFinish);
+            var sql = DBHelper.GetRecommendsLimitSql(count);
+            RecommendManager.Instance.RecommendCenter.GetRecommendsBySql(sql, OnRecommend, RefreshFinish, ShowSqlException);
         }
 
         private void RefreshUnfinishedRecommends()
         {
             AllRecommends.Clear();
-            LocalManager.Instance.GetUnFinishedRecommends(OnRecommend, RefreshFinish);
+            var sql = DBHelper.GetRecommendsByStatusSql(PreferResult.Waiting);
+            RecommendManager.Instance.RecommendCenter.GetRecommendsBySql(sql, OnRecommend, RefreshFinish, ShowSqlException);
         }
 
         private void RefreshUnknownRecommends()
         {
             AllRecommends.Clear();
-            LocalManager.Instance.GetAllWaitingRecommends(OnRecommend, RefreshFinish);
+            var sql = DBHelper.GetRecommendsByStatusSql(PreferResult.Waiting);
+            RecommendManager.Instance.RecommendCenter.GetRecommendsBySql(sql, OnRecommend, RefreshFinish, ShowSqlException);
         }
 
         private void RefreshTheBest()
         {
             Predicate = (i) => i.Person.Total >= 120 && i.Person.TotalYield >= 0.07;
             AllRecommends.Clear();
-            LocalManager.Instance.GetAllWaitingRecommends(OnRecommend, RefreshFinish);
+            var sql = DBHelper.GetRecommendsByStatusSql(PreferResult.Waiting);
+            RecommendManager.Instance.RecommendCenter.GetRecommendsBySql(sql, OnRecommend, RefreshFinish, ShowSqlException);
         }
 
         private void RefreshSelfDefined()
         {
-            Action<Exception> onSqlError = (ex) =>
-            {
-                MessageBox.Show("SQL 语法错误:" + ex.Message);
-            };
             AllRecommends.Clear();
-            LocalManager.Instance.GetRecommendsBySql(SQLText, OnRecommend, RefreshFinish, onSqlError);
+            RecommendManager.Instance.RecommendCenter.GetRecommendsBySql(SQLText, OnRecommend, RefreshFinish, ShowSqlException);
+        }
+
+        private static void ShowSqlException(Exception ex)
+        {
+            MessageBox.Show("SQL 语法错误:" + ex.Message);
         }
         #endregion
 

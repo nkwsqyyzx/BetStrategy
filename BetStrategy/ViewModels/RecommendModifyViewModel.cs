@@ -1,6 +1,7 @@
 ﻿using BetStrategy.Domain.Models;
 using BetStrategy.Utils;
 using System.Collections.ObjectModel;
+using BetStrategy.Services.Factories;
 
 namespace BetStrategy.ViewModels
 {
@@ -23,7 +24,7 @@ namespace BetStrategy.ViewModels
         public void Save()
         {
             //TODO. 如果开赛时间一样,主队客队一样,盘口和推荐都一样,一并保存
-            LocalManager.Instance.SaveRecommends(_recommends);
+            RecommendManager.Instance.RecommendCenter.SaveRecommends(_recommends);
         }
     }
 }

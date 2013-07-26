@@ -1,4 +1,5 @@
 ﻿using BetStrategy.Domain.Models;
+using BetStrategy.Services.Factories;
 using BetStrategy.Utils;
 using System;
 using System.Collections.Generic;
@@ -109,7 +110,7 @@ namespace BetStrategy.ViewModels
                 {
                     new Action(() => Filter(Min, Current)).RunOnUI();
                 });
-                LocalManager.Instance.GetAllPerson((dir) => action(dir), finish);
+                RecommendManager.Instance.RecommendCenter.GetAllPerson((dir) => action(dir), finish);
             };
             bw.RunWorkerAsync();
         }

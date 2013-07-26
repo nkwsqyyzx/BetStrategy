@@ -1,6 +1,9 @@
 ﻿using BetStrategy.Common.Configurations;
+using BetStrategy.Domain.Models;
+using BetStrategy.Services.Factories;
 using BetStrategy.Windows;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -185,13 +188,22 @@ namespace BetStrategy.ViewModels
             int pages = BetStrategy.Properties.Settings.Default.pagesToDownload;
             if (pages > 0)
             {
-                BetStrategy.Utils.Downloader.DownloadRecommends(pages, null, null);
-	    }
+                RecommendManager.Instance.RecommendCenter.Download(0, pages, SaveRecommend, DownloadFinish);
+            }
+        }
+
+        private void DownloadFinish()
+        {
+        }
+
+        private void SaveRecommend(IEnumerable<Recommend> obj)
+        {
+            RecommendManager.Instance.RecommendCenter.SaveRecommends(obj);
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            BetStrategy.Utils.Downloader.DownloadRecommends(1, null, null);
+            RecommendManager.Instance.RecommendCenter.Download(1, 0, SaveRecommend, DownloadFinish);
         }
 
         private void Start(bool flag)

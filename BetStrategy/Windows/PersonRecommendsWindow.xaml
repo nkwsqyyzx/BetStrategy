@@ -7,7 +7,7 @@
                 xmlns:converters="clr-namespace:BetStrategy.Converters"
                 xmlns:System="clr-namespace:System;assembly=mscorlib"
                 WindowStartupLocation="CenterScreen"
-                Height="600" Width="1200">
+                Height="600" Width="1250">
 
     <!--<Window.DataContext>
         <vm:TestViewModel/>
@@ -132,11 +132,12 @@
                      DockPanel.Dock="Top"
                      GridViewColumnHeader.Click="MenuItem_Click"
                      HorizontalAlignment="Center"
-                     Margin="30,0,10,10"
+                     Margin="10,0,10,10"
                      VerticalAlignment="Stretch">
                 <ListView.View>
                     <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="点击排序">
                         <GridViewColumn Width="80" Header="开赛时间" DisplayMemberBinding="{Binding Path=Recommend.Time1}" />
+                        <GridViewColumn Width="80" Header="联赛" DisplayMemberBinding="{Binding Path=Recommend.League}" />
                         <GridViewColumn Width="130" Header="主场球队" DisplayMemberBinding="{Binding Path=Recommend.Host}" />
                         <GridViewColumn Width="80" Header="盘口" DisplayMemberBinding="{Binding Path=Recommend.OddStake}" />
                         <GridViewColumn Width="130" Header="客场球队" DisplayMemberBinding="{Binding Path=Recommend.Guest}" />

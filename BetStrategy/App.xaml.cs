@@ -2,6 +2,7 @@
 using BetStrategy.Views;
 using System.Windows;
 using System.Windows.Threading;
+using BetStrategy.WorkServices;
 
 namespace BetStrategy
 {
@@ -24,8 +25,9 @@ namespace BetStrategy
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            new TrayIcon().Init(this);
             WSQ.CSharp.Helper.DispatcherHelper.InitializeDispatcher();
+            new TrayIcon().Init(this);
+            new ApplicationInitializer().Init();
             base.OnStartup(e);
         }
     }

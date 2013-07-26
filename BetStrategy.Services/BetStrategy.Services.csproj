@@ -36,6 +36,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\BetStrategy.Dependencies\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Factories\Database\IDbCommandFactory.cs" />
+    <Compile Include="Factories\Database\Impl\SqliteDbCommandFactory.cs" />
+    <Compile Include="Factories\RecommendManager.cs" />
+    <Compile Include="Impl.Wrappers\DatabaseWrapper.cs" />
+    <Compile Include="Impl.Wrappers\RecommendDownloader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -50,6 +59,7 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Recommends\Services\IRecommendCenter.cs" />
+    <Compile Include="Recommends\Services\RecommendCenter.cs" />
     <Compile Include="Recommends\Wrappers\ILocalWrapper.cs" />
     <Compile Include="Recommends\Wrappers\IServerWrapper.cs" />
     <Compile Include="Utils\DBHelper.cs" />
@@ -58,9 +68,7 @@
     <Compile Include="Utils\PreferResultHelper.cs" />
     <Compile Include="Utils\YieldRoiHelper.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Impl.Wrappers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BetStrategy.Common\BetStrategy.Common.csproj">
       <Project>{a84c8572-14ce-405a-b8f1-3b32ec3b2d60}</Project>

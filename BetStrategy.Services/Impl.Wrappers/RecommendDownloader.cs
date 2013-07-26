@@ -1,25 +1,39 @@
-﻿using BetStrategy.Common.Configurations;
-using BetStrategy.Domain.Models;
+﻿using BetStrategy.Domain.Models;
+using BetStrategy.Services.Recommends.Wrappers;
 using BetStrategy.Services.Utils;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using WSQ.CSharp.Net;
 
-namespace BetStrategy.Utils
+namespace BetStrategy.Services.Impl.Wrappers
 {
-    public class Downloader
+    class RecommendDownloader : IServerWrapper
     {
-        public static void DownloadRecommends(int maxPage, Action<List<Recommend>> onRecommends, Action finish)
+        private string urlBase;
+        public RecommendDownloader(string urlBase)
         {
-            return;
-            int current = 1;
+            this.urlBase = urlBase;
+        }
 
-            Action<bool, string, string> callback = null;
+        public void Download(int startPage, int endPage, Action<IEnumerable<Recommend>> onRecommends, Action finish)
+        {
+#if !发布
+            return;
+#endif
+
+            if (startPage > endPage || endPage < 0)
+            {
+                throw new ArgumentException("please specify valid startPage & endPage to download.startPage:" + startPage + " endPage:" + endPage);
+	    }
+
+            int current = startPage > 0 ? startPage : 1;
+
+            RequestFinished callback = null;
 
             Action<int> download = (i) =>
             {
-                if (i > maxPage)
+                if (i > endPage)
                 {
                     if (finish != null)
                     {
@@ -27,9 +41,9 @@ namespace BetStrategy.Utils
                     }
                     return;
                 }
-                var url = Constants.Instance.URL_BASE + Constants.Instance.URL_GAME_SHOW + "?page=" + i.ToString();
+                var url = urlBase + i.ToString();
                 System.Console.Out.WriteLine(url);
-                NetworkUtils.DownloadString(url, (ok, html, error) => callback(ok, html, error));
+                NetworkUtils.DownloadString(url, callback);
             };
 
             callback = (ok, html, error) =>
@@ -43,11 +57,7 @@ namespace BetStrategy.Utils
                         {
                             onRecommends(rs);
                         }
-                        else
-                        {
-                            Save(rs);
-                        }
-                        Thread.Sleep(5283);
+                        Thread.Sleep(new Random().Next(2000, 5000));
                         current += 1;
                         download(current);
                     });
@@ -58,12 +68,7 @@ namespace BetStrategy.Utils
                 }
             };
 
-            download(1);
-        }
-
-        private static void Save(List<Recommend> recommends)
-        {
-            LocalManager.Instance.SaveRecommends(recommends);
+            download(current);
         }
     }
 }

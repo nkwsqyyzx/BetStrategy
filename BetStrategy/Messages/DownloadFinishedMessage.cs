@@ -1,7 +1,7 @@
 ﻿
 namespace BetStrategy.Messages
 {
-    class BalloonMessage
+    class DownloadFinishedMessage
     {
         public string Message { get; set; }
     }

@@ -1,6 +1,6 @@
 ﻿using BetStrategy.Common.Configurations;
 using BetStrategy.Domain.Models;
-using BetStrategy.Utils;
+using BetStrategy.Services.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -115,7 +115,7 @@ namespace BetStrategy.ViewModels
         private void UpdateTopPerson(Action<List<Person>> finished)
         {
             person.Clear();
-            LocalManager.Instance.GetPersons(OnPerson, () => finished(person));
+            RecommendManager.Instance.RecommendCenter.GetPersons(OnPerson, () => finished(person));
         }
 
         private void OnPerson(Person p)

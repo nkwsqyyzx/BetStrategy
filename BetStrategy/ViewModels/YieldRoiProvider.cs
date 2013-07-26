@@ -1,6 +1,6 @@
 ﻿using BetStrategy.Domain.Models;
+using BetStrategy.Services.Factories;
 using BetStrategy.Services.Utils;
-using BetStrategy.Utils;
 using System;
 using WSQ.CSharp.Serialization;
 
@@ -42,7 +42,7 @@ namespace BetStrategy.ViewModels
         private YieldRoiProvider() { }
         public void GetPersonRecommends(string name, Action<Recommend> onRecommend, Action finish = null)
         {
-            LocalManager.Instance.GetRecommends(name, onRecommend, finish);
+            RecommendManager.Instance.RecommendCenter.GetRecommendsBySql(DBHelper.GetRecommendsByPersonSql(name), onRecommend, finish, (ex) => { throw ex; });
         }
 
         private string GetCachedYieldRoiPerson(string name)

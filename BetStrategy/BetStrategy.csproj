@@ -106,10 +106,7 @@
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\PreferResultToStringConverter.cs" />
     <Compile Include="Messages\BalloonMessage.cs" />
-    <Compile Include="Utils\DB.cs" />
-    <Compile Include="Utils\Downloader.cs" />
-    <Compile Include="Utils\ILocal.cs" />
-    <Compile Include="Utils\LocalManager.cs" />
+    <Compile Include="Messages\DownloadFinishedMessage.cs" />
     <Compile Include="Utils\ResolveSQLite3264.cs" />
     <Compile Include="Utils\ViewHelper.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -146,6 +143,7 @@
     <Compile Include="Windows\YieldRoiWindow.xaml.cs">
       <DependentUpon>YieldRoiWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WorkServices\ApplicationInitializer.cs" />
     <Page Include="Windows\RecommendModifyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

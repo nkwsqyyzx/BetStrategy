@@ -105,5 +105,34 @@ namespace BetStrategy.Services.Utils
 
             return p;
         }
+
+        public static string GetRecommendsByStatusSql(PreferResult pr)
+        {
+            return "select * from Recommends where PreferResult=" + (int)pr + ";";
+        }
+
+        public static string GetRecommendsByPersonSql(string name)
+        {
+            return "select * from Recommends where Person='" + name + "';";
+        }
+
+        public static string GetRecommendsLimitSql(int count)
+        {
+            return "select * from Recommends Order by Time2 desc limit " + count + ";";
+        }
+
+        public const string sql_all_person = "select Person from Recommends group by Person;";
+        public const string sql_all_yield_person = @"
+select
+Person as Name,
+count(*) as Total,
+SUM(CASE PreferResult WHEN 1 THEN -1 WHEN 2 THEN -0.5 WHEN 4 THEN 0.5 WHEN 5 THEN 1 ELSE 0 END) as Profit,
+SUM(CASE PreferResult WHEN 0 THEN 1 ELSE 0 END) as Waiting,
+SUM(CASE PreferResult WHEN 1 THEN 1 ELSE 0 END) as Lose,
+SUM(CASE PreferResult WHEN 2 THEN 1 ELSE 0 END) as LoseHalf,
+SUM(CASE PreferResult WHEN 3 THEN 1 ELSE 0 END) as Draw,
+SUM(CASE PreferResult WHEN 4 THEN 1 ELSE 0 END) as WinHalf,
+SUM(CASE PreferResult WHEN 5 THEN 1 ELSE 0 END) as Win
+from Recommends group by Person;";
     }
 }

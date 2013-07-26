@@ -35,6 +35,7 @@
                 <ListView.View>
                     <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="所有推荐">
                         <GridViewColumn Width="80" Header="开赛时间" DisplayMemberBinding="{Binding Path=Time1}" />
+                        <GridViewColumn Width="80" Header="赛事" DisplayMemberBinding="{Binding Path=League}" />
                         <GridViewColumn Width="80" Header="期数" DisplayMemberBinding="{Binding Path=Current}" />
                         <GridViewColumn Width="130" Header="主场球队" DisplayMemberBinding="{Binding Path=Host}" />
                         <GridViewColumn Width="80" Header="盘口" DisplayMemberBinding="{Binding Path=OddStake}" />

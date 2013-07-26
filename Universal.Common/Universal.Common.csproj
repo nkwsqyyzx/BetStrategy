@@ -40,10 +40,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight.WPF4">
-      <HintPath>..\..\BetStrategy.Dependencies\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+      <HintPath>..\BetStrategy.Dependencies\GalaSoft.MvvmLight.WPF4.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\BetStrategy.Dependencies\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\BetStrategy.Dependencies\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
