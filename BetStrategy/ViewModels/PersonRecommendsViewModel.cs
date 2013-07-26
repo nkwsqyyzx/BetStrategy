@@ -222,11 +222,17 @@ namespace BetStrategy.ViewModels
             if (lastRefreshCommand != null)
             {
                 lastRefreshCommand();
+                if (lastSortCommand != null)
+                {
+                    lastSortCommand();
+                }
             }
         }
 
+        private Action lastSortCommand = null;
         public void Sort(string sortBy, ListSortDirection direction)
         {
+            lastSortCommand = new Action(() => Sort(sortBy, direction));
             List<YieldRoiRecommend> rms = new List<YieldRoiRecommend>();
             foreach (var rec in _recommends)
             {
@@ -238,10 +244,7 @@ namespace BetStrategy.ViewModels
                 rms.OrderByDescending((i) => i.Property(sortBy));
 
             _recommends.Clear();
-            foreach (var item in sorted)
-            {
-                _recommends.Add(item);
-            }
+            sorted.Enumerate((i) => _recommends.Add(i));
         }
 
         #region ......

@@ -1,5 +1,5 @@
 ﻿using BetStrategy.Domain.Models;
-using BetStrategy.Utils;
+using BetStrategy.Services.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -51,10 +51,10 @@ namespace BetStrategy.ViewModels
 
         private Person Person;
 
-	/// <summary>
-	/// 加载某个人的记录
-	/// </summary>
-	/// <param name="name"></param>
+        /// <summary>
+        /// 加载某个人的记录
+        /// </summary>
+        /// <param name="name"></param>
         public void Load(string name)
         {
             Title = name;

@@ -1,5 +1,5 @@
 ﻿using BetStrategy.Domain.Models;
-using BetStrategy.Utils;
+using BetStrategy.Services.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

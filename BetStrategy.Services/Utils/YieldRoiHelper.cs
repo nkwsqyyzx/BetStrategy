@@ -1,8 +1,9 @@
 ﻿using BetStrategy.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
+using WSQ.CSharp.Extensions;
 
-namespace BetStrategy.Utils
+namespace BetStrategy.Services.Utils
 {
     public class YieldRoiHelper
     {
@@ -20,13 +21,11 @@ namespace BetStrategy.Utils
                     return .0f;
             }
         }
+
         public static float CalculateYield(IEnumerable<Recommend> recs)
         {
             var total = 0.0f;
-            foreach (var r in recs)
-            {
-                total += GainLose(r);
-            }
+            recs.Enumerate((i) => total += GainLose(i));
             return recs.Count() > 0 ? total / recs.Count() : .0f;
         }
 
@@ -44,10 +43,7 @@ namespace BetStrategy.Utils
         public static float CalculateRoi(IEnumerable<Recommend> recs)
         {
             var total = 0.0f;
-            foreach (var r in recs)
-            {
-                total += GainLose(r);
-            }
+            recs.Enumerate((i) => total += GainLose(i));
             return total;
         }
     }

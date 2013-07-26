@@ -112,7 +112,6 @@
     <Compile Include="Utils\LocalManager.cs" />
     <Compile Include="Utils\ResolveSQLite3264.cs" />
     <Compile Include="Utils\ViewHelper.cs" />
-    <Compile Include="Utils\YieldRoiHelper.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\RecommendModifyViewModel.cs" />
     <Compile Include="ViewModels\RecommendsViewModel.cs" />
