@@ -105,6 +105,7 @@
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\PreferResultToStringConverter.cs" />
+    <Compile Include="Messages\BalloonMessage.cs" />
     <Compile Include="Utils\DB.cs" />
     <Compile Include="Utils\Downloader.cs" />
     <Compile Include="Utils\ILocal.cs" />
@@ -124,6 +125,8 @@
     <Compile Include="ViewModels\YieldRoiProvider.cs" />
     <Compile Include="ViewModels\YieldRoiRecommend.cs" />
     <Compile Include="ViewModels\YieldRoiViewModel.cs" />
+    <Compile Include="Views\TrayContextMenu.cs" />
+    <Compile Include="Views\TrayIcon.cs" />
     <Compile Include="Windows\BaseWindow.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

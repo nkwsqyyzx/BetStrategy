@@ -3,11 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="Windows/MainWindow.xaml">
     <Application.Resources>
-        <ContextMenu Name="ContextMenu" 
-                         x:Key="NotifierContextMenu" 
-                         Placement="MousePoint">
-            <MenuItem Header="Close" Click="Menu_Close"/>
-        </ContextMenu>
         <Style x:Key="App_RecommendItemStyle" TargetType="{x:Type ListViewItem}">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="Height" Value="26" />
