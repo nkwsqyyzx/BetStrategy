@@ -1,4 +1,5 @@
 ﻿using BetStrategy.Messages;
+using BetStrategy.Properties;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace BetStrategy.Views
@@ -22,6 +23,7 @@ namespace BetStrategy.Views
             Icon.DoubleClick += Icon_DoubleClick;
             Icon.BalloonTipClicked += Icon_BalloonTipClicked;
             Icon.Icon = new System.Drawing.Icon("Resources\\SysTray.ico");
+            Icon.Text = Settings.Default.forumName;
             Icon.Visible = true;
         }
 

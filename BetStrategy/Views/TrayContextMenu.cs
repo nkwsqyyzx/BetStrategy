@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using BetStrategy.Properties;
 
 namespace BetStrategy.Views
 {
@@ -17,14 +18,14 @@ namespace BetStrategy.Views
         {
             ContextMenu = new ContextMenu();
             ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
-            var menu = new MenuItem() { Header = "Close Application" };
+            var menu = new MenuItem() { Header = "退出" + Settings.Default.forumName };
             menu.Click += menu_Click;
             ContextMenu.Items.Add(menu);
         }
 
         private void menu_Click(object sender, RoutedEventArgs e)
         {
-            var result = System.Windows.MessageBox.Show("退出后不再会收到新通知", "确认退出?", MessageBoxButton.YesNo);
+            var result = System.Windows.MessageBox.Show("退出后不再会收到新通知,确认退出？", Settings.Default.forumName, MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
                 app.Shutdown();

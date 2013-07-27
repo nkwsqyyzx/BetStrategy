@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using WSQ.CSharp.Extensions;
+using BetStrategy.WorkServices;
 
 namespace BetStrategy.ViewModels
 {
@@ -146,8 +147,9 @@ namespace BetStrategy.ViewModels
             if (WinGameSelfDefined == null)
             {
                 var vm = new PersonRecommendsViewModel();
-                vm.SelectedProfit = 3.0f;
+                vm.SelectedProfit = -10000.0f;
                 vm.UseSelfDefined = true;
+                vm.CheckBoxPreferMostIsChecked = false;
                 WinGameSelfDefined = new PersonRecommendsWindow();
                 WinGameSelfDefined.DataContext = vm;
                 WinGameSelfDefined.Title = "自定义查询";
@@ -158,7 +160,7 @@ namespace BetStrategy.ViewModels
             WinGameSelfDefined.Show();
         }
 
-        private bool _check = true;
+        private bool _check;
         public bool CheckBoxIsChecked
         {
             get
@@ -177,45 +179,17 @@ namespace BetStrategy.ViewModels
         {
         }
 
-        private DispatcherTimer _timer;
         public void Init()
         {
-            _timer = new DispatcherTimer();
-            _timer.Interval = new TimeSpan(0, Constants.Instance.INT_MINUTES_UPDATE_RECOMMEND, 30);
-            _timer.Tick += timer_Tick;
-            _timer.Start();
             // 每天第一次运行时下载
             int pages = BetStrategy.Properties.Settings.Default.pagesToDownload;
-            if (pages > 0)
-            {
-                RecommendManager.Instance.RecommendCenter.Download(0, pages, SaveRecommend, DownloadFinish);
-            }
-        }
-
-        private void DownloadFinish()
-        {
-        }
-
-        private void SaveRecommend(IEnumerable<Recommend> obj)
-        {
-            RecommendManager.Instance.RecommendCenter.SaveRecommends(obj);
-        }
-
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            RecommendManager.Instance.RecommendCenter.Download(1, 0, SaveRecommend, DownloadFinish);
+            RecommendService.Instance.Download(pages);
+            this.CheckBoxIsChecked = true;
         }
 
         private void Start(bool flag)
         {
-            if (!flag)
-            {
-                _timer.Stop();
-            }
-            else
-            {
-                _timer.Start();
-            }
+            RecommendService.Instance.EnableAutoDownload(flag);
         }
     }
 }

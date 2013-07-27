@@ -16,12 +16,12 @@ namespace BetStrategy.Services.Impl.Wrappers
             this.urlBase = urlBase;
         }
 
-        public void Download(int startPage, int endPage, Action<IEnumerable<Recommend>> onRecommends, Action finish)
+        public void Download(int startPage, int endPage, Action<IEnumerable<Recommend>> onRecommends, Action<int> finish)
         {
 #if !发布
             return;
 #endif
-
+            int count = 0;
             if (startPage > endPage || endPage < 0)
             {
                 throw new ArgumentException("please specify valid startPage & endPage to download.startPage:" + startPage + " endPage:" + endPage);
@@ -37,7 +37,7 @@ namespace BetStrategy.Services.Impl.Wrappers
                 {
                     if (finish != null)
                     {
-                        finish();
+                        finish(count);
                     }
                     return;
                 }
@@ -59,6 +59,7 @@ namespace BetStrategy.Services.Impl.Wrappers
                         }
                         Thread.Sleep(new Random().Next(2000, 5000));
                         current += 1;
+                        count += rs.Count;
                         download(current);
                     });
                 }

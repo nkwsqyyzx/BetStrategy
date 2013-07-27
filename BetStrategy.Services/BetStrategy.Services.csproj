@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Constants.cs" />
     <Compile Include="Factories\Database\IDbCommandFactory.cs" />
     <Compile Include="Factories\Database\Impl\SqliteDbCommandFactory.cs" />
     <Compile Include="Factories\RecommendManager.cs" />

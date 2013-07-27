@@ -144,6 +144,7 @@
       <DependentUpon>YieldRoiWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkServices\ApplicationInitializer.cs" />
+    <Compile Include="WorkServices\RecommendService.cs" />
     <Page Include="Windows\RecommendModifyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

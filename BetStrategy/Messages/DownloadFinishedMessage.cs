@@ -3,6 +3,6 @@ namespace BetStrategy.Messages
 {
     class DownloadFinishedMessage
     {
-        public string Message { get; set; }
+        public int Count { get; set; }
     }
 }

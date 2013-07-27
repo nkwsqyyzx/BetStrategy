@@ -15,7 +15,7 @@ namespace BetStrategy.Services.Recommends.Services
         /// <param name="endPage"></param>
         /// <param name="onRecommends"></param>
         /// <param name="finish"></param>
-        void Download(int startPage, int endPage, Action<IEnumerable<Recommend>> onRecommends, Action finish);
+        void Download(int startPage, int endPage, Action<IEnumerable<Recommend>> onRecommends, Action<int> finish);
 
         /// <summary>
         /// 存储一条推荐

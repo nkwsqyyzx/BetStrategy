@@ -6,6 +6,6 @@ namespace BetStrategy.Services.Recommends.Wrappers
 {
     interface IServerWrapper
     {
-        void Download(int startPage, int endPage, Action<IEnumerable<Recommend>> onRecommends, Action finish);
+        void Download(int startPage, int endPage, Action<IEnumerable<Recommend>> onRecommends, Action<int> finish);
     }
 }

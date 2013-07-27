@@ -1,10 +1,9 @@
-﻿using BetStrategy.Common.Configurations;
-using BetStrategy.Converters;
-using BetStrategy.Domain.Models;
+﻿using BetStrategy.Domain.Models;
+using BetStrategy.Messages;
 using BetStrategy.Services.Factories;
 using BetStrategy.Services.Utils;
-using BetStrategy.Utils;
 using BetStrategy.Windows;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,8 +18,6 @@ namespace BetStrategy.ViewModels
 {
     public class PersonRecommendsViewModel : BaseViewModel
     {
-        private PreferResultToStringConverter converter = new PreferResultToStringConverter();
-
         private ObservableCollection<YieldRoiRecommend> _recommends = new ObservableCollection<YieldRoiRecommend>();
 
         #region BINDABLE PROPERTIES
@@ -73,7 +70,6 @@ namespace BetStrategy.ViewModels
             set
             {
                 _selectedProfit = value;
-                Constants.Instance.COUNT_MIN_PROFIT = value;
                 ReloadList();
             }
         }
@@ -146,7 +142,7 @@ namespace BetStrategy.ViewModels
         private ICommand _viewPerson = null;
         public ICommand CommandViewPerson
         {
-            get { return _viewPerson.RelayCommand<YieldRoiRecommend>((rec) => ViewHelper.ViewPerson(rec.Recommend.Person)); }
+            get { return _viewPerson.RelayCommand<YieldRoiRecommend>((rec) => BetStrategy.Utils.ViewHelper.ViewPerson(rec.Recommend.Person)); }
         }
         #endregion
 
@@ -185,6 +181,7 @@ namespace BetStrategy.ViewModels
         public PersonRecommendsViewModel()
         {
             StartUpdate();
+            Messenger.Default.Register<DownloadFinishedMessage>(this, (count) => RefreshRecommends());
         }
 
         public void StartUpdate()
@@ -326,7 +323,7 @@ namespace BetStrategy.ViewModels
 
         private static void ShowSqlException(Exception ex)
         {
-            MessageBox.Show("SQL 语法错误:" + ex.Message);
+            MessageBox.Show("SQL 执行异常:" + ex.Message);
         }
         #endregion
 
