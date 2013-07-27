@@ -22,10 +22,10 @@ namespace BetStrategy.Services.Impl.Wrappers
             return;
 #endif
             int count = 0;
-            if (startPage > endPage || endPage < 0)
+            if (endPage < 0)
             {
-                throw new ArgumentException("please specify valid startPage & endPage to download.startPage:" + startPage + " endPage:" + endPage);
-	    }
+                throw new ArgumentException("please specify valid endPage to download.endPage must be zero or positive.startPage:" + startPage + " endPage:" + endPage);
+            }
 
             int current = startPage > 0 ? startPage : 1;
 
