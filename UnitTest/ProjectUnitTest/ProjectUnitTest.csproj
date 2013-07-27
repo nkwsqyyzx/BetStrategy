@@ -62,13 +62,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BetStrategy.Common\BetStrategy.Common.csproj">
+      <Project>{a84c8572-14ce-405a-b8f1-3b32ec3b2d60}</Project>
+      <Name>BetStrategy.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BetStrategy.Domain\BetStrategy.Domain.csproj">
       <Project>{edc2d7ec-3329-41dd-91a4-2db2639dfdd8}</Project>
       <Name>BetStrategy.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\BetStrategy.Services\BetStrategy.Services.csproj">
+      <Project>{99d3b1d0-c9b7-44b5-bb04-adf6c4bddab5}</Project>
+      <Name>BetStrategy.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BetStrategy\BetStrategy.csproj">
       <Project>{9cf2ffae-0dd5-4706-9f83-8f93893fa619}</Project>
       <Name>BetStrategy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Universal.Common\Universal.Common.csproj">
+      <Project>{a4f36939-3fed-4744-838e-9602b4f8c7e9}</Project>
+      <Name>Universal.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

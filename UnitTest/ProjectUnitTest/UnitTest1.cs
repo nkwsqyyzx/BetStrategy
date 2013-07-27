@@ -1,13 +1,10 @@
-﻿using System;
+﻿using BetStrategy.Domain.Models;
+using BetStrategy.Services.Factories;
+using BetStrategy.Services.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BetStrategy.ViewModels;
-using System.Threading;
+using System;
 using System.IO;
-using System.Net;
-using BetStrategy.Domain.Models;
-using BetStrategy.Utils;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace ProjectUnitTest
 {
@@ -15,80 +12,51 @@ namespace ProjectUnitTest
     public class UnitTest1
     {
         [TestMethod]
-        public void TestYieldRoiProvider()
+        public void TestSelect()
         {
-            YieldRoiProvider pro = YieldRoiProvider.Instance;
-            pro.GetPersonRecommends("格力电器", (ls) =>
+            RecommendManager.Instance.Init(@"data source=g:\database", "");
+            for (int i = 0; i < 180; i++)
             {
-                System.Diagnostics.Debug.WriteLine(ls.Prefer);
-            });
-            Thread.Sleep(100000);
+                Semaphore sm = new Semaphore(0, 1);
+                RecommendManager.Instance.RecommendCenter.GetRecommendsBySql(SQL(i), onRecommend, () => sm.Release(), onSqlError);
+                sm.WaitOne();
+            }
         }
 
-        [TestMethod]
-        public void TestGet()
+        private string SQL(int offset)
         {
-            string Url = "http://www.yn1999.com/Game_User.asp?id=章鱼帝";
-            HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(Url);
-            myRequest.Method = "PUT";
-            WebResponse myResponse = myRequest.GetResponse();
-            StreamReader sr = new StreamReader(myResponse.GetResponseStream(), System.Text.Encoding.GetEncoding("GBK"));
-            string result = sr.ReadToEnd();
-            sr.Close();
-            myResponse.Close();
-
-            System.Diagnostics.Debug.WriteLine(result);
+            return "select * from Recommends where Person in (select Person from (select Person,sum(CASE PreferResult WHEN 1 THEN -1 WHEN 2 THEN -0.5 WHEN 4 THEN 0.5*Odds WHEN 5 THEN Odds ELSE 0 END) as Profit,sum(CASE PreferResult WHEN 1 THEN -1 WHEN 2 THEN -0.5 WHEN 4 THEN 0.5*Odds WHEN 5 THEN Odds ELSE 0 END) * 1.0/count(*) as Yield,count(*) as Total from Recommends where " +
+"(Time1 > date('NOW','localtime','-" + (8 + offset).ToString() + " day') " +
+"and Time1 < date('NOW','localtime','-" + (1 + offset).ToString() + " day'))" +
+" and Person in (select Person from (select Person,sum(CASE PreferResult WHEN 1 THEN -1 WHEN 2 THEN -0.5 WHEN 4 THEN 0.5*Odds WHEN 5 THEN Odds ELSE 0 END) as Profit,sum(CASE PreferResult WHEN 1 THEN -1 WHEN 2 THEN -0.5 WHEN 4 THEN 0.5*Odds WHEN 5 THEN Odds ELSE 0 END) * 1.0/count(*) as Yield,count(*) as Total from Recommends where " +
+"Time1 > date('NOW','localtime','-" + (14 + offset).ToString() + " day')" +
+" group by Person order by Profit desc) limit 10) group by Person having Profit>0.5 order by Profit desc)) and " +
+"Time2 > datetime('NOW','localtime','-" + (1 + offset).ToString() + " day') and Time2 < datetime('NOW','localtime','-" + offset + " day') order by Time2 desc";
         }
 
-        [TestMethod]
-        public void TestGetRecommends()
+        private void onSqlError(Exception obj)
         {
-            LocalManager.Instance.GetRecommends("格力电器", (rec) =>
+            Write(obj.Message);
+        }
+
+        private void finish()
+        {
+            System.Diagnostics.Debug.WriteLine("--Finished");
+        }
+
+        private void onRecommend(Recommend obj)
+        {
+            var sz = DBHelper.ReplaceCommand(obj);
+            Write(sz);
+        }
+
+        private static void Write(string sz)
+        {
+            using (var fs = new FileStream("sql.sql", FileMode.Append))
+            using (var ws = new StreamWriter(fs))
             {
-                System.Diagnostics.Debug.WriteLine(rec.Host + " " + rec.OddStake + " " + rec.Guest + ":" + rec.Result);
-            });
-            Thread.Sleep(100000);
-        }
-
-        [TestMethod]
-        public void DownloadPersonRecommends()
-        {
-            /*
-                foreach (var name in TestData.TopPersons)
-                {
-                    System.Diagnostics.Debug.WriteLine("start to download person:" + name);
-                    YieldRoiProvider.Instance.DownloadRecommends(name, 1, null);
-                    Thread.Sleep(5000);
-                }
-                System.Diagnostics.Debug.WriteLine("finished downloading");
-                Thread.Sleep(1000 * 1000 * 1000);
-            */
-        }
-
-        [TestMethod]
-        public void DownloadLight()
-        {
-            /*
-                List<string> lights = new List<string>() { "12388123", "1300100915", "234678136", "BVBReus", "LXF1234", "lanquan11", "lijian520", "lk930", "qqzy", "ronapigu", "segespa", "sos73", "wintion", "zxy60120", "zy530", "云里金刚虎", "低调玩球一齐杀庄", "公测", "动听的乐章", "哥哥", "地狱黑仔王", "小李飞刀", "小球下盘", "希望之星", "弹弓六", "战无不胜", "无极旋风", "杀手47", "梅西的左脚", "水龙头", "爽爽", "空中飞人", "空山新雨", "红日", "红红火火", "罗纳尔多", "蛋定", "足球擂台", "量力而為", "金牌出击", "锐壮壮", "顺水顺风", "龙缘" };
-                foreach (var name in lights)
-                {
-                    System.Diagnostics.Debug.WriteLine("start to download person:" + name);
-                    YieldRoiProvider.Instance.DownloadRecommends(name, 1, null);
-                    Thread.Sleep(15040);
-                }
-                System.Diagnostics.Debug.WriteLine("finished downloading");
-                Thread.Sleep(1000 * 1000 * 1000);
-                */
-        }
-
-        [TestMethod]
-        public void TestAddEmtpyString()
-        {
-            List<string> list = new List<string>();
-            list.Add("");
-            list.Add("");
-            list.Add("");
-            list.Add("");
+                ws.WriteLine(sz);
+            }
         }
     }
 }
