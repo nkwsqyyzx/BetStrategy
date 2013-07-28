@@ -52,7 +52,7 @@ namespace BetStrategy.WorkServices
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            RecommendManager.Instance.RecommendCenter.Download(1, 0, SaveRecommend, DownloadFinish);
+            Download(1);
         }
 
         private void DownloadFinish(int count)
