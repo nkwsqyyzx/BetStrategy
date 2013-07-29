@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using BetStrategy.Properties;
 using BetStrategy.Services.Factories;
-using BetStrategy.Properties;
 
 namespace BetStrategy.WorkServices
 {
@@ -12,11 +8,17 @@ namespace BetStrategy.WorkServices
         public void Init()
         {
             InitRecommendManager();
+            InitEmailNotification();
         }
 
         private void InitRecommendManager()
         {
-            RecommendManager.Instance.Init(Settings.Default.dbConnectionString,Settings.Default.urlBase);
+            RecommendManager.Instance.Init(Settings.Default.dbConnectionString, Settings.Default.urlBase);
+        }
+
+        private void InitEmailNotification()
+        {
+            EmailNotificationService.Instance.Init(Settings.Default.dbSelectRecommends);
         }
     }
 }

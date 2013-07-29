@@ -38,7 +38,7 @@
             	Margin="20,0,0,0"
             	Content="开启抓取"
             	Height="38"
-            	IsChecked="{Binding CheckBoxIsChecked, Mode=TwoWay}"
+            	IsChecked="{Binding IsEnableAutoDownloadRecommends, Mode=TwoWay}"
             	Width="121"/>
         </StackPanel>
         <Button Style="{StaticResource ButtonStyle}" Grid.Row="1" Command="{Binding CommandGameTop}" Content="牛人排行榜" Margin="15,12,0,11"/>
@@ -53,6 +53,6 @@
                   Margin="157,17,25,15"
                   Content="开启邮件通知"
                   Height="39"
-                  IsChecked="{Binding Path=CheckBoxIsChecked,Mode=TwoWay}"/>
+                  IsChecked="{Binding Path=IsEnableEmailNotification,Mode=TwoWay}"/>
     </Grid>
 </src:BaseWindow>

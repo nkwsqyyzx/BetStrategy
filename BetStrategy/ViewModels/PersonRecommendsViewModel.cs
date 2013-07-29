@@ -74,17 +74,6 @@ namespace BetStrategy.ViewModels
             }
         }
 
-        private bool _enableEmail = false;
-        public bool EnableEmailNotify
-        {
-            get { return _enableEmail; }
-            set
-            {
-                _enableEmail = value;
-                NotifyPropertyChange(() => EnableEmailNotify);
-            }
-        }
-
         private bool _enable = true;
         public bool EnableControl
         {

@@ -1,7 +1,7 @@
 ﻿
 namespace BetStrategy.Messages
 {
-    class DownloadFinishedMessage
+    public class DownloadFinishedMessage
     {
         public int Count { get; set; }
     }

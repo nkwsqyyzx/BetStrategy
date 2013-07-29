@@ -1,14 +1,8 @@
-﻿using BetStrategy.Common.Configurations;
-using BetStrategy.Domain.Models;
-using BetStrategy.Services.Factories;
-using BetStrategy.Windows;
-using System;
-using System.Collections.Generic;
+﻿using BetStrategy.Windows;
+using BetStrategy.WorkServices;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
 using WSQ.CSharp.Extensions;
-using BetStrategy.WorkServices;
 
 namespace BetStrategy.ViewModels
 {
@@ -160,18 +154,33 @@ namespace BetStrategy.ViewModels
             WinGameSelfDefined.Show();
         }
 
-        private bool _check;
-        public bool CheckBoxIsChecked
+        private bool _isEnableAutoDownloadRecommends;
+        public bool IsEnableAutoDownloadRecommends
         {
             get
             {
-                return _check;
+                return _isEnableAutoDownloadRecommends;
             }
             set
             {
-                _check = value;
-                NotifyPropertyChange(() => CheckBoxIsChecked);
-                Start(_check);
+                _isEnableAutoDownloadRecommends = value;
+                NotifyPropertyChange(() => IsEnableAutoDownloadRecommends);
+                Start(_isEnableAutoDownloadRecommends);
+            }
+        }
+
+        private bool _isEnableEmailNotification;
+        public bool IsEnableEmailNotification
+        {
+            get
+            {
+                return _isEnableEmailNotification;
+            }
+            set
+            {
+                _isEnableEmailNotification = value;
+                NotifyPropertyChange(() => IsEnableEmailNotification);
+                EnableEmail(_isEnableEmailNotification);
             }
         }
 
@@ -184,12 +193,18 @@ namespace BetStrategy.ViewModels
             // 每天第一次运行时下载
             int pages = BetStrategy.Properties.Settings.Default.pagesToDownload;
             RecommendService.Instance.Download(pages);
-            this.CheckBoxIsChecked = true;
+            this.IsEnableAutoDownloadRecommends = true;
+            this.IsEnableEmailNotification = true;
         }
 
         private void Start(bool flag)
         {
             RecommendService.Instance.EnableAutoDownload(flag);
+        }
+
+        private void EnableEmail(bool isEnable)
+        {
+            EmailNotificationService.Instance.IsEnableEmailNotification = isEnable;
         }
     }
 }
