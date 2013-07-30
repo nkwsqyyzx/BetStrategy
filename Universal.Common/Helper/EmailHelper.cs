@@ -9,12 +9,7 @@ namespace WSQ.CSharp.Helper
 {
     public static class EmailHelper
     {
-        public static void SendEmailViaGmail(string from,
-            List<string> tos,
-            string username,
-            string password,
-            string subject,
-            string body)
+        public static void SendEmailViaGmail(List<string> tos, string username, string password, string subject, string body)
         {
             string gmailHost = "smtp.gmail.com";
 

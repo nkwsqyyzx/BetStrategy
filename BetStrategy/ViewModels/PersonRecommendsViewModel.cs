@@ -74,17 +74,6 @@ namespace BetStrategy.ViewModels
             }
         }
 
-        private bool _enableEmail = false;
-        public bool EnableEmailNotify
-        {
-            get { return _enableEmail; }
-            set
-            {
-                _enableEmail = value;
-                NotifyPropertyChange(() => EnableEmailNotify);
-            }
-        }
-
         private bool _enable = true;
         public bool EnableControl
         {
@@ -181,7 +170,7 @@ namespace BetStrategy.ViewModels
         public PersonRecommendsViewModel()
         {
             StartUpdate();
-            Messenger.Default.Register<DownloadFinishedMessage>(this, (count) => RefreshRecommends());
+            Messenger.Default.Register<DownloadFinishedMessage>(this, (count) => new Action(() => RefreshRecommends()).RunOnUI());
         }
 
         public void StartUpdate()

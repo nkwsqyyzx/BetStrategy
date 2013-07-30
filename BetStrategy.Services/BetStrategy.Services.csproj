@@ -58,7 +58,7 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Recommends\Services\IRecommendCenter.cs" />
-    <Compile Include="Recommends\Services\RecommendCenter.cs" />
+    <Compile Include="Impl.Wrappers\RecommendCenter.cs" />
     <Compile Include="Recommends\Wrappers\ILocalWrapper.cs" />
     <Compile Include="Recommends\Wrappers\IServerWrapper.cs" />
     <Compile Include="Utils\DBHelper.cs" />

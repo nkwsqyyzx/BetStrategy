@@ -65,7 +65,6 @@
 
                 <CheckBox Width="150" Visibility="{Binding Path=EnableControl,Converter={StaticResource BOOLCON}}" Content="自定义关注列表" IsChecked="{Binding Path=CheckBoxPreferMostIsChecked,Mode=TwoWay}"  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <CheckBox Width="150" Visibility="{Binding Path=EnableControl,Converter={StaticResource BOOLCON}}" Content="显示完场比赛" IsChecked="{Binding Path=CheckBoxViewFinishedIsChecked,Mode=TwoWay}"  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <CheckBox Width="150" Visibility="{Binding Path=EnableControl,Converter={StaticResource BOOLCON}}" Content="启用邮件通知" IsChecked="{Binding Path=EnableEmailNotify,Mode=TwoWay}"  Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <ComboBox Visibility="{Binding Path=EnableControl,Converter={StaticResource BOOLCON}}" Grid.Column="4"
                           HorizontalAlignment="Left"
                           VerticalAlignment="Top"
