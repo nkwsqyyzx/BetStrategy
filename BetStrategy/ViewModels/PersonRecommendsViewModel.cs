@@ -170,7 +170,7 @@ namespace BetStrategy.ViewModels
         public PersonRecommendsViewModel()
         {
             StartUpdate();
-            Messenger.Default.Register<DownloadFinishedMessage>(this, (count) => RefreshRecommends());
+            Messenger.Default.Register<DownloadFinishedMessage>(this, (count) => new Action(() => RefreshRecommends()).RunOnUI());
         }
 
         public void StartUpdate()

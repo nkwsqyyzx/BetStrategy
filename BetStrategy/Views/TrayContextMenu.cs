@@ -25,15 +25,7 @@ namespace BetStrategy.Views
 
         private void menu_Click(object sender, RoutedEventArgs e)
         {
-            var result = System.Windows.MessageBox.Show("退出后不再会收到新通知,确认退出？", Settings.Default.forumName, MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
-            {
-                app.Shutdown();
-            }
-            else
-            {
-                Close();
-            }
+            app.Shutdown();
         }
 
         internal void Open()
