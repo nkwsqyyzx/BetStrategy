@@ -15,34 +15,39 @@ namespace ProjectUnitTest
         [TestMethod]
         public void TestSelect()
         {
-            RecommendManager.Instance.Init(@"data source=G:\netdrive\baiduyun\球王吧推荐\database", "");
-            for (int n = 3; n < 31; n++)
+            RecommendManager.Instance.Init(@"data source=G:\netdrive\baiduyun\玉女吧推荐\database", "");
+            float roi;
+            float yield;
+            List<Recommend> recs = new List<Recommend>();
+            for (int n = 3; n < 11; n++)
             {
                 List<Recommend> rec = new List<Recommend>();
-                for (int i = 0; i < 30; i++)
-                {
-                    Semaphore sm = new Semaphore(0, 1);
-                    RecommendManager.Instance.RecommendCenter.GetRecommendsBySql(SQL(i,n), rec.Add, () => sm.Release(), onSqlError);
-                    sm.WaitOne();
-                }
                 Person p = new Person();
-                YieldRoiHelper.RefreshProfit(rec, p);
-                float roi = YieldRoiHelper.CalculateRoi(rec);
-                float yield = YieldRoiHelper.CalculateYield(rec);
-                System.Diagnostics.Debug.WriteLine(n + " count:" + rec.Count + " roi:" + roi + " yield:" + yield);
-                Write(n + " count:" + rec.Count + " roi:" + roi + " yield:" + yield);
+                for (int offset = 0; offset < 30; offset++)
+                {
+                    rec.Clear();
+                    Semaphore sm = new Semaphore(0, 1);
+                    var sql = SQL(offset, n);
+                    Write("inner offset:" + offset + " n:" + n + " ----- " + sql);
+                    RecommendManager.Instance.RecommendCenter.GetRecommendsBySql(sql, rec.Add, () => sm.Release(), onSqlError);
+                    sm.WaitOne();
+                    roi = YieldRoiHelper.CalculateRoi(rec);
+                    yield = YieldRoiHelper.CalculateYield(rec);
+                    YieldRoiHelper.RefreshProfit(rec, p);
+                    Write("inner " + n + " count:" + rec.Count + " roi:" + roi + " yield:" + yield + " Win:" + p.Win + " WinHalf:" + p.WinHalf + " Lose:" + p.Lose + " LoseHalf:" + p.LoseHalf);
+                    recs.AddRange(rec);
+                }
+                roi = YieldRoiHelper.CalculateRoi(recs);
+                yield = YieldRoiHelper.CalculateYield(recs);
+                YieldRoiHelper.RefreshProfit(recs, p);
+                Write("outer " + n + " count:" + rec.Count + " roi:" + roi + " yield:" + yield + " Win:" + p.Win + " WinHalf:" + p.WinHalf + " Lose:" + p.Lose + " LoseHalf:" + p.LoseHalf);
+                recs.Clear();
             }
         }
 
         private string SQL(int offset, int n)
         {
-            return "select * from Recommends where Person in (select Person from (select Person,sum(CASE PreferResult WHEN 1 THEN -1 WHEN 2 THEN -0.5 WHEN 4 THEN 0.5*Odds WHEN 5 THEN Odds ELSE 0 END) as Profit,sum(CASE PreferResult WHEN 1 THEN -1 WHEN 2 THEN -0.5 WHEN 4 THEN 0.5*Odds WHEN 5 THEN Odds ELSE 0 END) * 1.0/count(*) as Yield,count(*) as Total from Recommends where " +
-"(Time1 > date('NOW','localtime','-" + (n + offset).ToString() + " day') " +
-"and Time1 < date('NOW','localtime','-" + (1 + offset).ToString() + " day'))" +
-" and Person in (select Person from (select Person,sum(CASE PreferResult WHEN 1 THEN -1 WHEN 2 THEN -0.5 WHEN 4 THEN 0.5*Odds WHEN 5 THEN Odds ELSE 0 END) as Profit,sum(CASE PreferResult WHEN 1 THEN -1 WHEN 2 THEN -0.5 WHEN 4 THEN 0.5*Odds WHEN 5 THEN Odds ELSE 0 END) * 1.0/count(*) as Yield,count(*) as Total from Recommends where " +
-"Time1 > date('NOW','localtime','-" + (2 * n + offset).ToString() + " day')" +
-" group by Person order by Profit desc) limit 20) group by Person having Profit>0.5 order by Profit desc)) and " +
-"Time2 > datetime('NOW','localtime','-" + (1 + offset).ToString() + " day') and Time2 < datetime('NOW','localtime','-" + offset + " day') order by Time2 desc";
+            return "select * from PRecommends where Person in (select Person from (select Person,sum(P) as Profit,sum(P) * 1.0/count(*) as Yield,count(*) as Total from PRecommends where (Time1 > date('NOW','localtime','-" + (n + offset) + " day') and Time1 < date('NOW','localtime','-" + offset + " day')) and Person in (select Person from (select Person,sum(P) as Profit,sum(P) * 1.0/count(*) as Yield,count(*) as Total from PRecommends where Time1 > date('NOW','localtime','-" + (2 * n + offset) + " day') and Time1 < date('NOW','localtime','-" + offset + " day') group by Person order by Profit) limit 10) group by Person having Profit<0 order by Profit desc)) and Time2 > date('NOW','localtime','-" + offset + " day') and Time2 < date('NOW','localtime','-" + (offset - 1) + " day')";
         }
 
         private void onSqlError(Exception obj)
