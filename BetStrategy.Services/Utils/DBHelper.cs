@@ -43,7 +43,7 @@ namespace BetStrategy.Services.Utils
             var mdhm = name.Split("_ -:".ToCharArray());
             var month = int.Parse(mdhm[0]);
             int year = 0;
-            if (month > DateTime.Now.Month)
+            if (month < 6 && month > DateTime.Now.Month)
             {
                 year = DateTime.Now.Year - 1;
             }
