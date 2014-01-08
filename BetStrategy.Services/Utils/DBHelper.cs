@@ -80,8 +80,8 @@ namespace BetStrategy.Services.Utils
             DateTime t1 = (DateTime)reader["Time1"];
             DateTime t2 = (DateTime)reader["Time2"];
 
-            rec.Time1 = t1.ToString("MM-dd HH:mm");
-            rec.Time2 = t2.ToString("MM-dd HH:mm");
+            rec.Time1 = t1.ToString("yy-MM-dd HH:mm");
+            rec.Time2 = t2.ToString("yy-MM-dd HH:mm");
 
             rec.PreferResult = (PreferResult)reader["PreferResult"];
 
